@@ -10,14 +10,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class qaconsole {
-	
+
 	WiniumDriver driver;
-	
+
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
 		try {
 			DesktopOptions options = new DesktopOptions();
-			options.setApplicationPath("D:\\qaconsole\\iTor11QAConsole.exe");
+			options.setApplicationPath("src//dependencies//qaconsole//iTor11QAConsole.exe");
 			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
 			File drivePath = new File(WiniumDriverPath);
 			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
@@ -29,43 +29,63 @@ public class qaconsole {
 			// throw e;
 		}
 		return driver;
-}
+	}
 
-
-
-	@Test
-	public void newTest() throws IOException {
+	@Test(priority = 0)
+	public void powerOFF() throws IOException {
 
 		try {
-			String status="";
-			System.out.println("Start of demo");
+			String status = "";
+			// System.out.println("Start of demo");
 			Thread.sleep(3000);
-			
+
 			driver.findElement(By.name("RMS+")).click();
 			Thread.sleep(1000);
-			
-		/*	status = driver.findElementByXPath("//*[contains(@AutomationId:,'textBoxConnStatus') and contains(@Name,'Status: ')]").getText();
-			
-			System.out.println("Before connecting status is :-"+status);*/
-			
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Roti Serial: ')]").clear();
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Roti Serial: ')]").sendKeys("7500000F");
-			
+
+			/*
+			 * status = driver.
+			 * findElementByXPath("//*[contains(@AutomationId:,'textBoxConnStatus') and contains(@Name,'Status: ')]"
+			 * ).getText();
+			 * 
+			 * System.out.println("Before connecting status is :-"+status);
+			 */
+
+			driver.findElementByXPath(
+					"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Roti Serial: ')]").clear();
+			driver.findElementByXPath(
+					"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Roti Serial: ')]")
+					.sendKeys("7500000F");
+
 			// Check button is enabled or not
-			driver.findElement(By.name("Connect")).click();  
+			driver.findElement(By.name("Connect")).click();
 			Thread.sleep(2000);
 
-			System.out.println("After connecting status is :-"+status);
-			/*status = driver.findElementByXPath("//*[contains(@AutomationId:,'textBoxConnStatus') and contains(@Name,'Status: ')]").getText();			
-			System.out.println("Status is :- "+status);*/
-			
-			driver.findElement(By.name("Close")).click();
-			
-			System.out.println("End of demo");
+			System.out.println("After connecting status is :-" + status);
+			/*
+			 * status = driver.
+			 * findElementByXPath("//*[contains(@AutomationId:,'textBoxConnStatus') and contains(@Name,'Status: ')]"
+			 * ).getText(); System.out.println("Status is :- "+status);
+			 */
 
-			//driver.close();
+			// Check machine is power off / On
+
 		} catch (Exception e) {
-			// System.out.println(e.getMessage());
+
 		}
+	}
+
+	@Test(priority = 2)
+	public void powerON() throws IOException, Exception {
+
+		driver.findElement(By.name("Settings")).click();
+		Thread.sleep(2000);
+		
+
+		// Check machine is power off / On
+		
+		driver.findElement(By.name("Close")).click();
+
+		driver.close();
+
 	}
 }

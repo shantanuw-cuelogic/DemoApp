@@ -10,7 +10,7 @@ import org.openqa.selenium.winium.WiniumDriverService;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class demo {
+public class setup {
 
 	WiniumDriver driver;
 

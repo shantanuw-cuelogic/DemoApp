@@ -3,8 +3,11 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.winium.DesktopOptions;
 import org.openqa.selenium.winium.WiniumDriver;
 import org.openqa.selenium.winium.WiniumDriverService;
@@ -14,12 +17,15 @@ import org.testng.annotations.Test;
 
 public class fwupdate {
 	WiniumDriver driver;
+	String successFWUpdate = "1.18.7";
+	String serialNumber = "7500000F"; // Use config file
+	String status = "";
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
 		try {
 			DesktopOptions options = new DesktopOptions();
-			options.setApplicationPath("src//dependencies//fwUpdateTool//ZimpleFirmwareUpdate.exe"); // Use config file
+			options.setApplicationPath("src//dependencies//fwUpdateTool//ZimpleFirmwareUpdate.exe"); // Step 5
 			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
 			File drivePath = new File(WiniumDriverPath);
 			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
@@ -27,58 +33,50 @@ public class fwupdate {
 			service.start();
 			driver = new WiniumDriver(service, options);
 		} catch (Exception e) {
-			System.out.println("Driver setup failed");
+			System.out.println("\n Driver setup failed");
 		}
 		return driver;
+	
 	}
 
-	@Test
-	public void newTest() throws IOException {
+	@Test(priority=1)
+	public void fwUpdateTest() throws IOException {
 
 		try {
-			String serialNumber = "7500000F"; // Use config file
-			String status = "";
-			String successFWUpdate = "1.18.7";
+			// String successFWUpdate = "1.18.7";
 			String connectedSuccess = "Connected";
 			String notConnected = "Rotimatic machine is not connected.";
 
-			System.out.println("Start of test");
 			Thread.sleep(3000);
 
 			// Sports mode **Need to replace it
-			driver.findElement(By.name("Enable  Fast")).click();
+			driver.findElement(By.name("Enable  Fast")).click(); // Step 7
 
 			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
 					.clear();
 			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
-					.sendKeys(serialNumber);
+					.sendKeys(serialNumber); // Step 6
 
 			// Need to Check button is enabled or not
-			driver.findElement(By.name("Connect")).click();
+			driver.findElement(By.name("Connect")).click(); // Step 8
 			Thread.sleep(3000);
 			status = getStatus();
-			System.out.println("Status is :-" + status);
+			System.out.println("\n Current status is => \n" + status);
 
 			if (status.contains(connectedSuccess))
-				System.out.println("Client is connected");
+				System.out.println("\n Client is connected"); // Step 8
 			else
 				System.err.println("\n Error occured:- " + status);
-
-			// Need to Check button is enabled or not
-			driver.findElementByName("FW version").click();
-			Thread.sleep(3000);
-
-			checkErrorDialog();
 
 			// Check current FW version of machine
 			status = checkCurrentFWversion();
 
 			if (status.contains(successFWUpdate)) {
 
-				System.err.println("Machine is already updated to latest FW version 1.18.7");
+				System.err.println("\n Machine is already updated to latest FW version 1.18.7");
 				disconnectClient();
 				try {
-					Assert.fail("Machine is already updated to latest FW version 1.18.7");
+					Assert.fail("\n Machine is already updated to latest FW version 1.18.7");
 
 				} catch (Exception e) {
 				}
@@ -86,24 +84,26 @@ public class fwupdate {
 
 			// Check machine error
 			if (status.contains(notConnected)) {
-				System.err.println("Error :- Rotimatic machine is not connected");
+				System.err.println("\n Error :- Rotimatic machine is not connected");
 				disconnectClient();
 				try {
-					Assert.fail("Error :- Rotimatic machine is not connected");
+					Assert.fail("\n Error :- Rotimatic machine is not connected");
 				} catch (Exception e) {
 				}
 			}
 
 			clearLogs();
 
-			// Start FW update
+			// Start FW update Step 9
 			fwUpdate();
 
+			// Check FW version after update Step 11
+			status = checkCurrentFWversion();
+
 			disconnectClient();
-
-			System.out.println("End of test");
-
-			driver.close();
+			
+			
+			//driver.close();
 		} catch (Exception e) {
 		}
 	}
@@ -128,42 +128,90 @@ public class fwupdate {
 	}
 
 	private void fwUpdate() throws Exception {
-		// Need to Check button is enabled or not
-		driver.findElementByName("FW version").click();
-		Thread.sleep(3000);
 
-		checkCurrentFWversion();
 		driver.findElementByName("Start Update").click();
 		checkErrorDialog();
 
+		Thread.sleep(10000);
+		status = getStatus();
+		System.out.println("\n Current status is => \n" + status);
+
+		clearLogs();
+
+		checkFWUpdateProgress(); // Step 10
+
+		System.out.println("\n FW update process completed ..");
+
 	}
 
-	private String checkCurrentFWversion() {
+	private void checkFWUpdateProgress() {
+
+		try {
+			(new WebDriverWait(driver, 600)).until(new ExpectedCondition<Boolean>() {
+				public Boolean apply(WebDriver d) {
+					try {
+
+						// Check for chunk 0 for maximum 10 minutes
+
+						String expected = "Chunk0";
+
+						String actual = getStatus();
+
+						System.out.println("\n Current FW update status is => \n" + actual);
+
+						if (actual.contains(expected))
+							return true;
+
+						clearLogs();
+
+					} catch (Exception e) {
+
+					}
+					return false;
+				}
+
+			});
+		} catch (Exception e) {
+			Assert.fail("\n FW update is not completed in 10 minutes");
+		}
+
+	}
+
+	private String checkCurrentFWversion() throws Exception {
+
+		// Need to Check button is enabled or not
+		driver.findElementByName("FW version").click();
+		Thread.sleep(4000);
+		checkErrorDialog();
+
 		// Get releaseVersion: 1.18.7 and parse it to check current FW
 
-		String status = getStatus();
-		System.out.println("Original status = " + status);
-		
+		status = getStatus();
+		System.out.println("\n Current status = \n" + status);
+
 		int index = status.lastIndexOf("releaseVersion:");
 
-		String fwVersion = status.substring(index+15);
-		
-		System.out.println("Current FW version = " + fwVersion);
-		
+		String fwVersion = status.substring(index + 15);
+
+		System.out.println("\n Current FW version = " + fwVersion);
+
+		if (fwVersion.equalsIgnoreCase(successFWUpdate))
+			System.out.println("\n FW upgraded successfully");
+
 		return fwVersion;
-		
+
 	}
 
 	private void disconnectClient() {
 		driver.findElementByName("Disconnect").click();
-		System.out.println("Client disconnected");
+		System.out.println("\n Client disconnected");
 
 		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]")
 				.click();
 	}
 
 	private String getStatus() {
-		String status = driver
+		status = driver
 				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status:')]")
 				.getText();
 		return status;
@@ -176,8 +224,6 @@ public class fwupdate {
 		try {
 			Actions action = new Actions(driver).doubleClick(element);
 			action.build().perform();
-
-			// System.out.println("Double clicked the element");
 		} catch (Exception e) {
 		}
 
