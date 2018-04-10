@@ -19,7 +19,7 @@ public class fwupdate {
 	public WiniumDriver setup() throws Exception {
 		try {
 			DesktopOptions options = new DesktopOptions();
-			options.setApplicationPath("D:\\fwUpdateTool\\ZimpleFirmwareUpdate.exe");
+			options.setApplicationPath("src//dependencies//fwUpdateTool//ZimpleFirmwareUpdate.exe"); // Use config file
 			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
 			File drivePath = new File(WiniumDriverPath);
 			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
@@ -36,9 +36,9 @@ public class fwupdate {
 	public void newTest() throws IOException {
 
 		try {
-			String serialNumber = "7500000F";
+			String serialNumber = "7500000F"; // Use config file
 			String status = "";
-			String successFWUpdate = "releaseVersion: 1.18.7";
+			String successFWUpdate = "1.18.7";
 			String connectedSuccess = "Connected";
 			String notConnected = "Rotimatic machine is not connected.";
 
@@ -71,8 +71,7 @@ public class fwupdate {
 			checkErrorDialog();
 
 			// Check current FW version of machine
-			status = getStatus();
-			System.out.println("Status is :-" + status);
+			status = checkCurrentFWversion();
 
 			if (status.contains(successFWUpdate)) {
 
@@ -123,14 +122,36 @@ public class fwupdate {
 				Assert.fail("Error info :- sys state is not for firmware update");
 			} catch (Exception e) {
 			}
-		}
+		} else
+			System.out.println("No error in getting current FW version");
 
 	}
 
-	private void fwUpdate() {
+	private void fwUpdate() throws Exception {
+		// Need to Check button is enabled or not
+		driver.findElementByName("FW version").click();
+		Thread.sleep(3000);
+
+		checkCurrentFWversion();
 		driver.findElementByName("Start Update").click();
 		checkErrorDialog();
 
+	}
+
+	private String checkCurrentFWversion() {
+		// Get releaseVersion: 1.18.7 and parse it to check current FW
+
+		String status = getStatus();
+		System.out.println("Original status = " + status);
+		
+		int index = status.lastIndexOf("releaseVersion:");
+
+		String fwVersion = status.substring(index+15);
+		
+		System.out.println("Current FW version = " + fwVersion);
+		
+		return fwVersion;
+		
 	}
 
 	private void disconnectClient() {
