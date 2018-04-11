@@ -20,12 +20,15 @@ public class fwupdate {
 	String successFWUpdate = "1.18.7";
 	String serialNumber = "7500000F"; // Use config file
 	String status = "";
+	String connectedSuccess = "Connected";
+	String notConnected = "Rotimatic machine is not connected.";
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
 		try {
 			DesktopOptions options = new DesktopOptions();
-			options.setApplicationPath("src//dependencies//fwUpdateTool//ZimpleFirmwareUpdate.exe"); // Step 5
+			options.setApplicationPath("src//dependencies//1.18.7.4753_fwUpdateTool//ZimpleFirmwareUpdate.exe"); // Step
+																													// 5
 			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
 			File drivePath = new File(WiniumDriverPath);
 			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
@@ -36,21 +39,18 @@ public class fwupdate {
 			System.out.println("\n Driver setup failed");
 		}
 		return driver;
-	
+
 	}
 
-	@Test(priority=1)
+	@Test(priority = 0)
 	public void fwUpdateTest() throws IOException {
 
 		try {
-			// String successFWUpdate = "1.18.7";
-			String connectedSuccess = "Connected";
-			String notConnected = "Rotimatic machine is not connected.";
 
 			Thread.sleep(3000);
 
-			// Sports mode **Need to replace it
-			driver.findElement(By.name("Enable  Fast")).click(); // Step 7
+			// Sports mode
+			driver.findElement(By.name("Sports Mode")).click(); // Step 7
 
 			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
 					.clear();
@@ -60,6 +60,20 @@ public class fwupdate {
 			// Need to Check button is enabled or not
 			driver.findElement(By.name("Connect")).click(); // Step 8
 			Thread.sleep(3000);
+
+			// Check for Error - update.img file not exist
+			if (!driver.findElementsByName("OK").isEmpty()) {
+				driver.findElementByName("OK").click();
+				System.err.println("\n Error: update.img file not exist");
+
+				driver.findElementByXPath(
+						"//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]").click();
+				try {
+					Assert.fail("\n Error :- update.img file not exist");
+				} catch (Exception e) {
+				}
+			}
+
 			status = getStatus();
 			System.out.println("\n Current status is => \n" + status);
 
@@ -82,16 +96,6 @@ public class fwupdate {
 				}
 			}
 
-			// Check machine error
-			if (status.contains(notConnected)) {
-				System.err.println("\n Error :- Rotimatic machine is not connected");
-				disconnectClient();
-				try {
-					Assert.fail("\n Error :- Rotimatic machine is not connected");
-				} catch (Exception e) {
-				}
-			}
-
 			clearLogs();
 
 			// Start FW update Step 9
@@ -101,9 +105,8 @@ public class fwupdate {
 			status = checkCurrentFWversion();
 
 			disconnectClient();
-			
-			
-			//driver.close();
+
+			// driver.close();
 		} catch (Exception e) {
 		}
 	}
@@ -187,7 +190,17 @@ public class fwupdate {
 		// Get releaseVersion: 1.18.7 and parse it to check current FW
 
 		status = getStatus();
-		System.out.println("\n Current status = \n" + status);
+		System.out.println("\n Current status is => \n" + status);
+
+		// Check machine error
+		if (status.contains(notConnected)) {
+			System.err.println("\n Error :- Rotimatic machine is not connected");
+			disconnectClient();
+			try {
+				Assert.fail("\n Error :- Rotimatic machine is not connected");
+			} catch (Exception e) {
+			}
+		}
 
 		int index = status.lastIndexOf("releaseVersion:");
 

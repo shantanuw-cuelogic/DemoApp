@@ -3,8 +3,8 @@
 <suite name="Suite">
   <test thread-count="1" name="Test">
     <classes>
-      <class name="qaconsole"/>
-       <class name="fwupdate"/>
+      <class name="fwupdate"/>
+       <class name="qaconsole"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
