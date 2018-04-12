@@ -41,10 +41,7 @@ public class QAConsole_1_17_7 {
 	public void powerOFF() throws IOException {
 
 		try {
-
-			// System.out.println("Start of demo");
-			Thread.sleep(4000);
-
+			Thread.sleep(3000);
 			// Login to QAConsole
 			qaConsoleLogin();
 
@@ -55,9 +52,10 @@ public class QAConsole_1_17_7 {
 			Thread.sleep(1000);
 
 			// Check machine is power off / On Step 4
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'POWER')]")
-					.click();
-
+			//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'POWER')]").click();
+			
+			driver.findElementByName("POWER").click();
+			
 			disconnectClient();
 
 		} catch (Exception e) {
@@ -67,9 +65,8 @@ public class QAConsole_1_17_7 {
 
 	private void connectClient() throws Exception {
 		// Clicking on RMS tab and connecting to mahcine
-		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem') and contains(@Name,'RMS')]")
-				.click();
-		Thread.sleep(2000);
+	//	driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem') and contains(@Name,'RMS')]").click();
+		driver.findElement(By.name("RMS")).click();
 
 		driver.findElementByXPath(
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]").clear();
@@ -77,8 +74,8 @@ public class QAConsole_1_17_7 {
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]")
 				.sendKeys(serialNumber);
 
-		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Connect')]")
-				.click();
+		//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Connect')]").click();
+		driver.findElement(By.name("Connect")).click();
 		Thread.sleep(3000);
 
 		// Check status
@@ -115,13 +112,12 @@ public class QAConsole_1_17_7 {
 
 		// Go to RMS and click on disconnect
 
-		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem') and contains(@Name,'RMS')]")
-		.click();
+		driver.findElement(By.name("RMS")).click();
 		Thread.sleep(1000);
 
-		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Disconnect')]")
-				.click();
-
+		//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Disconnect')]").click();
+		driver.findElement(By.name("Disconnect")).click();
+		
 		driver.findElement(By.name("Close")).click();
 
 	}

@@ -16,9 +16,9 @@ public class QAConsole_1_18_7 {
 	String serialNumber = "7500000F";
 	String machineName = "PVSG00F";
 	String status = "";
-	String connectedStatus = "Server connected";
+	String connectedStatus = "connected";
 	String machineStatus = "";
-	String notConnectedStatus = "Not Connected";
+	String notConnectedStatus = "Not connected";
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
@@ -41,8 +41,7 @@ public class QAConsole_1_18_7 {
 	@Test(priority = 2)
 	public void saveRotiFile() throws Exception {
 
-		Thread.sleep(4000);
-
+		Thread.sleep(3000);
 		// Login to QAConsole
 		qaConsoleLogin();
 
@@ -63,13 +62,15 @@ public class QAConsole_1_18_7 {
 		 * } catch (Exception e) { } }
 		 */
 
-		// Power On machine / On Step 12
-		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'POWER')]")
-				.click();
-
-		// Save rotifile Step 13
 		driver.findElement(By.name("Settings")).click();
 		Thread.sleep(1000);
+
+		// Power On machine / On Step 12
+		//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'POWER')]").click();
+		
+		driver.findElementByName("POWER").click();
+		
+		// Save rotifile Step 13
 
 		driver.findElementByXPath(
 				"//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Save EEPROM to File')]").click();
@@ -79,7 +80,7 @@ public class QAConsole_1_18_7 {
 				.findElementsByXPath("//*[contains(@ControlType,'ControlType.Window') and contains(@Name,'modalForm')]")
 				.isEmpty()) {
 			System.out.println("\n Saving EEPROM file");
-			Thread.sleep(20000);
+	
 		}
 
 		// Checking success/error dialog
@@ -87,10 +88,12 @@ public class QAConsole_1_18_7 {
 				.findElementsByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'OK')]")
 				.isEmpty()) {
 			System.err.println("\n EEPROM transaction fail! (Timeout after 30s)");
+			driver
+			.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'OK')]").click();
 			
 			try {
 				disconnectClient();
-				Assert.fail("\n EEPROM transaction fail! (Timeout after 30s)");
+				Assert.fail(" EEPROM transaction fail! (Timeout after 30s)");
 			} catch (Exception e) {
 			}
 		}
@@ -107,7 +110,7 @@ public class QAConsole_1_18_7 {
 		// Clicking on RMS tab and connecting to mahcine
 		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem') and contains(@Name,'RMS')]")
 				.click();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 		driver.findElementByXPath(
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]").clear();
@@ -124,7 +127,7 @@ public class QAConsole_1_18_7 {
 				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status: ')]")
 				.getText();
 
-		if (status.equalsIgnoreCase(connectedStatus))
+		if (status.contains(connectedStatus))
 			System.out.println("Status is :- " + status);
 	}
 
