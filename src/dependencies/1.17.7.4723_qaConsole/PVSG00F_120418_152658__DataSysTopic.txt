@@ -1,0 +1,3 @@
+{"data": "from Sys topic"}
+{"opcode":"sessionFinish","payload":["3095","0","0","0"]}
+{"opcode":"machineConnected","serialNo":"7500000F","releaseVersion":"1.17.7","env":"production","mode":"3"}
