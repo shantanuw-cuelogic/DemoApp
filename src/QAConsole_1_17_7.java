@@ -32,7 +32,7 @@ public class QAConsole_1_17_7 {
 			driver = new WiniumDriver(service, options);
 		} catch (Exception e) {
 			System.out.println("Driver setup failed");
-			// throw e;
+			setup();
 		}
 		return driver;
 	}
@@ -44,6 +44,13 @@ public class QAConsole_1_17_7 {
 			Thread.sleep(3000);
 			// Login to QAConsole
 			qaConsoleLogin();
+			
+			// Check whether qaconsole is opened successfully or not
+			if(driver.findElementsByName("Manual").isEmpty()) {
+				// Add termination of suit logic here
+				
+				Assert.fail(" QAConsole login failed, please try again");
+			}
 
 			// Connect to serial number
 			connectClient();
@@ -92,12 +99,16 @@ public class QAConsole_1_17_7 {
 
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);
+		
 
 		// Selenium code to login google account
 
 		// Assumption is user is already logged in to google account with full access
 
+		
+		
 		// Return to qaconsole app
+		
 
 		// Alert dialog
 		if (!driver.findElementsByName("OK").isEmpty()) {

@@ -45,6 +45,13 @@ public class QAConsole_1_18_7 {
 		// Login to QAConsole
 		qaConsoleLogin();
 
+		// Check whether qaconsole is opened successfully or not
+		if (driver.findElementsByName("Manual").isEmpty()) {
+			// Add termination of suit logic here
+
+			Assert.fail(" QAConsole login failed, please try again");
+		}
+
 		connectClient();
 
 		// Check machine is connected to Internet or not
@@ -66,10 +73,11 @@ public class QAConsole_1_18_7 {
 		Thread.sleep(1000);
 
 		// Power On machine / On Step 12
-		//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'POWER')]").click();
-		
+		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
+		// and contains(@Name,'POWER')]").click();
+
 		driver.findElementByName("POWER").click();
-		
+
 		// Save rotifile Step 13
 
 		driver.findElementByXPath(
@@ -80,25 +88,24 @@ public class QAConsole_1_18_7 {
 				.findElementsByXPath("//*[contains(@ControlType,'ControlType.Window') and contains(@Name,'modalForm')]")
 				.isEmpty()) {
 			System.out.println("\n Saving EEPROM file");
-	
+
 		}
 
 		// Checking success/error dialog
-		if (!driver
-				.findElementsByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'OK')]")
+		if (!driver.findElementsByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'OK')]")
 				.isEmpty()) {
 			System.err.println("\n EEPROM transaction fail! (Timeout after 30s)");
-			driver
-			.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'OK')]").click();
-			
+			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'OK')]")
+					.click();
+
 			try {
 				disconnectClient();
 				Assert.fail(" EEPROM transaction fail! (Timeout after 30s)");
 			} catch (Exception e) {
 			}
 		}
-		
-		//Check rotifile saved location  
+
+		// Check rotifile saved location
 
 		disconnectClient();
 
@@ -110,7 +117,7 @@ public class QAConsole_1_18_7 {
 		// Clicking on RMS tab and connecting to mahcine
 		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem') and contains(@Name,'RMS')]")
 				.click();
-		//Thread.sleep(2000);
+		// Thread.sleep(2000);
 
 		driver.findElementByXPath(
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]").clear();

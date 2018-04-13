@@ -17,11 +17,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-
-
 public class FWUpdate {
 	WiniumDriver driver;
 	String successFWUpdate = "1.18.7";
+	String currentFWVersion = "1.17.7";
 	String serialNumber = "7500000F"; // Use config file
 	String status = "";
 	String connectedSuccess = "Connected";
@@ -41,8 +40,8 @@ public class FWUpdate {
 			driver = new WiniumDriver(service, options);
 		} catch (Exception e) {
 			System.err.println("\n Driver setup failed");
-			
-				setup();
+
+			setup();
 		}
 		return driver;
 
@@ -52,7 +51,7 @@ public class FWUpdate {
 	public void fwUpdateTest() throws IOException {
 
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000); // Wait till machine power off
 			// Sports mode
 			driver.findElement(By.name("Sports Mode")).click(); // Step 7
 
@@ -114,15 +113,15 @@ public class FWUpdate {
 			status = checkCurrentFWversion();
 
 			// Check for semantic fw version > 1.17.7
-			// Set flag to decide next test case execution
-
-			if (status.equalsIgnoreCase(successFWUpdate)) {
+			if (!status.contains(currentFWVersion)) {
 				System.out.println("\n FW is upgraded successfully");
 			} else {
 				try {
-					System.err.println("\\n Error :- FW is not upgraded successgully");
+					
+					// Set flag to decide next test case execution
+					System.err.println("\\n Error :- FW is not upgraded successfully");
 					disconnectClient();
-					Assert.fail("\n Error :- FW is not upgraded successgully");
+					Assert.fail("\n Error :- FW is not upgraded !!");
 				} catch (Exception e) {
 				}
 			}
@@ -147,64 +146,62 @@ public class FWUpdate {
 				Assert.fail("Error info :- sys state is not for firmware update");
 			} catch (Exception e) {
 			}
-		} 
+		}
 	}
 
 	private void fwUpdate() throws Exception {
 
 		driver.findElementByName("Start Update").click();
 		checkErrorDialog();
-/*
-		Thread.sleep(10000);
-		status = getStatus();*/
-		//System.out.println("\n Current status is => \n" + status);
-		
-	/*	int SECONDS = 10; // The delay in seconds
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-			@Override
-			public void run() { // Function runs every 10 seconds.
-				
-				clearLogs();
-			}
-		}, 0, 1000*SECONDS);
-		*/
-		//timer.scheduleAtFixedRate(task, delay, period);
+		/*
+		 * Thread.sleep(10000); status = getStatus();
+		 */
+		// System.out.println("\n Current status is => \n" + status);
+
+		/*
+		 * int SECONDS = 10; // The delay in seconds Timer timer = new Timer();
+		 * timer.scheduleAtFixedRate(new TimerTask() {
+		 * 
+		 * @Override public void run() { // Function runs every 10 seconds.
+		 * 
+		 * clearLogs(); } }, 0, 1000*SECONDS);
+		 */
+		// timer.scheduleAtFixedRate(task, delay, period);
 
 		checkFWUpdateProgress(); // Step 10
-		//timer.cancel();
-
-		
+		// timer.cancel();
 
 	}
 
-	// Wait till 1 hour and retry on error
+	// Wait till 2 hours and retry continuously on error
 	private void checkFWUpdateProgress() {
 
 		try {
-			(new WebDriverWait(driver, 3600)).until(new ExpectedCondition<Boolean>() {
-				Boolean flag=false;
+			(new WebDriverWait(driver, 7200)).until(new ExpectedCondition<Boolean>() {
+				Boolean flag = false;
+
 				public Boolean apply(WebDriver d) {
 					try {
-						
+
 						String expected = "firmware write done";
 						clearLogs();
 
 						String actual = getStatus();
 
-						//System.out.println("\n Current FW update status is => \n" + actual);
-						
-						if (!driver.findElementsByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Continue')]").isEmpty()) {
+						// System.out.println("\n Current FW update status is => \n" + actual);
+						// driver.findElementsByXPath("//*[contains(@ControlType,'ControlType.Button')
+						// and contains(@Name,'Continue')]")
+						if (!driver.findElementsByName("Continue").isEmpty()) {
 
-							System.err.println("\n info : data pull max tries reached");
+							System.err.println("\n info : data pull max tries reached , trying again");
 
 							fwUpdateRetry();
 						}
 
 						if (actual.contains(expected)) {
 							System.out.println("\n FW update process completed ..");
-							flag=true;
-							//return true;
+							flag = true;
+							// return true;
 						}
 
 						clearLogs();
@@ -212,7 +209,7 @@ public class FWUpdate {
 					} catch (Exception e) {
 
 					}
-					if(flag)
+					if (flag)
 						return true;
 					else
 						return false;
@@ -220,16 +217,17 @@ public class FWUpdate {
 
 			});
 		} catch (Exception e) {
-			System.err.println("\n  FW update is not completed in one hour");
-			Assert.fail("\n FW update is not completed in one hour");
+			System.err.println("\n  FW update is not completed in two hours");
+			Assert.fail("\n FW update is not completed in two hours");
 		}
 
 	}
 
 	private void fwUpdateRetry() throws Exception {
 		// click on Continue button
-		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Continue')]")
-				.click();
+		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
+		// and contains(@Name,'Continue')]").click();
+		driver.findElementByName("Continue").click();
 		clearLogs();
 		fwUpdate(); // Calling FW Update again
 
@@ -245,7 +243,7 @@ public class FWUpdate {
 		// Get releaseVersion: 1.18.7 and parse it to check current FW
 
 		status = getStatus();
-		//System.out.println("\n Current status is => \n" + status);
+		// System.out.println("\n Current status is => \n" + status);
 
 		// Check machine error
 		if (status.contains(notConnected)) {
@@ -284,7 +282,7 @@ public class FWUpdate {
 	}
 
 	private void clearLogs() throws Exception {
-		
+
 		WebElement element = driver
 				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status:')]");
 		Thread.sleep(2000);
@@ -292,7 +290,7 @@ public class FWUpdate {
 			Actions action = new Actions(driver).doubleClick(element);
 			action.build().perform();
 		} catch (Exception e) {
-			
+
 		}
 
 	}
