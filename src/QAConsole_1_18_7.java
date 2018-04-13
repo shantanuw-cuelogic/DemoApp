@@ -25,6 +25,7 @@ public class QAConsole_1_18_7 {
 		try {
 			DesktopOptions options = new DesktopOptions();
 			options.setApplicationPath("src//dependencies//1.18.7.4753_qaConsole//iTor11QAConsole.exe");
+	
 			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
 			File drivePath = new File(WiniumDriverPath);
 			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
@@ -42,6 +43,10 @@ public class QAConsole_1_18_7 {
 	public void saveRotiFile() throws Exception {
 
 		Thread.sleep(3000);
+		
+		if (driver.findElementsByName("Log in").isEmpty()) {
+			Assert.fail(" QAConsole login failed, please try again");
+		}
 		// Login to QAConsole
 		qaConsoleLogin();
 
@@ -73,16 +78,12 @@ public class QAConsole_1_18_7 {
 		Thread.sleep(1000);
 
 		// Power On machine / On Step 12
-		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
-		// and contains(@Name,'POWER')]").click();
-
+	
 		driver.findElementByName("POWER").click();
 
 		// Save rotifile Step 13
 
-		driver.findElementByXPath(
-				"//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Save EEPROM to File')]").click();
-
+		driver.findElementByName("Save EEPROM to File").click();
 		// Checking wait dialog
 		if (!driver
 				.findElementsByXPath("//*[contains(@ControlType,'ControlType.Window') and contains(@Name,'modalForm')]")
@@ -92,12 +93,10 @@ public class QAConsole_1_18_7 {
 		}
 
 		// Checking success/error dialog
-		if (!driver.findElementsByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'OK')]")
-				.isEmpty()) {
+	
+		if(!driver.findElementsByName("OK").isEmpty()) {
 			System.err.println("\n EEPROM transaction fail! (Timeout after 30s)");
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'OK')]")
-					.click();
-
+			driver.findElementByName("OK").click();
 			try {
 				disconnectClient();
 				Assert.fail(" EEPROM transaction fail! (Timeout after 30s)");
@@ -158,11 +157,16 @@ public class QAConsole_1_18_7 {
 
 	}
 
-	private void disconnectClient() {
+	private void disconnectClient() throws Exception {
 
-		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Connect')]")
-				.click();
+		// Go to RMS and click on disconnect
 
+		driver.findElement(By.name("RMS")).click();
+		Thread.sleep(1000);
+
+		//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Disconnect')]").click();
+		driver.findElement(By.name("Disconnect")).click();
+		
 		driver.findElement(By.name("Close")).click();
 
 	}

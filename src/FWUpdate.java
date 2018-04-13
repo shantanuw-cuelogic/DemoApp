@@ -108,7 +108,7 @@ public class FWUpdate {
 
 			// Start FW update Step 9
 			fwUpdate();
-
+			System.out.println("\n After FW upgrade");
 			// Check FW version after update Step 11
 			status = checkCurrentFWversion();
 
@@ -119,7 +119,7 @@ public class FWUpdate {
 				try {
 					
 					// Set flag to decide next test case execution
-					System.err.println("\\n Error :- FW is not upgraded successfully");
+					System.err.println("\n Error :- FW is not upgraded successfully");
 					disconnectClient();
 					Assert.fail("\n Error :- FW is not upgraded !!");
 				} catch (Exception e) {
@@ -184,13 +184,13 @@ public class FWUpdate {
 					try {
 
 						String expected = "firmware write done";
-						clearLogs();
 
 						String actual = getStatus();
 
-						// System.out.println("\n Current FW update status is => \n" + actual);
-						// driver.findElementsByXPath("//*[contains(@ControlType,'ControlType.Button')
-						// and contains(@Name,'Continue')]")
+						System.out.println("\n Current FW update status is => \n" + actual);
+						
+						//clearLogs();
+						
 						if (!driver.findElementsByName("Continue").isEmpty()) {
 
 							System.err.println("\n info : data pull max tries reached , trying again");
@@ -201,11 +201,10 @@ public class FWUpdate {
 						if (actual.contains(expected)) {
 							System.out.println("\n FW update process completed ..");
 							flag = true;
-							// return true;
+							
 						}
-
-						clearLogs();
-
+						
+						actual = getStatus();
 					} catch (Exception e) {
 
 					}

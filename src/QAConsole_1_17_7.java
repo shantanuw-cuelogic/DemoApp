@@ -42,13 +42,17 @@ public class QAConsole_1_17_7 {
 
 		try {
 			Thread.sleep(3000);
+
+			if (driver.findElementsByName("Log in").isEmpty()) {
+				Assert.fail(" QAConsole login failed, please try again");
+			}
 			// Login to QAConsole
 			qaConsoleLogin();
-			
+
 			// Check whether qaconsole is opened successfully or not
-			if(driver.findElementsByName("Manual").isEmpty()) {
+			if (driver.findElementsByName("Manual").isEmpty()) {
 				// Add termination of suit logic here
-				
+
 				Assert.fail(" QAConsole login failed, please try again");
 			}
 
@@ -59,10 +63,11 @@ public class QAConsole_1_17_7 {
 			Thread.sleep(1000);
 
 			// Check machine is power off / On Step 4
-			//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'POWER')]").click();
-			
+			// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
+			// and contains(@Name,'POWER')]").click();
+
 			driver.findElementByName("POWER").click();
-			
+
 			disconnectClient();
 
 		} catch (Exception e) {
@@ -72,7 +77,8 @@ public class QAConsole_1_17_7 {
 
 	private void connectClient() throws Exception {
 		// Clicking on RMS tab and connecting to mahcine
-	//	driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem') and contains(@Name,'RMS')]").click();
+		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem')
+		// and contains(@Name,'RMS')]").click();
 		driver.findElement(By.name("RMS")).click();
 
 		driver.findElementByXPath(
@@ -81,7 +87,8 @@ public class QAConsole_1_17_7 {
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]")
 				.sendKeys(serialNumber);
 
-		//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Connect')]").click();
+		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
+		// and contains(@Name,'Connect')]").click();
 		driver.findElement(By.name("Connect")).click();
 		Thread.sleep(3000);
 
@@ -98,17 +105,14 @@ public class QAConsole_1_17_7 {
 	private void qaConsoleLogin() throws Exception {
 
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
+
 		Thread.sleep(5000);
-		
 
 		// Selenium code to login google account
 
 		// Assumption is user is already logged in to google account with full access
 
-		
-		
 		// Return to qaconsole app
-		
 
 		// Alert dialog
 		if (!driver.findElementsByName("OK").isEmpty()) {
@@ -126,9 +130,10 @@ public class QAConsole_1_17_7 {
 		driver.findElement(By.name("RMS")).click();
 		Thread.sleep(1000);
 
-		//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Disconnect')]").click();
+		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
+		// and contains(@Name,'Disconnect')]").click();
 		driver.findElement(By.name("Disconnect")).click();
-		
+
 		driver.findElement(By.name("Close")).click();
 
 	}
