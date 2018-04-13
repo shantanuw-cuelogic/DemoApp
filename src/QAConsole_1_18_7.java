@@ -34,7 +34,7 @@ public class QAConsole_1_18_7 {
 			driver = new WiniumDriver(service, options);
 		} catch (Exception e) {
 			System.out.println("Driver setup failed");
-			// throw e;
+			
 		}
 		return driver;
 	}

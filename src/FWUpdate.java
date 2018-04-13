@@ -54,6 +54,10 @@ public class FWUpdate {
 			Thread.sleep(5000); // Wait till machine power off
 			// Sports mode
 			driver.findElement(By.name("Sports Mode")).click(); // Step 7
+			
+			// driver.findElement(By.name("P2P")).click();
+			// driver.findElementByName("OK").click();
+			// To run on P2P connect to Rotimatic WiFi first
 
 			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
 					.clear();
@@ -117,7 +121,7 @@ public class FWUpdate {
 				System.out.println("\n FW is upgraded successfully");
 			} else {
 				try {
-					
+
 					// Set flag to decide next test case execution
 					System.err.println("\n Error :- FW is not upgraded successfully");
 					disconnectClient();
@@ -127,7 +131,6 @@ public class FWUpdate {
 			}
 			disconnectClient();
 
-			// driver.close();
 		} catch (Exception e) {
 		}
 	}
@@ -158,15 +161,16 @@ public class FWUpdate {
 		 */
 		// System.out.println("\n Current status is => \n" + status);
 
-		/*
-		 * int SECONDS = 10; // The delay in seconds Timer timer = new Timer();
-		 * timer.scheduleAtFixedRate(new TimerTask() {
-		 * 
-		 * @Override public void run() { // Function runs every 10 seconds.
-		 * 
-		 * clearLogs(); } }, 0, 1000*SECONDS);
-		 */
-		// timer.scheduleAtFixedRate(task, delay, period);
+		// int SECONDS = 10; // The delay in seconds
+		// Timer timer = new Timer();
+		// timer.scheduleAtFixedRate(new TimerTask() {
+		//
+		// @Override public void run() { // Function runs every 10 seconds.
+		//
+		// try {
+		// clearLogs();
+		// } catch (Exception e) {
+		// } } }, 0, 1000*SECONDS);
 
 		checkFWUpdateProgress(); // Step 10
 		// timer.cancel();
@@ -186,11 +190,9 @@ public class FWUpdate {
 						String expected = "firmware write done";
 
 						String actual = getStatus();
-
+						// clearLogs();
 						System.out.println("\n Current FW update status is => \n" + actual);
-						
-						//clearLogs();
-						
+
 						if (!driver.findElementsByName("Continue").isEmpty()) {
 
 							System.err.println("\n info : data pull max tries reached , trying again");
@@ -201,17 +203,15 @@ public class FWUpdate {
 						if (actual.contains(expected)) {
 							System.out.println("\n FW update process completed ..");
 							flag = true;
-							
+
 						}
-						
-						actual = getStatus();
+
 					} catch (Exception e) {
 
 					}
-					if (flag)
-						return true;
-					else
-						return false;
+
+					return flag;
+
 				}
 
 			});
@@ -224,8 +224,7 @@ public class FWUpdate {
 
 	private void fwUpdateRetry() throws Exception {
 		// click on Continue button
-		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
-		// and contains(@Name,'Continue')]").click();
+
 		driver.findElementByName("Continue").click();
 		clearLogs();
 		fwUpdate(); // Calling FW Update again
@@ -270,6 +269,8 @@ public class FWUpdate {
 
 		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]")
 				.click();
+
+		driver.close();
 	}
 
 	private String getStatus() {
@@ -282,9 +283,13 @@ public class FWUpdate {
 
 	private void clearLogs() throws Exception {
 
-		WebElement element = driver
-				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status:')]");
-		Thread.sleep(2000);
+		// WebElement element = driver
+		// .findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and
+		// contains(@Name,'Status:')]");
+
+		WebElement element = driver.findElementByXPath("//*[contains(@AutomationId,'textBoxMqttLog')]");
+
+		// Thread.sleep(2000);
 		try {
 			Actions action = new Actions(driver).doubleClick(element);
 			action.build().perform();
