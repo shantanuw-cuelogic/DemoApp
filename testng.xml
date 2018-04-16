@@ -3,7 +3,7 @@
 <suite name="Suite" allow-return-values="true">
   <test thread-count="1" name="Test" >
     <classes>
-      <!-- <class name="QAConsole_1_17_7"/> -->
+      <class name="QAConsole_1_17_7"/>
       <class name="FWUpdate"/>
       <class name="QAConsole_1_18_7"/>
       
