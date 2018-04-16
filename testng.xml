@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test thread-count="1" name="Test">
+<suite name="Suite" allow-return-values="true">
+  <test thread-count="1" name="Test" >
     <classes>
       <class name="QAConsole_1_17_7"/>
       <class name="FWUpdate"/>

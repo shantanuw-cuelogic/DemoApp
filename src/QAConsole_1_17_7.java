@@ -19,6 +19,7 @@ public class QAConsole_1_17_7 {
 	String machineStatus = "";
 	String notConnectedStatus = "Not Connected";
 	boolean ispowerOff;
+	gmailLogin glogin = new gmailLogin();
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
@@ -110,12 +111,28 @@ public class QAConsole_1_17_7 {
 
 	private void qaConsoleLogin() throws Exception 
 	{
+		String windowsHandle = driver.getWindowHandle();
+		glogin.webDriverSetup();
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);
 		// Selenium code to login google account
 		// Assumption is user is already logged in to google account with full access
 		// Return to qaconsole app
 		// Alert dialog
+		System.out.println(glogin.isWebDriverSetupDone);
+		if(glogin.isWebDriverSetupDone)
+		{
+			System.out.println("Navigated to the QAConsole1.17.7");
+			driver.switchTo().window(windowsHandle);
+			driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
+			glogin.isGmailLoggedIn();
+			System.out.println("gmail log in setup done");
+		}
+		else
+		{
+			System.out.println("gmail log in setup failed");
+		}
+
 		if (!driver.findElementsByName("OK").isEmpty() ) 
 		{
 			System.out.println("\n User is already logged in");
