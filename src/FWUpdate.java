@@ -1,9 +1,5 @@
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -54,10 +50,6 @@ public class FWUpdate {
 			Thread.sleep(5000); // Wait till machine power off
 			// Sports mode
 			driver.findElement(By.name("Sports Mode")).click(); // Step 7
-			
-			// driver.findElement(By.name("P2P")).click();
-			// driver.findElementByName("OK").click();
-			// To run on P2P connect to Rotimatic WiFi first
 
 			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
 					.clear();
@@ -112,7 +104,10 @@ public class FWUpdate {
 
 			// Start FW update Step 9
 			fwUpdate();
+
 			System.out.println("\n After FW upgrade");
+			Thread.sleep(20000); // Waiting for Rotimatic to auto power ON
+
 			// Check FW version after update Step 11
 			status = checkCurrentFWversion();
 
@@ -155,25 +150,10 @@ public class FWUpdate {
 	private void fwUpdate() throws Exception {
 
 		driver.findElementByName("Start Update").click();
-		checkErrorDialog();
-		/*
-		 * Thread.sleep(10000); status = getStatus();
-		 */
-		// System.out.println("\n Current status is => \n" + status);
 
-		// int SECONDS = 10; // The delay in seconds
-		// Timer timer = new Timer();
-		// timer.scheduleAtFixedRate(new TimerTask() {
-		//
-		// @Override public void run() { // Function runs every 10 seconds.
-		//
-		// try {
-		// clearLogs();
-		// } catch (Exception e) {
-		// } } }, 0, 1000*SECONDS);
+		checkErrorDialog();
 
 		checkFWUpdateProgress(); // Step 10
-		// timer.cancel();
 
 	}
 
@@ -190,8 +170,9 @@ public class FWUpdate {
 						String expected = "firmware write done";
 
 						String actual = getStatus();
-						// clearLogs();
 						System.out.println("\n Current FW update status is => \n" + actual);
+
+						clearLogs();
 
 						if (!driver.findElementsByName("Continue").isEmpty()) {
 
@@ -241,7 +222,6 @@ public class FWUpdate {
 		// Get releaseVersion: 1.18.7 and parse it to check current FW
 
 		status = getStatus();
-		// System.out.println("\n Current status is => \n" + status);
 
 		// Check machine error
 		if (status.contains(notConnected)) {
@@ -274,22 +254,15 @@ public class FWUpdate {
 	}
 
 	private String getStatus() {
-		status = driver
-				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status:')]")
-				.getText();
+		status = driver.findElementByXPath("//*[contains(@AutomationId,'textBoxMqttLog')]").getText();
 		return status;
 
 	}
 
 	private void clearLogs() throws Exception {
 
-		// WebElement element = driver
-		// .findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and
-		// contains(@Name,'Status:')]");
-
 		WebElement element = driver.findElementByXPath("//*[contains(@AutomationId,'textBoxMqttLog')]");
 
-		// Thread.sleep(2000);
 		try {
 			Actions action = new Actions(driver).doubleClick(element);
 			action.build().perform();

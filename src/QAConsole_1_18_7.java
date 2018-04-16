@@ -1,7 +1,4 @@
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.winium.DesktopOptions;
 import org.openqa.selenium.winium.WiniumDriver;
@@ -59,21 +56,6 @@ public class QAConsole_1_18_7 {
 
 		connectClient();
 
-		// Check machine is connected to Internet or not
-		/*
-		 * machineStatus =
-		 * driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Window')]")
-		 * .getText();
-		 * 
-		 * if (machineStatus.contains(notConnectedStatus)) {
-		 * System.err.println("\n Machine is not connected to internet");
-		 * 
-		 * disconnectClient(); try {
-		 * Assert.fail("\n Machine is not connected to internet");
-		 * 
-		 * } catch (Exception e) { } }
-		 */
-
 		driver.findElement(By.name("Settings")).click();
 		Thread.sleep(1000);
 
@@ -116,7 +98,6 @@ public class QAConsole_1_18_7 {
 		// Clicking on RMS tab and connecting to mahcine
 		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem') and contains(@Name,'RMS')]")
 				.click();
-		// Thread.sleep(2000);
 
 		driver.findElementByXPath(
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]").clear();
@@ -164,7 +145,6 @@ public class QAConsole_1_18_7 {
 		driver.findElement(By.name("RMS")).click();
 		Thread.sleep(1000);
 
-		//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Disconnect')]").click();
 		driver.findElement(By.name("Disconnect")).click();
 		
 		driver.findElement(By.name("Close")).click();
