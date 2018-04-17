@@ -100,13 +100,13 @@ public class FWUpdate {
 				}
 			}
 
-			clearLogs();
+			//clearLogs();
 
 			// Start FW update Step 9
 			fwUpdate();
 
 			System.out.println("\n After FW upgrade");
-			Thread.sleep(20000); // Waiting for Rotimatic to auto power ON
+			//Thread.sleep(20000); // Waiting for Rotimatic to auto power ON
 
 			// Check FW version after update Step 11
 			status = checkCurrentFWversion();
@@ -118,9 +118,9 @@ public class FWUpdate {
 				try {
 
 					// Set flag to decide next test case execution
-					System.err.println("\n Error :- FW is not upgraded successfully");
+					System.err.println("\n Error :- FW update successfully done but machine FW is not upgraded");
 					disconnectClient();
-					Assert.fail("\n Error :- FW is not upgraded !!");
+					Assert.fail("\n Error :- FW update successfully done but machine FW is not upgraded");
 				} catch (Exception e) {
 				}
 			}
@@ -163,12 +163,13 @@ public class FWUpdate {
 
 		try {
 			(new WebDriverWait(driver, 7200)).until(new ExpectedCondition<Boolean>() {
-				Boolean flag = false;
+				//Boolean flag = false;
 
 				public Boolean apply(WebDriver d) {
 					try {
 
-						String expected = "firmware write done";
+						//String expected = "firmware write done";
+						String expected = "110";
 
 						String actual = getStatus();
 						clearLogs();
@@ -183,15 +184,15 @@ public class FWUpdate {
 
 						if (actual.contains(expected)) {
 							System.out.println("\n FW update process completed ..");
-							flag = true;
+							//flag = true;
+							return true;
 
 						}
 
 					} catch (Exception e) {
 
 					}
-
-					return flag;
+					return false;
 
 				}
 
