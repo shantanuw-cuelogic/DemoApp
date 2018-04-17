@@ -42,7 +42,8 @@ public class QAConsole_1_17_7 {
 			Thread.sleep(3000);
 
 			if (driver.findElementsByName("Log in").isEmpty()) {
-				Assert.fail(" QAConsole login failed, please try again");
+				System.err.println("QAConsole app is not in focus, please try again");
+				Assert.fail("QAConsole app is not in focus, please try again");
 			}
 			// Login to QAConsole
 			qaConsoleLogin();
@@ -50,8 +51,9 @@ public class QAConsole_1_17_7 {
 			// Check whether qaconsole is opened successfully or not
 			if (driver.findElementsByName("Manual").isEmpty()) {
 				// Add termination of suit logic here
-
-				Assert.fail(" QAConsole login failed, please try again");
+				
+				System.err.println("QAConsole login failed, please try again");
+				Assert.fail("QAConsole login failed, please try again");
 			}
 
 			// Connect to serial number

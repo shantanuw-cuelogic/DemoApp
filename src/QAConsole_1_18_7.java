@@ -22,7 +22,7 @@ public class QAConsole_1_18_7 {
 		try {
 			DesktopOptions options = new DesktopOptions();
 			options.setApplicationPath("src//dependencies//1.18.7.4753_qaConsole//iTor11QAConsole.exe");
-	
+
 			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
 			File drivePath = new File(WiniumDriverPath);
 			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
@@ -31,7 +31,7 @@ public class QAConsole_1_18_7 {
 			driver = new WiniumDriver(service, options);
 		} catch (Exception e) {
 			System.out.println("Driver setup failed");
-			
+
 		}
 		return driver;
 	}
@@ -40,7 +40,12 @@ public class QAConsole_1_18_7 {
 	public void saveRotiFile() throws Exception {
 
 		Thread.sleep(3000);
-		
+
+		if (driver.findElementsByName("Log in").isEmpty()) {
+			System.err.println("QAConsole app is not in focus, please try again");
+			Assert.fail("QAConsole app is not in focus, please try again");
+		}
+
 		if (driver.findElementsByName("Log in").isEmpty()) {
 			Assert.fail(" QAConsole login failed, please try again");
 		}
@@ -60,7 +65,7 @@ public class QAConsole_1_18_7 {
 		Thread.sleep(1000);
 
 		// Power On machine / On Step 12
-	
+
 		driver.findElementByName("POWER").click();
 
 		// Save rotifile Step 13
@@ -75,8 +80,8 @@ public class QAConsole_1_18_7 {
 		}
 
 		// Checking success/error dialog
-	
-		if(!driver.findElementsByName("OK").isEmpty()) {
+
+		if (!driver.findElementsByName("OK").isEmpty()) {
 			System.err.println("\n EEPROM transaction fail! (Timeout after 30s)");
 			driver.findElementByName("OK").click();
 			try {
@@ -146,7 +151,7 @@ public class QAConsole_1_18_7 {
 		Thread.sleep(1000);
 
 		driver.findElement(By.name("Disconnect")).click();
-		
+
 		driver.findElement(By.name("Close")).click();
 
 	}
