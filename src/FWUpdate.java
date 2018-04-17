@@ -125,6 +125,7 @@ public class FWUpdate {
 				}
 			}
 			disconnectClient();
+			driver.close();
 
 		} catch (Exception e) {
 		}
@@ -170,9 +171,8 @@ public class FWUpdate {
 						String expected = "firmware write done";
 
 						String actual = getStatus();
-						System.out.println("\n Current FW update status is => \n" + actual);
-
 						clearLogs();
+						System.out.println("\n Current FW update status is => \n" + actual);
 
 						if (!driver.findElementsByName("Continue").isEmpty()) {
 
@@ -250,7 +250,6 @@ public class FWUpdate {
 		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]")
 				.click();
 
-		driver.close();
 	}
 
 	private String getStatus() {
