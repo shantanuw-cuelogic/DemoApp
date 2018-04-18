@@ -56,6 +56,7 @@ public class FWUpdate {
 	public boolean fwUpdateTest() throws IOException {
 		try 
 		{
+			System.out.println(qa1_17.ispowerOff);
 			if(qa1_17.ispowerOff)
 			{
 				Thread.sleep(5000); // Wait till machine power off
