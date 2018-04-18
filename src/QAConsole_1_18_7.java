@@ -1,3 +1,5 @@
+import static org.testng.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +21,7 @@ public class QAConsole_1_18_7 {
 	String connectedStatus = "connected";
 	String machineStatus = "";
 	String notConnectedStatus = "Not connected";
+	FWUpdate fw = new FWUpdate();
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
@@ -43,7 +46,7 @@ public class QAConsole_1_18_7 {
 	public void saveRotiFile() throws Exception {
 
 		Thread.sleep(3000);
-		
+		assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
 		if (driver.findElementsByName("Log in").isEmpty()) {
 			Assert.fail(" QAConsole login failed, please try again");
 		}
