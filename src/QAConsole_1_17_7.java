@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 public class QAConsole_1_17_7 {
 
 	WiniumDriver driver;
-	String serialNumber = "75000000";
+	String serialNumber = "7500000F";
 	String status = "";
 	String connectedStatus = "Server connected";
 	String machineStatus = "";
@@ -113,25 +113,29 @@ public class QAConsole_1_17_7 {
 	{
 		String windowsHandle = driver.getWindowHandle();
 		glogin.webDriverSetup();
+		
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);
 		// Selenium code to login google account
 		// Assumption is user is already logged in to google account with full access
 		// Return to qaconsole app
 		// Alert dialog
-		System.out.println(glogin.isWebDriverSetupDone);
-		if(glogin.isWebDriverSetupDone)
+		System.out.println(glogin.wb.setUpTrue);
+		if(glogin.wb.setUpTrue)
 		{
 			System.out.println("Navigated to the QAConsole1.17.7");
-			driver.switchTo().window(windowsHandle);
-			driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
-			glogin.isGmailLoggedIn();
+			Thread.sleep(5000);
+			System.out.println("it came here");
+			System.out.println(glogin.wb.windowsId);
+			glogin.isGmailLoggedIn(glogin.wb.windowsId);
 			System.out.println("gmail log in setup done");
 		}
 		else
 		{
 			System.out.println("gmail log in setup failed");
 		}
+
+//		driver.switchTo().window(windowsHandle);
 
 		if (!driver.findElementsByName("OK").isEmpty() ) 
 		{
