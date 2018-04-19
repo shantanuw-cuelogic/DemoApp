@@ -1,0 +1,4 @@
+{"data": "from Sys topic"}
+{"opcode":"log","sessionId":3093,"sev":0,"lvl":0,"sysID":25,"evtID":0,"msg":"Notify confirm view shown"}
+{"opcode":"log","sessionId":3093,"sev":0,"lvl":0,"sysID":25,"evtID":0,"msg":"Notify confirm view setState(3)"}
+{"opcode":"sessionFinish","payload":["3093","0","0","0"]}

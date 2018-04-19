@@ -1,0 +1,9 @@
+{"data": "from Sys topic"}
+{"opcode":"reported","global":{"pairs":{"1":"0"}}}
+{"opcode":"log","sessionId":3075,"sev":0,"lvl":0,"sysID":25,"evtID":0,"msg":"Main view shown"}
+{"opcode":"log","sessionId":3075,"sev":0,"lvl":1,"sysID":20,"evtID":22,"msg":"Initializing motors"}
+{"opcode":"log","sessionId":3075,"sev":0,"lvl":1,"sysID":20,"evtID":22,"msg":"Initializing completed successfully"}
+{"opcode":"log","sessionId":3075,"sev":0,"lvl":1,"sysID":20,"evtID":19,"msg":"Starting calibration"}
+{"opcode":"log","sessionId":3075,"sev":0,"lvl":1,"sysID":20,"evtID":19,"msg":"Calibration completed"}
+{"opcode":"log","sessionId":3075,"sev":0,"lvl":2,"sysID":10,"evtID":4,"msg":"All Heaters are Off Now"}
+{"opcode":"log","sessionId":3075,"sev":0,"lvl":2,"sysID":10,"evtID":3,"msg":"All Heaters are On Now"}

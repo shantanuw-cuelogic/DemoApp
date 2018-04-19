@@ -1,3 +1,5 @@
+import static org.testng.Assert.assertTrue;
+
 import java.io.File;
 import org.openqa.selenium.By;
 import org.openqa.selenium.winium.DesktopOptions;
@@ -16,6 +18,7 @@ public class QAConsole_1_18_7 {
 	String connectedStatus = "connected";
 	String machineStatus = "";
 	String notConnectedStatus = "Not connected";
+	FWUpdate fw = new FWUpdate();
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
@@ -41,6 +44,7 @@ public class QAConsole_1_18_7 {
 
 		Thread.sleep(3000);
 
+		assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
 		if (driver.findElementsByName("Log in").isEmpty()) {
 			System.err.println("QAConsole app is not in focus, please try again");
 			Assert.fail("QAConsole app is not in focus, please try again");

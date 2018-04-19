@@ -1,3 +1,6 @@
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import org.openqa.selenium.By;
@@ -21,6 +24,8 @@ public class FWUpdate {
 	String status = "";
 	String connectedSuccess = "Connected";
 	String notConnected = "Rotimatic machine is not connected.";
+	boolean isFWUpdate;  
+	QAConsole_1_17_7 qa1_17 = new QAConsole_1_17_7();
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
@@ -44,91 +49,102 @@ public class FWUpdate {
 	}
 
 	@Test(priority = 1)
-	public void fwUpdateTest() throws IOException {
 
-		try {
-			Thread.sleep(5000); // Wait till machine power off
-			// Sports mode
-			driver.findElement(By.name("Sports Mode")).click(); // Step 7
+	public boolean fwUpdateTest() throws IOException {
+		try 
+		{
+			System.out.println(qa1_17.ispowerOff);
+			if(qa1_17.ispowerOff)
+			{
+				Thread.sleep(5000); // Wait till machine power off
+				// Sports mode
+				driver.findElement(By.name("Sports Mode")).click(); // Step 7
+				
+				// driver.findElement(By.name("P2P")).click();
+				// driver.findElementByName("OK").click();
+				// To run on P2P connect to Rotimatic WiFi first
 
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
-					.clear();
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
-					.sendKeys(serialNumber); // Step 6
+				driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
+						.clear();
+				driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
+						.sendKeys(serialNumber); // Step 6
 
-			// Need to Check button is enabled or not
-			driver.findElement(By.name("Connect")).click(); // Step 8
-			Thread.sleep(3000);
+				// Need to Check button is enabled or not
+				driver.findElement(By.name("Connect")).click(); // Step 8
+				Thread.sleep(3000);
 
-			// Check for Error - update.img file not exist
-			if (!driver.findElementsByName("OK").isEmpty()) {
-				driver.findElementByName("OK").click();
-				System.err.println("\n Error: update.img file not exist");
+				// Check for Error - update.img file not exist
+				if (!driver.findElementsByName("OK").isEmpty()) {
+					driver.findElementByName("OK").click();
+					System.err.println("\n Error: update.img file not exist");
 
-				driver.findElementByXPath(
-						"//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]").click();
-				try {
-					Assert.fail("\n Error :- update.img file not exist");
-				} catch (Exception e) {
+					driver.findElementByXPath(
+							"//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]").click();
+					try {
+						Assert.fail("\n Error :- update.img file not exist");
+					} catch (Exception e) {
+					}
+
+
+				status = getStatus();
+				System.out.println("\n Current status is => \n" + status);
+
+				if (status.contains(connectedSuccess))
+					System.out.println("\n Client is connected"); // Step 8
+				else {
+					System.err.println("\n Error occured:- " + status);
+					try {
+						Assert.fail("\n Error occured:- Client not connected");
+
+					} catch (Exception e) {
+					}
 				}
-			}
+				// Check current FW version of machine
+				status = checkCurrentFWversion();
 
-			status = getStatus();
-			System.out.println("\n Current status is => \n" + status);
+				if (status.contains(successFWUpdate)) {
 
-			if (status.contains(connectedSuccess))
-				System.out.println("\n Client is connected"); // Step 8
-			else {
-				System.err.println("\n Error occured:- " + status);
-				try {
-					Assert.fail("\n Error occured:- Client not connected");
-
-				} catch (Exception e) {
-				}
-			}
-			// Check current FW version of machine
-			status = checkCurrentFWversion();
-
-			if (status.contains(successFWUpdate)) {
-
-				System.err.println("\n Machine is already updated to latest FW version 1.18.7");
-				disconnectClient();
-				try {
-					Assert.fail("\n Machine is already updated to latest FW version 1.18.7");
-
-				} catch (Exception e) {
-				}
-			}
-
-			//clearLogs();
-
-			// Start FW update Step 9
-			fwUpdate();
-
-			System.out.println("\n After FW upgrade");
-			//Thread.sleep(20000); // Waiting for Rotimatic to auto power ON
-
-			// Check FW version after update Step 11
-			status = checkCurrentFWversion();
-
-			// Check for semantic fw version > 1.17.7
-			if (!status.contains(currentFWVersion)) {
-				System.out.println("\n FW is upgraded successfully");
-			} else {
-				try {
-
-					// Set flag to decide next test case execution
-					System.err.println("\n Error :- FW update successfully done but machine FW is not upgraded");
+					System.err.println("\n Machine is already updated to latest FW version 1.18.7");
 					disconnectClient();
-					Assert.fail("\n Error :- FW update successfully done but machine FW is not upgraded");
-				} catch (Exception e) {
+					try {
+						Assert.fail("\n Machine is already updated to latest FW version 1.18.7");
+
+					} catch (Exception e) {
+					}
 				}
+
+				clearLogs();
+
+				// Start FW update Step 9
+				fwUpdate();
+				System.out.println("\n After FW upgrade");
+				// Check FW version after update Step 11
+				status = checkCurrentFWversion();
+
+
+				// Check for semantic fw version > 1.17.7
+				if (!status.contains(currentFWVersion)) {
+					isFWUpdate = true;
+					System.out.println("\n FW is upgraded successfully");
+				} else {
+					try {
+
+						// Set flag to decide next test case execution
+						System.err.println("\n Error :- FW is not upgraded successfully");
+						isFWUpdate = false;
+						disconnectClient();
+						Assert.fail("\n Error :- FW is not upgraded !!");
+            driver.close();
+					} catch (Exception e) {
+					}
+
+				}
+				disconnectClient();
 			}
-			disconnectClient();
-			driver.close();
 
 		} catch (Exception e) {
 		}
+		return isFWUpdate;
 	}
 
 	private void checkErrorDialog() {

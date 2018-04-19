@@ -1,0 +1,881 @@
+﻿{
+	"hash": "lHMJCM8ey7UNqMMM99wFy9e9dC8R/dlSRGoByM1sQCuKVcDoEqG3UrLWHlxMlGGpQjcq0gcJHw0eNwS29sAtv7+dwQQPRrhSBtlGx0OgAsdNTmZGWIFxZNRoM+7cibFVKy2Sr7HB4wpq/ESmDUDGQD2tuuDPoHRZmaW5gaFG7cVdNuf6HlGQ4EqYbP/aX2B+4dqXJmyCSR2rMuN2XhoTzH6LY6WlhKvDM7JuwXTGuq5nAg6p3JxZ44p/B+E3Hk58/aP7ruOcst1OhDLhDJ8pz0psJvQff5uqLw0VIbB6HXyoWYCfGdhVr5xx5djZRy++zxt3pFb2yWSFUrSGBqVTVg==",
+	"content": {
+		"modifiedDate": "04/12/2017",
+		"roles": ["Admin", "Dev", "Food R and D", "FW Verification", "Functional QA Lead", "Functional QA", "L2 Support", "L1 Support", "CueLogic", "Manufacturing", "Guest"],
+		"pages": ["RMS", "Manual", "Logs", "Settings", "Advanced", "Adaptive", "Profiler", "RATS", "Board Test", "Rate Control", "Temperature Control", "Calibrate", "Batch Info", "RMS+", "Flex"],
+		"permissions": ["Full", "View", "Disable"],
+		"rolePermissionMapping": {
+			"Admin": {
+				"RMS": "Full",
+				"Manual": "Full",
+				"Logs": "Full",
+				"Settings": "Full",
+				"Advanced": "Full",
+				"Adaptive": "Full",
+				"Profiler": "Full",
+				"RATS": "Full",
+				"Board Test": "Full",
+				"Rate Control": "Full",
+				"Temperature Control": "Full",
+				"Calibrate": "Full",
+				"Batch Info": "Full",
+				"RMS+": "Full",
+				"Flex": "Full"
+			},
+			"Dev": {
+				"RMS": "Full",
+				"Manual": "Full",
+				"Logs": "Full",
+				"Settings": "Full",
+				"Advanced": "Full",
+				"Adaptive": "Full",
+				"Profiler": "Full",
+				"RATS": "Full",
+				"Board Test": "Full",
+				"Rate Control": "Full",
+				"Temperature Control": "Full",
+				"Calibrate": "Full",
+				"Batch Info": "Full",
+				"RMS+": "Full",
+				"Flex": "Full"
+			},
+			"Food R and D": {
+				"RMS": "Full",
+				"Manual": "Full",
+				"Logs": "Full",
+				"Settings": "Full",
+				"Advanced": "Full",
+				"Adaptive": "Full",
+				"Profiler": "Full",
+				"RATS": "Full",
+				"Board Test": "Full",
+				"Rate Control": "Full",
+				"Temperature Control": "Full",
+				"Calibrate": "Full",
+				"Batch Info": "Full",
+				"RMS+": "Full",
+				"Flex": "Disable"
+			},
+			"FW Verification": {
+				"RMS": "Full",
+				"Manual": "Full",
+				"Logs": "Full",
+				"Settings": "Full",
+				"Advanced": "Full",
+				"Adaptive": "Full",
+				"Profiler": "Disable",
+				"RATS": "Full",
+				"Board Test": "Disable",
+				"Rate Control": "View",
+				"Temperature Control": "View",
+				"Calibrate": "Full",
+				"Batch Info": "Full",
+				"RMS+": "Full",
+				"Flex": "Full"
+			},
+			"Functional QA Lead": {
+				"RMS": "Full",
+				"Manual": "Full",
+				"Logs": "Full",
+				"Settings": "Full",
+				"Advanced": "Full",
+				"Adaptive": "Full",
+				"Profiler": "Full",
+				"RATS": "Full",
+				"Board Test": "Full",
+				"Rate Control": "Full",
+				"Temperature Control": "Full",
+				"Calibrate": "Full",
+				"Batch Info": "Full",
+				"RMS+": "Full",
+				"Flex": "Full"
+			},
+			"Functional QA": {
+				"RMS": "Full",
+				"Manual": "Full",
+				"Logs": "Full",
+				"Settings": "Full",
+				"Advanced": "Full",
+				"Adaptive": "Full",
+				"Profiler": "Full",
+				"RATS": "Full",
+				"Board Test": "Full",
+				"Rate Control": "Full",
+				"Temperature Control": "Full",
+				"Calibrate": "Full",
+				"Batch Info": "Full",
+				"RMS+": "Full",
+				"Flex": "Full"
+			},
+			"L2 Support": {
+				"RMS": "Full",
+				"Manual": "Full",
+				"Logs": "Full",
+				"Settings": "Full",
+				"Advanced": "Full",
+				"Adaptive": "Full",
+				"Profiler": "Disable",
+				"RATS": "Disable",
+				"Board Test": "Disable",
+				"Rate Control": "Full",
+				"Temperature Control": "Full",
+				"Calibrate": "Full",
+				"Batch Info": "Full",
+				"RMS+": "Full",
+				"Flex": "Disable"
+			},
+			"L1 Support": {
+				"RMS": "Full",
+				"Manual": "Full",
+				"Logs": "Full",
+				"Settings": "Full",
+				"Advanced": "Disable",
+				"Adaptive": "Disable",
+				"Profiler": "Disable",
+				"RATS": "Disable",
+				"Board Test": "Disable",
+				"Rate Control": "Disable",
+				"Temperature Control": "Disable",
+				"Calibrate": "Disable",
+				"Batch Info": "Disable",
+				"RMS+": "Disable",
+				"Flex": "Disable"
+			},
+			"CueLogic": {
+				"RMS": "Disable",
+				"Manual": "Disable",
+				"Logs": "Full",
+				"Settings": "Disable",
+				"Advanced": "Disable",
+				"Adaptive": "Disable",
+				"Profiler": "Disable",
+				"RATS": "Disable",
+				"Board Test": "Disable",
+				"Rate Control": "Disable",
+				"Temperature Control": "Disable",
+				"Calibrate": "Disable",
+				"Batch Info": "Full",
+				"RMS+": "Disable",
+				"Flex": "Disable"
+			},
+			"Manufacturing": {
+				"RMS": "Disable",
+				"Manual": "Full",
+				"Logs": "Full",
+				"Settings": "Full",
+				"Advanced": "Disable",
+				"Adaptive": "Full",
+				"Profiler": "Disable",
+				"RATS": "Disable",
+				"Board Test": "Disable",
+				"Rate Control": "Disable",
+				"Temperature Control": "Disable",
+				"Calibrate": "Full",
+				"Batch Info": "Disable",
+				"RMS+": "Disable",
+				"Flex": "Full"
+			},
+			"Guest": {
+				"RMS": "Disable",
+				"Manual": "Disable",
+				"Logs": "View",
+				"Settings": "Disable",
+				"Advanced": "Disable",
+				"Adaptive": "Disable",
+				"Profiler": "Disable",
+				"RATS": "Disable",
+				"Board Test": "Disable",
+				"Rate Control": "Disable",
+				"Temperature Control": "Disable",
+				"Calibrate": "Disable",
+				"Batch Info": "Disable",
+				"RMS+": "Disable",
+				"Flex": "Disable"
+			}
+		},
+		"usersInRoles": {
+			"rishi@zimplistic.com": "Dev",
+			"rizwan@zimplistic.com": "Dev",
+			"sicris@zimplistic.com": "Dev",
+			"jiong@zimplistic.com": "Dev",
+			"manoj@zimplistic.com": "Dev",
+			"dennis@zimplistic.com": "Dev",
+			"akhil.gupta@zimplistic.com": "Dev",
+			"guangliang.zhu@zimplistic.com": "Dev",
+			"jiyan.wu@zimplistic.com": "Dev",
+			"krishan.singh@zimplistic.com": "Dev",
+			"amol.muratkar@cuelogic.co.in": "Dev",
+			"zimplistic@cuelogic.com": "Dev",
+			"brightzhang@gmail.com": "Admin",
+			"singnee.ng@zimplistic.com": "Functional QA Lead",
+			"anitha@zimplistic.com": "Functional QA Lead",
+			"harinder.singh@zimplistic.com": "Functional QA Lead",
+			"turkay@zimplistic.com": "Food R and D",
+			"deepa@zimplistic.com": "L2 Support",
+			"neha.pande@zimplistic.com": "Functional QA",
+			"chaitrali.dudwadkar@zimplistic.com": "Functional QA",
+			"qauser1@zimplistic.com": "Functional QA",
+			"sana.syed@zimplistic.com": "Functional QA",
+			"eelin.tan@zimplistic.com": "Functional QA",
+			"sribarath@zimplistic.com": "Functional QA",
+			"ashish.deol@zimplistic.com": "Functional QA",
+			"lihyong.yeo@zimplistic.com": "Functional QA",
+			"deepak.jadon@zimplistic.com": "L2 Support",
+			"raymond@zimplistic.com": "Functional QA Lead",
+			"woonie@zimplistic.com": "Functional QA Lead",
+			"cheehung@zimplistic.com": "Dev",
+			"cheehin.tam@zimplistic.com": "L2 Support",
+			"edvin@zimplistic.com": "L2 Support",
+			"woihow@zimplistic.com": "L2 Support",
+			"rekha@zimplistic.com": "L2 Support",
+			"meenatchi@zimplistic.com": "L2 Support",
+			"leelakrishnan@zimplistic.com": "L2 Support",
+			"bharati@zimplistic.com": "L2 Support",
+			"manish.nainwal@zimplistic.com": "L2 Support",
+			"abhay.kumar@zimplistic.com": "L2 Support",
+			"himangi.singh@zimplistic.com": "L2 Support",
+			"atul.singh@zimplistic.com": "L2 Support",
+			"dhruv.rajvanshi@zimplistic.com": "L2 Support",
+			"gurpreet.singh@zimplistic.com": "L2 Support",
+			"shivam.bajaj@zimplistic.com": "L2 Support",
+			"sujay.mitra@zimplistic.com": "L2 Support",
+			"akash.swami@zimplistic.com": "L2 Support",
+			"shubham.jain@zimplistic.com": "L2 Support",
+			"sagar.vashisht@zimplistic.com": "L2 Support",
+			"arvind.sundaram@zimplistic.com": "Food R and D",
+			"kwonglim@zimplistic.com": "Dev",
+			"qauser6@zimplistic.com": "L2 Support",
+			"qauser5@zimplistic.com": "L2 Support",
+			"qauser4@zimplistic.com": "L2 Support",
+			"prathab.kumar@zimplistic.com": "Food R and D",
+			"balaji@zimplistic.com": "Food R and D",
+			"alicia.tan@zimplistic.com": "Food R and D",
+			"catherine.cheong@zimplistic.com": "Food R and D",
+			"bindiya.sharma@zimplistic.com": "Food R and D",
+			"guixin.goh@zimplistic.com": "Food R and D",
+			"katja.krizman@zimplistic.com": "Food R and D",
+			"neelam.rathore@zimplistic.com": "Food R and D",
+			"kianhan.toh@zimplistic.com": "Food R and D",
+			"xinyi.hua@zimplistic.com": "Food R and D",
+			"shaoyi.tan@zimplistic.com": "Food R and D",
+			"ronald@zimplistic.com": "Dev",
+			"sathish@zimplistic.com": "Dev",
+			"ken@zimplistic.com": "Dev",
+			"izzat@zimplistic.com": "Dev",
+			"lafishahzreen.maharam@zimplistic.com": "Dev",
+			"manufacturing@zimplistic.com": "Manufacturing",
+			"thiamyong.ong@zimplistic.com": "Manufacturing",
+			"qaconsoleuser1@gmail.com": "CueLogic",
+			"qaconsoleuser2@gmail.com": "Functional QA Lead",
+			"qaconsoleuser3@gmail.com": "Guest",
+			"qaconsoleuser4@gmail.com": "L2 Support",
+			"qaconsoleuser5@gmail.com": "L1 Support",
+			"qaconsoleuser6@gmail.com": "Food R and D",
+			"qaconsoleuser7@gmail.com": "FW Verification",
+			"qaconsoleuser8@gmail.com": "FW Verification",
+			"qaconsoleuser9@gmail.com": "Admin",
+			"qaconsoleuser10@gmail.com": "Dev",
+			"qaconsoleuser11@gmail.com": "Guest",
+			"qaconsoleuser13@gmail.com": "Guest",
+			"qaconsoleuser12@gmail.com": "Dev",
+			"testingqa@zimplistic.com": "Functional QA Lead"
+		},
+		"mfgUsersInRoles": {
+			"m1": "manager",
+			"e1": "engineer",
+			"e2": "engineer",
+			"o1": "operator",
+			"o2": "operator",
+			"o3": "operator"
+		},
+		"configuration": {
+			"countryCodes": [{
+				"name": "SG",
+				"value": "0"
+			}, {
+				"name": "US",
+				"value": "1"
+			}, {
+				"name": "CA",
+				"value": "2"
+			}, {
+				"name": "UK",
+				"value": "3"
+			}, {
+				"name": "AU",
+				"value": "4"
+			}, {
+				"name": "ME",
+				"value": "5"
+			}, {
+				"name": "EU",
+				"value": "6"
+			}],
+			"objects": [{
+				"name": "PCBA",
+				"id": "0",
+				"min": "0",
+				"max": "3"
+			}, {
+				"name": "RMS",
+				"id": "1",
+				"min": "0",
+				"max": "0"
+			}, {
+				"name": "CAPTOUCH",
+				"id": "2",
+				"min": "0",
+				"max": "0"
+			}, {
+				"name": "FLOUR_SENSOR",
+				"id": "3",
+				"min": "0",
+				"max": "0"
+			}, {
+				"name": "KN_PLATE_ASSY",
+				"id": "4",
+				"min": "0",
+				"max": "0"
+			}, {
+				"name": "VT_ASSY",
+				"id": "5",
+				"min": "0",
+				"max": "0"
+			}, {
+				"name": "PRESS_ASSY",
+				"id": "6",
+				"min": "0",
+				"max": "2"
+			}, {
+				"name": "PANS_PRESS_BTM_ASSY",
+				"id": "7",
+				"min": "0",
+				"max": "2"
+			}, {
+				"name": "PANS_PRESS_TOP_ASSY",
+				"id": "8",
+				"min": "0",
+				"max": "2"
+			}, {
+				"name": "PANS_ROAST_BTM_ASSY",
+				"id": "9",
+				"min": "0",
+				"max": "1"
+			}, {
+				"name": "PANS_ROAST_TOP_ASSY",
+				"id": "10",
+				"min": "0",
+				"max": "1"
+			}, {
+				"name": "SWEEPER_ASSY",
+				"id": "11",
+				"min": "0",
+				"max": "0"
+			}, {
+				"name": "DOCK_ASSY",
+				"id": "12",
+				"min": "0",
+				"max": "1"
+			}, {
+				"name": "KICKER_ASSY",
+				"id": "13",
+				"min": "0",
+				"max": "0"
+			}, {
+				"name": "COUNTRY_CODE",
+				"id": "14",
+				"min": "0",
+				"max": "6"
+			}, {
+				"name": "COVER_VT",
+				"id": "15",
+				"min": "0",
+				"max": "2"
+			}, {
+				"name": "THERMAL_PROTECTION",
+				"id": "16",
+				"min": "0",
+				"max": "1"
+			}],
+			"hardwareConfigurations": [{
+				"value": "1",
+				"defaults": [{
+					"name": "PCBA",
+					"value": "0"
+				}, {
+					"name": "RMS",
+					"value": "0"
+				}, {
+					"name": "CAPTOUCH",
+					"value": "0"
+				}, {
+					"name": "FLOUR_SENSOR",
+					"value": "0"
+				}, {
+					"name": "KN_PLATE_ASSY",
+					"value": "0"
+				}, {
+					"name": "VT_ASSY",
+					"value": "0"
+				}, {
+					"name": "PRESS_ASSY",
+					"value": "0"
+				}, {
+					"name": "PANS_PRESS_BTM_ASSY",
+					"value": "0"
+				}, {
+					"name": "PANS_PRESS_TOP_ASSY",
+					"value": "0"
+				}, {
+					"name": "PANS_ROAST_BTM_ASSY",
+					"value": "0"
+				}, {
+					"name": "PANS_ROAST_TOP_ASSY",
+					"value": "0"
+				}, {
+					"name": "SWEEPER_ASSY",
+					"value": "0"
+				}, {
+					"name": "DOCK_ASSY",
+					"value": "0"
+				}, {
+					"name": "KICKER_ASSY",
+					"value": "0"
+				}, {
+					"name": "COUNTRY_CODE"
+				}, {
+					"name": "COVER_VT",
+					"value": "0"
+				}, {
+					"name": "THERMAL_PROTECTION",
+					"value": "0"
+				}]
+			}, {
+				"value": "2",
+				"defaults": [{
+					"name": "PCBA",
+					"value": "1"
+				}, {
+					"name": "RMS",
+					"value": "0"
+				}, {
+					"name": "CAPTOUCH",
+					"value": "0"
+				}, {
+					"name": "FLOUR_SENSOR",
+					"value": "0"
+				}, {
+					"name": "KN_PLATE_ASSY",
+					"value": "0"
+				}, {
+					"name": "VT_ASSY",
+					"value": "0"
+				}, {
+					"name": "PRESS_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_PRESS_BTM_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_PRESS_TOP_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_ROAST_BTM_ASSY",
+					"value": "0"
+				}, {
+					"name": "PANS_ROAST_TOP_ASSY",
+					"value": "0"
+				}, {
+					"name": "SWEEPER_ASSY",
+					"value": "0"
+				}, {
+					"name": "DOCK_ASSY",
+					"value": "0"
+				}, {
+					"name": "KICKER_ASSY",
+					"value": "0"
+				}, {
+					"name": "COUNTRY_CODE"
+				}, {
+					"name": "COVER_VT",
+					"value": "1"
+				}, {
+					"name": "THERMAL_PROTECTION",
+					"value": "0"
+				}]
+			}, {
+				"value": "3",
+				"defaults": [{
+					"name": "PCBA",
+					"value": "1"
+				}, {
+					"name": "RMS",
+					"value": "0"
+				}, {
+					"name": "CAPTOUCH",
+					"value": "0"
+				}, {
+					"name": "FLOUR_SENSOR",
+					"value": "0"
+				}, {
+					"name": "KN_PLATE_ASSY",
+					"value": "0"
+				}, {
+					"name": "VT_ASSY",
+					"value": "0"
+				}, {
+					"name": "PRESS_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_BTM_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_PRESS_TOP_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_ROAST_BTM_ASSY",
+					"value": "0"
+				}, {
+					"name": "PANS_ROAST_TOP_ASSY",
+					"value": "0"
+				}, {
+					"name": "SWEEPER_ASSY",
+					"value": "0"
+				}, {
+					"name": "DOCK_ASSY",
+					"value": "0"
+				}, {
+					"name": "KICKER_ASSY",
+					"value": "0"
+				}, {
+					"name": "COUNTRY_CODE"
+				}, {
+					"name": "COVER_VT",
+					"value": "1"
+				}, {
+					"name": "THERMAL_PROTECTION",
+					"value": "0"
+				}]
+			}, {
+				"value": "4",
+				"defaults": [{
+					"name": "PCBA",
+					"value": "2"
+				}, {
+					"name": "RMS",
+					"value": "0"
+				}, {
+					"name": "CAPTOUCH",
+					"value": "0"
+				}, {
+					"name": "FLOUR_SENSOR",
+					"value": "0"
+				}, {
+					"name": "KN_PLATE_ASSY",
+					"value": "0"
+				}, {
+					"name": "VT_ASSY",
+					"value": "0"
+				}, {
+					"name": "PRESS_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_PRESS_BTM_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_TOP_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_ROAST_BTM_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_ROAST_TOP_ASSY",
+					"value": "1"
+				}, {
+					"name": "SWEEPER_ASSY",
+					"value": "0"
+				}, {
+					"name": "DOCK_ASSY",
+					"value": "0"
+				}, {
+					"name": "KICKER_ASSY",
+					"value": "0"
+				}, {
+					"name": "COUNTRY_CODE"
+				}, {
+					"name": "COVER_VT",
+					"value": "1"
+				}, {
+					"name": "THERMAL_PROTECTION",
+					"value": "0"
+				}]
+			}, {
+				"value": "5",
+				"defaults": [{
+					"name": "PCBA",
+					"value": "2"
+				}, {
+					"name": "RMS",
+					"value": "0"
+				}, {
+					"name": "CAPTOUCH",
+					"value": "0"
+				}, {
+					"name": "FLOUR_SENSOR",
+					"value": "0"
+				}, {
+					"name": "KN_PLATE_ASSY",
+					"value": "0"
+				}, {
+					"name": "VT_ASSY",
+					"value": "0"
+				}, {
+					"name": "PRESS_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_BTM_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_TOP_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_ROAST_BTM_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_ROAST_TOP_ASSY",
+					"value": "1"
+				}, {
+					"name": "SWEEPER_ASSY",
+					"value": "0"
+				}, {
+					"name": "DOCK_ASSY",
+					"value": "0"
+				}, {
+					"name": "KICKER_ASSY",
+					"value": "0"
+				}, {
+					"name": "COUNTRY_CODE"
+				}, {
+					"name": "COVER_VT",
+					"value": "1"
+				}, {
+					"name": "THERMAL_PROTECTION",
+					"value": "0"
+				}]
+			}, {
+				"value": "6",
+				"defaults": [{
+					"name": "PCBA",
+					"value": "2"
+				}, {
+					"name": "RMS",
+					"value": "0"
+				}, {
+					"name": "CAPTOUCH",
+					"value": "0"
+				}, {
+					"name": "FLOUR_SENSOR",
+					"value": "0"
+				}, {
+					"name": "KN_PLATE_ASSY",
+					"value": "0"
+				}, {
+					"name": "VT_ASSY",
+					"value": "0"
+				}, {
+					"name": "PRESS_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_BTM_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_TOP_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_ROAST_BTM_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_ROAST_TOP_ASSY",
+					"value": "1"
+				}, {
+					"name": "SWEEPER_ASSY",
+					"value": "0"
+				}, {
+					"name": "DOCK_ASSY",
+					"value": "1"
+				}, {
+					"name": "KICKER_ASSY",
+					"value": "0"
+				}, {
+					"name": "COUNTRY_CODE"
+				}, {
+					"name": "COVER_VT",
+					"value": "1"
+				}, {
+					"name": "THERMAL_PROTECTION",
+					"value": "0"
+				}]
+			}, {
+				"value": "7",
+				"defaults": [{
+					"name": "PCBA",
+					"value": "3"
+				}, {
+					"name": "RMS",
+					"value": "0"
+				}, {
+					"name": "CAPTOUCH",
+					"value": "0"
+				}, {
+					"name": "FLOUR_SENSOR",
+					"value": "0"
+				}, {
+					"name": "KN_PLATE_ASSY",
+					"value": "0"
+				}, {
+					"name": "VT_ASSY",
+					"value": "0"
+				}, {
+					"name": "PRESS_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_BTM_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_TOP_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_ROAST_BTM_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_ROAST_TOP_ASSY",
+					"value": "1"
+				}, {
+					"name": "SWEEPER_ASSY",
+					"value": "0"
+				}, {
+					"name": "DOCK_ASSY",
+					"value": "1"
+				}, {
+					"name": "KICKER_ASSY",
+					"value": "0"
+				}, {
+					"name": "COUNTRY_CODE"
+				}, {
+					"name": "COVER_VT",
+					"value": "1"
+				}, {
+					"name": "THERMAL_PROTECTION",
+					"value": "0"
+				}]
+			}, {
+				"value": "8",
+				"defaults": [{
+					"name": "PCBA",
+					"value": "3"
+				}, {
+					"name": "RMS",
+					"value": "0"
+				}, {
+					"name": "CAPTOUCH",
+					"value": "0"
+				}, {
+					"name": "FLOUR_SENSOR",
+					"value": "0"
+				}, {
+					"name": "KN_PLATE_ASSY",
+					"value": "0"
+				}, {
+					"name": "VT_ASSY",
+					"value": "0"
+				}, {
+					"name": "PRESS_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_BTM_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_TOP_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_ROAST_BTM_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_ROAST_TOP_ASSY",
+					"value": "1"
+				}, {
+					"name": "SWEEPER_ASSY",
+					"value": "0"
+				}, {
+					"name": "DOCK_ASSY",
+					"value": "1"
+				}, {
+					"name": "KICKER_ASSY",
+					"value": "0"
+				}, {
+					"name": "COUNTRY_CODE"
+				}, {
+					"name": "COVER_VT",
+					"value": "1"
+				}, {
+					"name": "THERMAL_PROTECTION",
+					"value": "1"
+				}]
+			}, {
+				"value": "9",
+				"defaults": [{
+					"name": "PCBA",
+					"value": "3"
+				}, {
+					"name": "RMS",
+					"value": "0"
+				}, {
+					"name": "CAPTOUCH",
+					"value": "0"
+				}, {
+					"name": "FLOUR_SENSOR",
+					"value": "0"
+				}, {
+					"name": "KN_PLATE_ASSY",
+					"value": "0"
+				}, {
+					"name": "VT_ASSY",
+					"value": "0"
+				}, {
+					"name": "PRESS_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_BTM_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_PRESS_TOP_ASSY",
+					"value": "2"
+				}, {
+					"name": "PANS_ROAST_BTM_ASSY",
+					"value": "1"
+				}, {
+					"name": "PANS_ROAST_TOP_ASSY",
+					"value": "1"
+				}, {
+					"name": "SWEEPER_ASSY",
+					"value": "0"
+				}, {
+					"name": "DOCK_ASSY",
+					"value": "1"
+				}, {
+					"name": "KICKER_ASSY",
+					"value": "0"
+				}, {
+					"name": "COUNTRY_CODE"
+				}, {
+					"name": "COVER_VT",
+					"value": "2"
+				}, {
+					"name": "THERMAL_PROTECTION",
+					"value": "1"
+				}]
+			}]
+		}
+	}
+}

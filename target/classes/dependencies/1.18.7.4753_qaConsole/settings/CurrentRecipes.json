@@ -1,0 +1,201 @@
+﻿{
+	"receipe0": 
+	{
+		"name": "Roti",
+		"id": 1,
+		"currentFlour": 2,
+		"currentRecipe":0,
+		"flours": ["Aashirvaad", "Pillsbury/Sujata", "Pillsbury/Sujata Multi-G", "Pillsbury/Sujata Gold", 
+					"Aashirvaad Multi-G", "Aashirvaad Select", "Elephant Gold Chakki"],
+		"Aashirvaad":
+			[ 	{
+						"MinStabilityTime": 15000,
+						"RoastStage1HoldTime": 2000,
+						"RoastStage2HoldTime" : 16000,
+						"RoastStage3HoldTime" : 7500,
+						"ERSK_HardnessRejectBandHigh": 400,
+						"ERSK_ExtraRoastTimeConstStage3": 4000,
+						"ERSK_CalFactorAdjust": 94,
+						"ERSK_SizeOffsetAdjust": -112,
+						"ERSK_HardnessOffsetAdjust":0,
+						"ERSK_MinTractionTime":27000,
+						"ERSK_MaxTractionTime":42000,
+						"ERSK_MaxAllowedHardness":500,
+						"ERSK_ExtraRoastTimeConstStage2":0
+				}
+			],
+		"Pillsbury/Sujata Multi-G":
+			[ 	{
+						"MinStabilityTime": 18000,
+						"RoastStage1HoldTime": 6000,
+						"RoastStage2HoldTime" : 18000,
+						"RoastStage3HoldTime" : 12000,
+						"ERSK_HardnessRejectBandHigh": 400,
+						"ERSK_PressStage1HoldTimeDelta": 2000,
+						"ERSK_PressStage1HoldTimeThickLvl1": 2000,
+						"ERSK_PressStage1HoldTimeMax": 10000,
+						"ERSK_ExtraRoastTimeConstStage3":4000,
+						"ERSK_CalFactorAdjust":88,
+						"ERSK_SizeOffsetAdjust": -62,
+						"ERSK_HardnessOffsetAdjust": 10,
+						"ERSK_MinTractionTime" : 27000,
+						"ERSK_MaxTractionTime":42000,
+						"ERSK_MaxAllowedHardness":500,
+						"ERSK_ExtraRoastTimeConstStage2":0
+				}
+			],
+			"Pillsbury/Sujata Gold":
+			[ 	{
+						"MinStabilityTime": 15000,
+						"RoastStage1HoldTime": 2000,
+						"RoastStage2HoldTime" : 16000,
+						"RoastStage3HoldTime" : 12000,
+						"ERSK_HardnessRejectBandHigh": 400,
+						"ERSK_ExtraRoastTimeConstStage3":4000,
+						"ERSK_CalFactorAdjust":85,
+						"ERSK_SizeOffsetAdjust": -175,
+						"ERSK_HardnessOffsetAdjust": 0,
+						"ERSK_MinTractionTime" : 23000,
+						"ERSK_MaxTractionTime":35000,
+						"ERSK_MaxAllowedHardness":500,
+						"ERSK_ExtraRoastTimeConstStage2":0
+				}
+			],
+			"Aashirvaad Multi-G":
+			[ 	{
+						"MinStabilityTime": 15000,
+						"RoastStage1HoldTime": 2000,
+						"RoastStage2HoldTime" : 16000,
+						"RoastStage3HoldTime" : 7500,
+						"ERSK_HardnessRejectBandHigh": 400,
+						"ERSK_ExtraRoastTimeConstStage3": 4000,
+						"ERSK_CalFactorAdjust": 94,
+						"ERSK_SizeOffsetAdjust": -112,
+						"ERSK_HardnessOffsetAdjust":0,
+						"ERSK_MinTractionTime":27000,
+						"ERSK_MaxTractionTime":42000,
+						"ERSK_MaxAllowedHardness":500,
+						"ERSK_ExtraRoastTimeConstStage2":0
+				}
+			],
+			"Aashirvaad Select":
+			[ 	{
+						"MinStabilityTime": 17000,
+						"RoastStage1HoldTime": 8000,
+						"RoastStage2HoldTime" : 16000,
+						"RoastStage3HoldTime" : 7000,
+						"ERSK_HardnessRejectBandHigh": 400,
+						"ERSK_ExtraRoastTimeConstStage3": 4000,
+						"ERSK_CalFactorAdjust": 90,
+						"ERSK_SizeOffsetAdjust": -80,
+						"ERSK_HardnessOffsetAdjust":0,
+						"ERSK_MinTractionTime":20000,
+						"ERSK_MaxTractionTime":35000,
+						"ERSK_MaxAllowedHardness":500,
+						"ERSK_ExtraRoastTimeConstStage2":0
+				}
+			],
+			"Elephant Gold Chakki":
+			[ 	{
+						"ERSK_CalFactorAdjust": 94,
+						"ERSK_SizeOffsetAdjust": -98,
+						"ERSK_HardnessOffsetAdjust":0,
+						"ERSK_RoastStage3Position":25,
+						"RoastStage3HoldTime" : 9000
+				}
+			]	
+		
+	},
+	"receipe1": 
+	{
+		"name": "Puri",
+		"id": 2,
+		"currentFlour": 2,
+		"currentRecipe":0,
+		"flours": ["Aashirvaad", "Aashirvaad Multi-G", "Aashirvaad Select", "Pillsbury/Sujata", 
+					"Pillsbury/Sujata Multi-G", "Pillsbury/Sujata Gold"],
+		
+		"default":
+			[ 	{
+						"ERSK_MinStabilityTime":18000,
+						"ERSK_RecipeCalFactor": 110,
+						"ERSK_IdealHardnessBandCenter":280,
+						"ERSK_TargetDoughBallWeight":400,
+						"ERSK_RoastStage1Position": 800,
+						"ERSK_RoastStage1HoldTime":0,
+						"ERSK_RoastStage2Position":800,
+						"ERSK_RoastStage2HoldTime":0,
+						"ERSK_RoastStage3Position":800,
+						"ERSK_RoastStage3HoldTime":0,
+						"ERSK_PressHoldTimeThickLvl1":50,
+						"ERSK_PressHoldTimeThickLvl2":50,
+						"ERSK_PressHoldTimeThickLvl3":50,
+						"ERSK_PressHoldTimeThickLvl4":50,
+						"ERSK_PressHoldTimeThickLvl5":50,
+						"ERSK_PressHoldTimeThickLvl6":50,
+						"ERSK_PressHoldTimeThickLvl7":50,
+						"ERSK_PressHoldTimeThickLvl8":50,
+						"ERSK_PressOverTravelThickLvl1":0,
+						"ERSK_PressOverTravelDelta":-10,
+						"ERSK_PressOverTravelMin":-42,
+						"ERSK_PressStage1HoldTimeThickLvl1":0,
+						"ERSK_PressStage1HoldTimeDelta":0,
+						"ERSK_PressStage1HoldTimeMax":0,
+						"ERSK_ExtraRoastTimeConstStage3":4000,
+						"ERSK_ExtraRoastTimeConstStage2":0,
+						"ERSK_RoastBottomTempDelta":-75,
+						"ERSK_PressBottomTempDelta":0,
+						"ERSK_WaterDispenseTimeDelta":-200,
+						"ERSK_PressTopTempDelta":0,
+						"ERSK_RoastTopTempDelta":-140
+				}
+			]
+	},
+	"receipe2": 
+	{
+		"name": "Pizza",
+		"id": 3,
+		"currentFlour": 2,
+		"currentRecipe":0,
+		"flours": ["Aashirvaad", "Aashirvaad Multi-G", "Aashirvaad Select", "Pillsbury/Sujata", 
+					"Pillsbury/Sujata Multi-G","Pillsbury/Sujata Gold"],
+		
+		"default":
+			[ 	{
+						"ERSK_MinStabilityTime":18000,
+						"ERSK_RecipeCalFactor": 110,
+						"ERSK_IdealHardnessBandCenter":280,
+						"ERSK_TargetDoughBallWeight":400,
+						"ERSK_RoastStage1Position": 800,
+						"ERSK_RoastStage1HoldTime":0,
+						"ERSK_RoastStage2Position":800,
+						"ERSK_RoastStage2HoldTime":0,
+						"ERSK_RoastStage3Position":800,
+						"ERSK_RoastStage3HoldTime":0,
+						"ERSK_PressHoldTimeThickLvl1":50,
+						"ERSK_PressHoldTimeThickLvl2":50,
+						"ERSK_PressHoldTimeThickLvl3":50,
+						"ERSK_PressHoldTimeThickLvl4":50,
+						"ERSK_PressHoldTimeThickLvl5":50,
+						"ERSK_PressHoldTimeThickLvl6":50,
+						"ERSK_PressHoldTimeThickLvl7":50,
+						"ERSK_PressHoldTimeThickLvl8":50,
+						"ERSK_PressOverTravelThickLvl1":0,
+						"ERSK_PressOverTravelDelta":-10,
+						"ERSK_PressOverTravelMin":-42,
+						"ERSK_PressStage1HoldTimeThickLvl1":0,
+						"ERSK_PressStage1HoldTimeDelta":0,
+						"ERSK_PressStage1HoldTimeMax":0,
+						"ERSK_ExtraRoastTimeConstStage3":4000,
+						"ERSK_ExtraRoastTimeConstStage2":0,
+						"ERSK_RoastBottomTempDelta":-75,
+						"ERSK_PressBottomTempDelta":0,
+						"ERSK_WaterDispenseTimeDelta":-200,
+						"ERSK_PressTopTempDelta":0,
+						"ERSK_RoastTopTempDelta":-140
+				}
+			]
+	}
+}
+
+
