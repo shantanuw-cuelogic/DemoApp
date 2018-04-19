@@ -1,0 +1,12 @@
+{"data": "from Sys topic"}
+{"opcode":"sessionFinish","payload":["3075","0","0","0"],"settings":{"ver":"46","crc":{"permanent":"d325b395","global":"31bff4fd","recipe":["0","3654fe25","c449f9eb","3654fe25"],"flour":["0","677c649d","5010cd15","93d24f46","9b9c10f1","f9499f58","47949096","641adb57","29eede0","3dcee520","e162a915","0","0","0","0","0"]}}}
+{"opcode":"machineConnected","serialNo":"7500000F","releaseVersion":"1.18.7","env":"production","mode":"3"}
+{"opcode":"sessionStart","payload":["3076","3","PVSG00F","0","7","1.1267","0.4637","0.0000"],"settings":{"ver":"46","crc":{"permanent":"de4f39f1","global":"31bff4fd","recipe":["0","3654fe25","c449f9eb","3654fe25"],"flour":["0","677c649d","5010cd15","93d24f46","9b9c10f1","f9499f58","47949096","641adb57","29eede0","3dcee520","e162a915","0","0","0","0","0"]}}}
+{"opcode":"log","sessionId":3076,"sev":0,"lvl":0,"sysID":25,"evtID":0,"msg":"Main view shown"}
+{"opcode":"reported","global":{"pairs":{"1":"0"}}}
+{"opcode":"log","sessionId":3076,"sev":0,"lvl":1,"sysID":20,"evtID":22,"msg":"Initializing motors"}
+{"opcode":"log","sessionId":3076,"sev":0,"lvl":1,"sysID":20,"evtID":22,"msg":"Initializing completed successfully"}
+{"opcode":"log","sessionId":3076,"sev":0,"lvl":2,"sysID":10,"evtID":3,"msg":"All Heaters are On Now"}
+{"opcode":"log","sessionId":3076,"sev":0,"lvl":1,"sysID":20,"evtID":19,"msg":"Starting calibration"}
+{"opcode":"log","sessionId":3076,"sev":0,"lvl":1,"sysID":20,"evtID":19,"msg":"Calibration completed"}
+{"opcode":"log","sessionId":3076,"sev":0,"lvl":2,"sysID":10,"evtID":4,"msg":"All Heaters are Off Now"}

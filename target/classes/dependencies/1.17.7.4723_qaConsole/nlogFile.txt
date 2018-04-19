@@ -1,0 +1,354 @@
+2018-03-19 14:43:58.7976|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-03-19 14:44:15.0034|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-03-19 14:46:30.9198|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-03-19 16:16:03.7182|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-03-26 09:39:11.9850|INFO|iTor11QAConsole.FormGAuth2|redirect URI: http://localhost:55048/
+2018-03-26 09:39:12.0006|INFO|iTor11QAConsole.FormGAuth2|Listening..
+2018-03-26 09:39:14.1229|INFO|iTor11QAConsole.FormGAuth2|Authorization code: 4/AAByOAjkYzvlECImQIUGWl4yXl4lNjn3wtGz2F5ukc_gwArOkINb_v58lFD1Zw1c4wFyMbeRX6ON6Zi2M_3Novk
+2018-03-26 09:39:14.1520|INFO|iTor11QAConsole.FormGAuth2|Exchanging code for tokens...
+2018-03-26 09:39:15.2393|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GluKBaZuwqrEAlRF8XIDat5fUWfZGeDYssPwYVCziJR9oGOJoaw2IOsFpAL6NOR6eORFp3nI9UXxE9Np-LwD7OYOigg5uXkq-L_KgEbPzzp3BbEaoJopuS8hi71W",
+ "token_type": "Bearer",
+ "expires_in": 3600,
+ "refresh_token": "1/tA-tvL4HEnbVyd6zwg3vvU8MurLQUyGgKkKP8mVXOMUAn0JoczYKz6ys2xbLA4Dh",
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjM3NmVhMWUyZjRjOTM3YzMzM2QxZTI0YjU2NDczOGZjMDRjOTkwMDkifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDE2MzA4NjY3NTM3MTUyNTM5MjEiLCJoZCI6InppbXBsaXN0aWMuY29tIiwiZW1haWwiOiJha2hpbC5ndXB0YUB6aW1wbGlzdGljLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiSmIwQTltUllBWmg0ZDI5bkV0Z2pvdyIsImV4cCI6MTUyMjA0MDk1NiwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tIiwiaWF0IjoxNTIyMDM3MzU2fQ.b4ShI6_LEx0JUzcpYzEVU1WM3Y-hybfa3Kf_wGMNofI_G0yl_5OTmT4mKot0jHi1Kw2mrdQ7dJZ3gR0YLSJezgMO7XpcONOs7b1RUSlpWZfPyhbHr9g4I9s1W6CB45avlYaTK74d_lewz9aDnwCSktxlTSgrd85aWWkWe_VD3jtBQEWFQ-wmYeLJJIQP8f2E72x7e2GNU0cUl7Rk-J7Dc-TsrcHRoqj0O1VjxPSTfRzPwzKDrFenljU0O7toWnjVIq6Syjvh5Y3pRnLTQgXSmdcbcgq1b5vq2m_FqShxc2jiDX3cvm5_zeloZq85dC4nmmTK-T6GYGIJoQ2BoaHo4Q"
+}
+
+2018-03-26 09:39:16.0519|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-03-26 09:39:16.4506|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "101630866753715253921",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh6.googleusercontent.com/-DPqt8dMLZYE/AAAAAAAAAAI/AAAAAAAAAkc/azrzDxtdq2M/photo.jpg",
+ "email": "akhil.gupta@zimplistic.com",
+ "email_verified": true,
+ "hd": "zimplistic.com"
+}
+
+2018-03-26 09:39:19.8512|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-03-26 11:04:58.6755|INFO|iTor11QAConsole.FormGAuth2|redirect URI: http://localhost:61983/
+2018-03-26 11:04:58.6936|INFO|iTor11QAConsole.FormGAuth2|Listening..
+2018-03-26 11:05:01.0438|INFO|iTor11QAConsole.FormGAuth2|Authorization code: 4/AABDXR8RpL6emp0Ct5NkKWAS3K87nk2nUZtFEFpcGZXh_nX6UJfcdyFJ-lfbMiL_naGuKv2LMciEft__-U3x0j0
+2018-03-26 11:05:01.0659|INFO|iTor11QAConsole.FormGAuth2|Exchanging code for tokens...
+2018-03-26 11:05:01.8740|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GluKBZeGsjZXdOaJe7ZvAg-p5pxYVWgUmP6-aNX6ERhd8EWlEJ0Ww9mhZQeiEnuwSTBd-C6ljRW9wb0ltb1PIJbrtMMroNYyDo2Pwodbb8KX7RFrP1EIFrmPhNEI",
+ "token_type": "Bearer",
+ "expires_in": 3600,
+ "refresh_token": "1/aXY94WL67HIkauln3ljim__STEHw_d5_frlQnXMuW0hC8spD5GHzE8REvd9D1JvL",
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjM3NmVhMWUyZjRjOTM3YzMzM2QxZTI0YjU2NDczOGZjMDRjOTkwMDkifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDE2MzA4NjY3NTM3MTUyNTM5MjEiLCJoZCI6InppbXBsaXN0aWMuY29tIiwiZW1haWwiOiJha2hpbC5ndXB0YUB6aW1wbGlzdGljLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiWGlxTlVxRjIwVlowMnFGMVpCRjV6USIsImV4cCI6MTUyMjA0NjEwMywiaXNzIjoiaHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tIiwiaWF0IjoxNTIyMDQyNTAzfQ.T91UvMrHWSlQrBbj8LeMpL7xhBYRwmyk37Oc_AFCUcLyNNgBuxfGPinVwjLfCQFZHacCGJmj9UNclSZdpEZwCGdXKdyayzIb4Y7hnugbXwA9RYvMMHHT1Lo9c4fhPn01B_f7cGKPTKtu3kXsdk-GvEEQ8SZR28wuWCWkzxmgrVxQOZ-hltNO2-4R490BsbbQZB5_NkKw7gEB_HpNhpoe2LRx076A72qvbB2eR4--VMfpNAsdf0RqP7kMllRJ_lorHlvE-b0UwpBBNnBF229lyy5bkkigaIRP4MGrmRLfYc79IY7cyF5tPh4ljd6Af_SOKpPEyts7HZ0SWUd8g7Ou-A"
+}
+
+2018-03-26 11:05:01.9161|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-03-26 11:05:02.3232|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "101630866753715253921",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh6.googleusercontent.com/-DPqt8dMLZYE/AAAAAAAAAAI/AAAAAAAAAkc/azrzDxtdq2M/photo.jpg",
+ "email": "akhil.gupta@zimplistic.com",
+ "email_verified": true,
+ "hd": "zimplistic.com"
+}
+
+2018-03-26 11:05:03.4302|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-11 19:59:29.2586|INFO|iTor11QAConsole.FormGAuth2|redirect URI: http://localhost:51985/
+2018-04-11 19:59:29.2786|INFO|iTor11QAConsole.FormGAuth2|Listening..
+2018-04-11 19:59:33.2298|INFO|iTor11QAConsole.FormGAuth2|Authorization code: 4/AAAIsthweinSsw_leypFWLtLx6VhcIDWgM-LDLkGg0XZprD-Z4hvcU41oyx8IZWRD2Ij9yRA5vDajEDknyrsdNs
+2018-04-11 19:59:33.2338|INFO|iTor11QAConsole.FormGAuth2|Exchanging code for tokens...
+2018-04-11 19:59:36.5859|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GluaBUZR3yNP1tVOpoLJtR-BBR9MJqgkqgP6XfS1agAumXDzO0kacZnlli5nZcuz4DxX3AuF9X9jl58k9RGBEXPEtp4oxuAw4KlpPxZ0lLcnZCltdkTMQJ0PmSH_",
+ "token_type": "Bearer",
+ "expires_in": 3600,
+ "refresh_token": "1/ITZQW3P0QvfXV0kYnLQCV5HBWnEOkMFa2-N-dIMVIYA",
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiNTQ3ODg2ZmY4NWEzNDI4ZGY0ZjYxZGI3M2MxYzIzOTgyYTkyOGUifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6ImNJNHVLbzdKZHRIT3RFN2Y1MnRiQVEiLCJleHAiOjE1MjM0NjA1NzgsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzQ1Njk3OH0.EQqqjrric7N_59bLDeb65UOUbHeDQtuQqFd2AIteSWfhZD2z4FAgQqW5ssH1YdAeJtAbjx2dUCC1M2M7IQil6iGQwx-jnlLNHd6uMmYNQlNeKZ4r618BwpPuUrIQtn1IYcEXETcnPu69mz5L27N7OxPovNW-jvbCTniU7q0QOWwrdVtnvBRKi2nnNvAc5Iq-iFtd5FqyVDh7ziq2iT9GFwPyhr19fxgPUSVz3dNZpkRKKTTdRQQqsqap1f4jpVSPFL9Uoc430URiRTEFpjVvqe76tpTOIKn5MFzOrDzBvZ7VGCi_Rn5xiwk_nNE3gF0ZoXandjg-aEUpPD0h4RHK5A"
+}
+
+2018-04-11 19:59:36.6559|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-11 19:59:36.9879|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-11 19:59:39.9019|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-12 11:20:00.9236|INFO|iTor11QAConsole.FormGAuth2|redirect URI: http://localhost:49819/
+2018-04-12 11:20:01.8926|INFO|iTor11QAConsole.FormGAuth2|Listening..
+2018-04-12 11:20:13.7393|INFO|iTor11QAConsole.FormGAuth2|Authorization code: 4/AADvb6TpEYKCwBV1p0nPGypuOp_S0k71obt-I0P0HMf7fHIHf5FZfXVnAacQCskqB3D4P0QOsTuy3ck6xE25drQ
+2018-04-12 11:20:13.7703|INFO|iTor11QAConsole.FormGAuth2|Exchanging code for tokens...
+2018-04-12 11:20:17.7786|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlubBcZQN5YjEK-MGhsoGyatKITzTyHZh4ygj-wjTrF8POpTvvY9IjIB1kXXQr35g8bbXS7T8NKm7lkK9D_WRTKUrXULuE922UxSw-YHCE-pCOph5F6QiJf2Cnee",
+ "token_type": "Bearer",
+ "expires_in": 3600,
+ "refresh_token": "1/z4u5rQEKr-CfcUHzgpX-17w4a8Sky1WP6vYpKBEBNawGhuZ3jDuWQfxK7Q-PVJP2",
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiNTQ3ODg2ZmY4NWEzNDI4ZGY0ZjYxZGI3M2MxYzIzOTgyYTkyOGUifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlE4RUlzRm4zZkFLdXFlNXVKRW5nOUEiLCJleHAiOjE1MjM1MTU4MjAsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzUxMjIyMH0.G4mhfxImzpBK2xRLWnkrUzs1e4TF6JPsTB4ceqWsvJpktvh9lBav0jn1GWowQVA0zH4TKshy5-3b0sap2ZhAbIXy6ybVSI6SVtxkJkM2_E0aAFVNVUQ36QxwnXc5P3UExmdmZGbhHPk--YFrR1M23deoZS7rA0g0RBl4NhYV0vH2RzHrX6-j6vw2wAi9SbxqTwpLh_nEssWi_oAGi7vU9SVSBB6y8-3WaznbIFl5rW2P9mCcM1A_Z37W3dBdVQMQ6RqhVuNmTkeA9fDroRs8tmVHowDGrVdR0KDxLd8RVAa5VyePU7pqYrUuw8NZWvxetajLYp5pqnSQy5-9mDq4tQ"
+}
+
+2018-04-12 11:20:21.0527|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-12 11:20:21.4148|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-12 11:20:33.2724|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-12 11:34:23.9759|INFO|iTor11QAConsole.FormGAuth2|Refreshing code for tokens...
+2018-04-12 11:36:14.7213|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlubBcZQN5YjEK-MGhsoGyatKITzTyHZh4ygj-wjTrF8POpTvvY9IjIB1kXXQr35g8bbXS7T8NKm7lkK9D_WRTKUrXULuE922UxSw-YHCE-pCOph5F6QiJf2Cnee",
+ "token_type": "Bearer",
+ "expires_in": 2643,
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiNTQ3ODg2ZmY4NWEzNDI4ZGY0ZjYxZGI3M2MxYzIzOTgyYTkyOGUifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlE4RUlzRm4zZkFLdXFlNXVKRW5nOUEiLCJleHAiOjE1MjM1MTY3NzcsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzUxMzE3N30.iQB2CfjGPnTAG7s2ArGptY3W7937Mu5L_u3OOb2EPeizrLuaf-0ybaYozw5ixYmEY54TSj8_iATJyXhReFh8wSTNxElp-KbQLjGgcLDQDpB1z0t86YhqvPx_NW82Lcv4VOds7u6ADFNHzHi5BBGzj61nrwJF1IlH-KZrz1nF0iX8pCaOkj6R8hlU8jVOWZOCBCtF3Sc_UWvW5hMpCZnHqgcfhnU-Ag9ylT1coaiC0GYZbiKhjAUCR0iTcbjnXrMFYtpHhIcQwiN647C0AXd3xbj2eDTzmwiYcF9Tr4L3fh0no9nWLBmb_xAiUQys-L0g5SN8GfP9dMqGhzBsVBU76w"
+}
+
+2018-04-12 11:36:14.9753|INFO|iTor11QAConsole.FormGAuth2|
+
+_accessToken: ya29.GlubBcZQN5YjEK-MGhsoGyatKITzTyHZh4ygj-wjTrF8POpTvvY9IjIB1kXXQr35g8bbXS7T8NKm7lkK9D_WRTKUrXULuE922UxSw-YHCE-pCOph5F6QiJf2Cnee
+2018-04-12 11:36:14.9753|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-12 11:36:15.3413|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-12 11:36:16.4564|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-12 12:20:05.5553|INFO|iTor11QAConsole.FormGAuth2|Refreshing code for tokens...
+2018-04-12 12:20:08.9613|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlubBcZQN5YjEK-MGhsoGyatKITzTyHZh4ygj-wjTrF8POpTvvY9IjIB1kXXQr35g8bbXS7T8NKm7lkK9D_WRTKUrXULuE922UxSw-YHCE-pCOph5F6QiJf2Cnee",
+ "token_type": "Bearer",
+ "expires_in": 9,
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiNTQ3ODg2ZmY4NWEzNDI4ZGY0ZjYxZGI3M2MxYzIzOTgyYTkyOGUifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlE4RUlzRm4zZkFLdXFlNXVKRW5nOUEiLCJleHAiOjE1MjM1MTk0MTEsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzUxNTgxMX0.NHbDLzrejCEh7rMqAccSP_GM-2e-nl42K6It46K35-L_5JmEC4yrxKpoDIRWDr5x0MuJJ3ihzKLEEp8j8FsN5R_8SzMnuZiBA6g9mn5LOKo-J-d6-jZxamTnUYUFEZxJRRDKLVOgfjhww7yMFLlCdx7pm3VUEmUrs8bTXNUPZJ17jUUWPsfdTymyDi14R6QokX4k-Q9PxunNJ7HLLgzqFb4EjBltr_Gb4HSUvZ1J2F9TxVzIIRqf0e1BoQvE5mMoIvb-WmthHXDSS-ZE2BbjdhU-429wlEisSgtrCweTLVnm7QI220kTpCIkC7RyoaoW0-44TbzYl4rPsnFWvDKaSA"
+}
+
+2018-04-12 12:20:09.0113|INFO|iTor11QAConsole.FormGAuth2|
+
+_accessToken: ya29.GlubBcZQN5YjEK-MGhsoGyatKITzTyHZh4ygj-wjTrF8POpTvvY9IjIB1kXXQr35g8bbXS7T8NKm7lkK9D_WRTKUrXULuE922UxSw-YHCE-pCOph5F6QiJf2Cnee
+2018-04-12 12:20:09.0113|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-12 12:20:09.3753|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-12 12:20:10.2683|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-12 13:17:09.0377|INFO|iTor11QAConsole.FormGAuth2|Refreshing code for tokens...
+2018-04-12 13:17:09.9237|INFO|iTor11QAConsole.FormGAuth2|HTTP: BadRequest
+2018-04-12 13:17:09.9237|INFO|iTor11QAConsole.FormGAuth2|{
+ "error": "invalid_grant",
+ "error_description": "Token has been expired or revoked."
+}
+
+2018-04-12 13:17:09.9337|INFO|iTor11QAConsole.FormGAuth2|WebException in PerformRefreshingCode(), The remote server returned an error: (400) Bad Request.
+2018-04-12 15:09:25.4710|INFO|iTor11QAConsole.FormGAuth2|redirect URI: http://localhost:51394/
+2018-04-12 15:09:25.6140|INFO|iTor11QAConsole.FormGAuth2|Listening..
+2018-04-12 15:09:30.4153|INFO|iTor11QAConsole.FormGAuth2|Authorization code: 4/AACWA40TWi5eNLKjOp-bnL_g5H0q-AreOWETDZecCt_4EarCH4YVbq4Mj4y_k4T3pKaCIIT5ugajck9u66Aq5PA
+2018-04-12 15:09:30.4153|INFO|iTor11QAConsole.FormGAuth2|Exchanging code for tokens...
+2018-04-12 15:09:34.6224|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlubBXir4-sHXOci2TtCVEzLc4HwM_S4F8MRxq_BBSRUlhHX5vQ3rPBsSkkdZp2DVIXkEdqJGQY-iIxG2E6rzfiTSpfKxFAFYMuJsBHW6XmrlaP_R4QFSAPZiJeJ",
+ "token_type": "Bearer",
+ "expires_in": 3600,
+ "refresh_token": "1/x2VGJLV_bFbk_LOZIr3ev9KV4avdqQPydyG3Ia2U5mxv110pIhtOqtS_fWzSH8-X",
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiNTQ3ODg2ZmY4NWEzNDI4ZGY0ZjYxZGI3M2MxYzIzOTgyYTkyOGUifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Im9EbjlDSV9wOTd5Z3MzR0tLRnNVOUEiLCJleHAiOjE1MjM1Mjk1NzcsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzUyNTk3N30.gv5WzAU3dKc5ge83laraek1XVzhtrg2nd1xHqsZs7-zBh5zo2FQX91Hdj7U3Ct5Lbu1Ru06PW8LJxTXODGQjyfFURLkvim81ZuBmT92HljgGW6ZJyIGaCdcqsa3JFgdk6Zx48GEf-Px19koUswFqh97BkHmLdaGpRSLY2HF0cdIS4mbZziEAKpZm3up5ylkTv-2aAuTq7NsdTPAgJrnP47qxrwsnXRd_eqRvX-FcKS8FjxwJDKQyBH-3ILAgHSksRJD4LkFUsGPE9lC_JxQzUnuUSp4m5P7No7XfJIQfnkkcksOvsuoqXqgR3LinyNuxblQYwjHx01Z6b5RpXmvw0Q"
+}
+
+2018-04-12 15:09:35.4694|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-12 15:09:35.8414|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-12 15:09:36.9104|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-12 15:15:33.7846|INFO|iTor11QAConsole.FormGAuth2|Refreshing code for tokens...
+2018-04-12 15:15:37.1686|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlubBXir4-sHXOci2TtCVEzLc4HwM_S4F8MRxq_BBSRUlhHX5vQ3rPBsSkkdZp2DVIXkEdqJGQY-iIxG2E6rzfiTSpfKxFAFYMuJsBHW6XmrlaP_R4QFSAPZiJeJ",
+ "token_type": "Bearer",
+ "expires_in": 3238,
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiNTQ3ODg2ZmY4NWEzNDI4ZGY0ZjYxZGI3M2MxYzIzOTgyYTkyOGUifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Im9EbjlDSV9wOTd5Z3MzR0tLRnNVOUEiLCJleHAiOjE1MjM1Mjk5MzksImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzUyNjMzOX0.K3u_55gC_33e2lgR4EsUivzqMvERzf2kcMOhyFt8fYL-AkqdKb8EKEFMoRjHaPJRkmbu4PqnL-RDrJ4uAhCc2A3AjLFIgow2L6S7e4LDbmNcz_f_HYJ8SSinPnpljoaIE75Ztw-DQsWQhj9T-CbwSQwBOqJMIB67EIEEvRp0IKIlZ9l8AY-uv_mmVhdw0FMfqy9UB1qTO2Mc6OU7PSEw5ZQKc-JlhjBRun5xkTtxzU0fUTX5kb7sN0mORlqA-BU55iFI1LtgvmeWtjj9-eWi3r4ZaoSuOG9mqSCCacWhGnTjcfu0QBJajgypvBIHGJ1sJoke29bLVsne5_f_n7lZzg"
+}
+
+2018-04-12 15:15:37.2286|INFO|iTor11QAConsole.FormGAuth2|
+
+_accessToken: ya29.GlubBXir4-sHXOci2TtCVEzLc4HwM_S4F8MRxq_BBSRUlhHX5vQ3rPBsSkkdZp2DVIXkEdqJGQY-iIxG2E6rzfiTSpfKxFAFYMuJsBHW6XmrlaP_R4QFSAPZiJeJ
+2018-04-12 15:15:37.2286|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-12 15:15:37.6656|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-12 15:15:38.5746|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-12 15:24:42.5173|INFO|iTor11QAConsole.FormGAuth2|Refreshing code for tokens...
+2018-04-12 15:24:45.8873|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlubBXir4-sHXOci2TtCVEzLc4HwM_S4F8MRxq_BBSRUlhHX5vQ3rPBsSkkdZp2DVIXkEdqJGQY-iIxG2E6rzfiTSpfKxFAFYMuJsBHW6XmrlaP_R4QFSAPZiJeJ",
+ "token_type": "Bearer",
+ "expires_in": 2689,
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiNTQ3ODg2ZmY4NWEzNDI4ZGY0ZjYxZGI3M2MxYzIzOTgyYTkyOGUifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Im9EbjlDSV9wOTd5Z3MzR0tLRnNVOUEiLCJleHAiOjE1MjM1MzA0ODgsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzUyNjg4OH0.ARttrrKrcLEGnh0jk-6Wp0UbX3n6plhsunK4h3faBEevRh5CbCezkoBCgu2tJzLvD2K7XTSveZg0rVgjhGofGkL5VZe4vlSbvRWJJb643IF5z-ZtaxtxXzfL39erANoUedYfUia1xMmZC6hq6R6JPAeKSqyn_jAxB5tIPxuu-aF9WFg0p4GwdfZ5-1iGFX54N8_XDmIObzpvZU7PjAh7_hOUlrCFkQys_GC--qakEs6hjBYO2P7cLGqpLN2lnwP7sPJDNdr-b3OTxSu0B_D0yn8F5ws_m-zmg14qyzrWEupywnnqSYJwHZXbUyKrl4URFQVFL6h-sbhkUToe0d4Odw"
+}
+
+2018-04-12 15:24:45.9473|INFO|iTor11QAConsole.FormGAuth2|
+
+_accessToken: ya29.GlubBXir4-sHXOci2TtCVEzLc4HwM_S4F8MRxq_BBSRUlhHX5vQ3rPBsSkkdZp2DVIXkEdqJGQY-iIxG2E6rzfiTSpfKxFAFYMuJsBHW6XmrlaP_R4QFSAPZiJeJ
+2018-04-12 15:24:45.9473|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-12 15:24:46.3873|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-12 15:24:47.2933|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-12 15:26:44.7906|INFO|iTor11QAConsole.FormGAuth2|Refreshing code for tokens...
+2018-04-12 15:26:58.0447|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlubBXir4-sHXOci2TtCVEzLc4HwM_S4F8MRxq_BBSRUlhHX5vQ3rPBsSkkdZp2DVIXkEdqJGQY-iIxG2E6rzfiTSpfKxFAFYMuJsBHW6XmrlaP_R4QFSAPZiJeJ",
+ "token_type": "Bearer",
+ "expires_in": 2557,
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNiNTQ3ODg2ZmY4NWEzNDI4ZGY0ZjYxZGI3M2MxYzIzOTgyYTkyOGUifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6Im9EbjlDSV9wOTd5Z3MzR0tLRnNVOUEiLCJleHAiOjE1MjM1MzA2MjAsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzUyNzAyMH0.H7mGDi9BI3R32NrLY-mLqOTdgfCy4e27C9Cym5Ndi5FpmaiuZLOtfQuVDBPPCls7s-UMh2eGIlEDzVwGIZPrFDNI3BevgdBalOk7lptFwOOk_LKM_zLyNoy_RnA_iWsKpSYr1qimXQMfDYsIA-DFcKF4PyV2OVTIT0NCliw4kRHKIn8ho1wT0U4zLFFIgSIWXh3shebPu0mXW-UFwFajbMGps2KosMMlMNAJrrkrNppK65hvGkXCqK0QmeqD5H-NdgxQWOeciFinQ7HrVSHEgCJ8dseUXPAfa0kJUUzHvLd5HqlvoreFl_Ilcs9CeuizjAyyJ3NiWzr6uHrlI1pPrw"
+}
+
+2018-04-12 15:26:58.0947|INFO|iTor11QAConsole.FormGAuth2|
+
+_accessToken: ya29.GlubBXir4-sHXOci2TtCVEzLc4HwM_S4F8MRxq_BBSRUlhHX5vQ3rPBsSkkdZp2DVIXkEdqJGQY-iIxG2E6rzfiTSpfKxFAFYMuJsBHW6XmrlaP_R4QFSAPZiJeJ
+2018-04-12 15:26:58.0947|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-12 15:26:58.4747|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-12 15:26:59.4137|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-16 11:56:11.1930|INFO|iTor11QAConsole.FormGAuth2|redirect URI: http://localhost:56698/
+2018-04-16 11:56:11.2210|INFO|iTor11QAConsole.FormGAuth2|Listening..
+2018-04-16 11:56:16.8339|INFO|iTor11QAConsole.FormGAuth2|Authorization code: 4/AAArNHTzGkuIyDK1CZJS2CZqTdaF7xs1m3hB_eO9AZip8tb15nUvGh7x9WSFOvxgBIx5SFN6_NVxc-ByPFtQv_w
+2018-04-16 11:56:16.8339|INFO|iTor11QAConsole.FormGAuth2|Exchanging code for tokens...
+2018-04-16 11:56:17.5804|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlufBX8d6XqyoD2glF5MQf0QOC6EJiW_xcpDVJ78g1moh1-NZIax6Ey63rJ65D1QVQkAGWr_iiGmblWPzZ4BOEt-XXaoB91yUtT9_ONeUbZcqHgHkNvnZwWtzZCp",
+ "token_type": "Bearer",
+ "expires_in": 3600,
+ "refresh_token": "1/0Fd1FPZou7gYvwBNQjR2P8yvahab3d75MH6QMkenvTs",
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjU0MjViYjg0NjE2ZWJmOTczYWU4MGJjNjJhYzY4OGQyYTcyNzE1YWQifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IkRFdVlnLVVudDJmemlFaThUWUdHT1EiLCJleHAiOjE1MjM4NjM1NzYsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzg1OTk3Nn0.CUcBh2vrCYT1NwCpP1uTrqczJ86qfJ1DE3o5Kolu_Vkx6JLlGrR3OTMtCxEhpYPE7lW27lRLKUAxnMzQVpDEm06jCD82JdZOVX7nyDlmWaU6L2s0iaiX3jeJaeonSvU1j4B1uCFp7Q7zidjO6rc8hiQKT9fD0BaAlmQM6MT79hAhhU2dca5w0KFldXWW5ld6M-oWnNmw85l0XW3XUtGu6wOCycaYpL_9L9oXABkdHG54tHCyu2a62c7nP411GgMy8i7dnQRrHm2j0yqx2tYzv0C9Hq0j8F9YsujHZKOwcD0zZjuhecAU6-jijOJQqnor2LZ66slbXfIy0vMR0SzJ9g"
+}
+
+2018-04-16 11:56:17.6775|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-16 11:56:18.1558|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-16 11:56:20.6310|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-16 12:04:54.4937|INFO|iTor11QAConsole.FormGAuth2|Refreshing code for tokens...
+2018-04-16 12:04:55.3363|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlufBX8d6XqyoD2glF5MQf0QOC6EJiW_xcpDVJ78g1moh1-NZIax6Ey63rJ65D1QVQkAGWr_iiGmblWPzZ4BOEt-XXaoB91yUtT9_ONeUbZcqHgHkNvnZwWtzZCp",
+ "token_type": "Bearer",
+ "expires_in": 3083,
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjU0MjViYjg0NjE2ZWJmOTczYWU4MGJjNjJhYzY4OGQyYTcyNzE1YWQifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IkRFdVlnLVVudDJmemlFaThUWUdHT1EiLCJleHAiOjE1MjM4NjQwOTMsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzg2MDQ5M30.d9sDL9QlQ_jqY0tYlQ1LMrtMK6W7H08qt_Y8cXJk-OFDy7PdxaHiZEZWCtR7dgFHQh26rNWgRTwEFOprd16aryiNE5Z_XViEWLgDF9hglt4mSgJFyzh2700t3X43XI3pg1UwUneuBOQRBf4Q77VInjbwFnL_b3MomXQnK--mUk5Hqf0M10fcfA52xllkl-REGzVvKMZLdcxNAkCs671VmqELpYhIEf3CIhcJ6B8BsSGMy0DsTRLoBcDxL4gQNddFH2IUXw1NgJ5sM0bzBtbPRBMWpMuGdWp1qUuyV9B_wKOEDjAdCKwYsGrtI0mXxC2gfHOF7C5uiN66h9Ay8aY-iQ"
+}
+
+2018-04-16 12:04:55.4748|INFO|iTor11QAConsole.FormGAuth2|
+
+_accessToken: ya29.GlufBX8d6XqyoD2glF5MQf0QOC6EJiW_xcpDVJ78g1moh1-NZIax6Ey63rJ65D1QVQkAGWr_iiGmblWPzZ4BOEt-XXaoB91yUtT9_ONeUbZcqHgHkNvnZwWtzZCp
+2018-04-16 12:04:55.4748|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-16 12:04:55.9032|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-16 12:04:58.7979|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-16 12:06:38.0943|INFO|iTor11QAConsole.FormGAuth2|Refreshing code for tokens...
+2018-04-16 12:06:39.1777|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlufBX8d6XqyoD2glF5MQf0QOC6EJiW_xcpDVJ78g1moh1-NZIax6Ey63rJ65D1QVQkAGWr_iiGmblWPzZ4BOEt-XXaoB91yUtT9_ONeUbZcqHgHkNvnZwWtzZCp",
+ "token_type": "Bearer",
+ "expires_in": 2979,
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjU0MjViYjg0NjE2ZWJmOTczYWU4MGJjNjJhYzY4OGQyYTcyNzE1YWQifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IkRFdVlnLVVudDJmemlFaThUWUdHT1EiLCJleHAiOjE1MjM4NjQxOTcsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzg2MDU5N30.YA31gfH5WnV_JNr7omCf9qgTqfxyiOBBjWKY3T4pq0nNV6-NWrP7JSU48pfFolVO-S7VW5mbxqzr8Xm_oFA2y-SDXc1LIOiVhh1yCG8vh01i4KbdEjio8os054Cc2kNCqYbhvK7H_nK0pXgAS6PVFDWbS4-wtWxcUFqrnnm2q3G721Ay004vma3oF-hxIfQWnYikmuUwt9KF_-URK7FSh557X05jOAKoOd4BH6eSJzObEII1BSttKD0XXF_Utn81WZA9cwxk4hBnaPaBE0S6t1cVccozfUnYZXs8HPlJ4PtqYcfaE3_-IejZ5Mjqt5JAlTJoV2Bz3WIw2e-jR0ZJlQ"
+}
+
+2018-04-16 12:06:39.2993|INFO|iTor11QAConsole.FormGAuth2|
+
+_accessToken: ya29.GlufBX8d6XqyoD2glF5MQf0QOC6EJiW_xcpDVJ78g1moh1-NZIax6Ey63rJ65D1QVQkAGWr_iiGmblWPzZ4BOEt-XXaoB91yUtT9_ONeUbZcqHgHkNvnZwWtzZCp
+2018-04-16 12:06:39.2993|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-16 12:06:39.6884|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-16 12:06:42.6420|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------
+2018-04-16 12:10:41.8994|INFO|iTor11QAConsole.FormGAuth2|Refreshing code for tokens...
+2018-04-16 12:10:42.7434|INFO|iTor11QAConsole.FormGAuth2|{
+ "access_token": "ya29.GlufBX8d6XqyoD2glF5MQf0QOC6EJiW_xcpDVJ78g1moh1-NZIax6Ey63rJ65D1QVQkAGWr_iiGmblWPzZ4BOEt-XXaoB91yUtT9_ONeUbZcqHgHkNvnZwWtzZCp",
+ "token_type": "Bearer",
+ "expires_in": 2735,
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjU0MjViYjg0NjE2ZWJmOTczYWU4MGJjNjJhYzY4OGQyYTcyNzE1YWQifQ.eyJhenAiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjQ3ODAzMjM0MzktMWE5cXFqM2xzNmQ5cnE2c3VlazU3NDA1MGZnMGdtM2ouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDI1OTA0MzI1NjA3NTIxMDUzMTQiLCJoZCI6ImN1ZWxvZ2ljLmNvbSIsImVtYWlsIjoiemltcGxpc3RpY0BjdWVsb2dpYy5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IkRFdVlnLVVudDJmemlFaThUWUdHT1EiLCJleHAiOjE1MjM4NjQ0NDEsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsImlhdCI6MTUyMzg2MDg0MX0.guopckgRunHktZtA2QkQQ24q4nsNBhp6lad8p4e-jnftFGoLNumrBo4o5JMOBC07nhem3VfVSIg1zRfB2CfUEsiP-KYRQncLEAmmn8OeUzvw7iBD7bbugh-x0n3L0kytw4YG75i4PP8rrbiQhq-Rbcl80Pk2O40x9Ay5Qv_VqBOIM7cCiwZdVnMZeb1_tvXxx6pW0mfMmhTwRCIDAPIrzrBq5K6roW-EMPrCbuhICscTF2azgP5vYNzaZNNBEglTN2Z3uNZg1lmxC85IO-F-GBykHgn-Yj_7K2zp619ZP_NnDRJB6pdnVYvDpOrte90Z6s-US0m6hIlqf2CrhWNTxg"
+}
+
+2018-04-16 12:10:42.8465|INFO|iTor11QAConsole.FormGAuth2|
+
+_accessToken: ya29.GlufBX8d6XqyoD2glF5MQf0QOC6EJiW_xcpDVJ78g1moh1-NZIax6Ey63rJ65D1QVQkAGWr_iiGmblWPzZ4BOEt-XXaoB91yUtT9_ONeUbZcqHgHkNvnZwWtzZCp
+2018-04-16 12:10:42.8465|INFO|iTor11QAConsole.FormGAuth2|Making API Call to Userinfo...
+2018-04-16 12:10:43.2497|INFO|iTor11QAConsole.FormGAuth2|{
+ "sub": "102590432560752105314",
+ "name": "",
+ "given_name": "",
+ "family_name": "",
+ "picture": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+ "email": "zimplistic@cuelogic.com",
+ "email_verified": true,
+ "hd": "cuelogic.com"
+}
+
+2018-04-16 12:10:46.7169|INFO|iTor11QAConsole.FormQaConsole|Nlog started. ---------------------------

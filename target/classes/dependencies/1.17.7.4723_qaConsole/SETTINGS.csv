@@ -1,0 +1,180 @@
+1: Current Recipe Selection
+2: Wifi Configure Status
+3: Fan Delay Off After Transfer
+4: Fan Delay On After Turn Off
+5: Rate Roast Stage3
+6: Send R A T S Data
+7: Water Pipe Fill Time
+8: Press Obstacle Current Threshold
+9: Sweeper Obstacle Current Ratio
+10: Flour Motor Empty Current
+11: Kicker Obstacle Current Ratio
+12: Vt Obstacle Current Thres
+13: Hot Calibration Enable
+14: Oil Pipe Fill Time
+15: Press Roti Pressing Rate
+16: Sys Kneader Rate1
+17: Kneader Size Estimate Rate
+18: Dispensing Rate
+19: Sys Kneader Rate4
+20: Sys V T Calibrate
+21: Sys Sweeper Calibrate
+22: Sys Kicker Calibrate
+23: Sys Press Calibrate
+24: V T Dispensing Position
+25: Kicker Fast Eject Speed
+26: Min Stability Time
+27: Press Stage1 Count Delta
+28: Press Calibration Rate
+29: V T Uppercount Limit
+30: V T Kneading Dough Pickup Pos
+31: V T Kneading Pos
+32: V T Kneading Ball Formation Base Pos
+33: Sweeper Console Rate
+34: Kneader Rate
+35: Sweeper Uppercount Limit
+36: Sweeper Dough Tapping Position1
+37: Sweeper Dough Tap Pos Back1
+38: Sweeper Dough Tapping Position2
+39: Sweeper Dough Tap Pos Back2
+40: Sweeper Dough Tapping Position3
+41: Sweeper Dough Tap Back3 Speed
+42: Sweeper Dough Position
+43: Roller Duty Cycle
+44: Roller Fast Duty Cycle21
+45: Roller Fast Duty Cycle24
+46: Roller Fast Duty Cycle30
+47: Roller Fast Duty Cycle32
+48: Roller Fast Duty Cycle40
+49: Roller Slow Down Duty Cycle
+50: Roller Slow Down Sweeper Position Tap3
+51: Roller Stop Sweeper Position Tap3
+52: Roller Duty Cycle Tap Back3
+53: Roller Start Sweeper Position Tap Back3
+54: Roller Stop Sweeper Position Tap Back3
+55: Sweeper Tap Back Delay
+56: Wait Time After Kneading
+57: Kicker Max Current Towards End
+58: Kicker Max Current Towards Home
+59: Kicker Uppercount Limit
+60: Kicker Sweep Tap Position
+61: Kicker Nudg Position1
+62: Kicker Nudg Position2
+63: Kicker Roast Postion
+64: Kicker Roti Out Postion
+65: Hardness For Press Rate Control
+66: Press Move Timefor Dough Position
+67: Roast Low Selection Time Addition
+68: Roast Medium Selection Time Addition
+69: Roast High Selection Time Addition
+70: Press Dough Tapping Pos
+71: Press Stage1 Position
+72: Press Stage2 Position
+73: Press Console Duty Cycle
+74: Press Stage2 Subtract
+75: Press Lower Count Limit
+76: Press Kicker Top Level
+77: Press Kicker Bottom Level
+78: Max Water Dispense Stage
+79: Flour Level Threshold
+80: Sweeper Nudge Rate
+81: Adaptive Regression Threshold Low
+82: Roast Stage4 Position
+83: Wait Time After Dispense
+84: Alpha For New Filter
+85: Beta For New Filter
+86: Ideal Hardness Band Center
+87: Distance To Band Edge For Historic
+88: Roast Hold Time Stage6
+89: Sweeper Duty Cycle
+90: Enable Rate Control Logging
+91: Measuring Time For Size Detection
+92: Target Dough Ball Weight
+93: Band For Dough Ball Weight
+94: Roast Stage1 Position
+95: Roast Stage1 Hold Time
+96: Roast Stage2 Position
+97: Roast Stage2 Hold Time
+98: Roast Stage3 Position
+99: Roast Stage3 Hold Time
+100: Hardness Reject Band High
+101: Hardness Reject Band Low
+102: Size Reject Band High
+103: Size Reject Band Low
+104: Historic Minimum Data Length
+105: Heat Stabilization Time
+106: Dough Detection Threshold
+107: Stirrer Detection Threshold
+108: Hardness Averaging Time
+109: Wait Time After20 Dough Balls
+110: Offset Measurement Time
+111: Stirrer Detection Time
+112: Press Recalibration Threshold
+113: Flour Dispensing Time Threshold
+114: Over Travel Thickness Level1
+115: Press Hold Time Thickness Level1
+116: Press Stage1 Hold Time Thick Lvl1
+117: Over Travel Thickness Level2
+118: Press Hold Time Thickness Level2
+119: Press Stage1 Hold Time Thick Lvl2
+120: Over Travel Thickness Level3
+121: Press Hold Time Thickness Level3
+122: Press Stage1 Hold Time Thick Lvl3
+123: Over Travel Thickness Level4
+124: Press Hold Time Thickness Level4
+125: Press Stage1 Hold Time Thick Lvl4
+126: Over Travel Thickness Level5
+127: Press Hold Time Thickness Level5
+128: Press Stage1 Hold Time Thick Lvl5
+1 E Roti.1: Press Top Temp
+1 E Roti.2: Press Bottom Temp
+1 E Roti.3: Roast Top Temp
+1 E Roti.4: Roast Bottom Temp
+1 E Roti.5: Flour Compartments
+1 E Roti.6: Water Dispense Time
+1 E Roti.7: Recipe Extra Roast Time Constant Ms
+1 E Roti.8: Recipe Oil Addition On Level
+1 E Roti.9: Recipe Oil Constant Ms
+1 E Roti.10: Recipe Roast Level
+1 E Roti.11: Recipe Thickness Level
+1 E Roti.12: Recipe Oil Level
+1 E Roti.13: Recipe Oil Coating
+2 E Dry Run.1: Press Top Temp
+2 E Dry Run.2: Press Bottom Temp
+2 E Dry Run.3: Roast Top Temp
+2 E Dry Run.4: Roast Bottom Temp
+2 E Dry Run.5: Flour Compartments
+2 E Dry Run.6: Water Dispense Time
+2 E Dry Run.7: Recipe Extra Roast Time Constant Ms
+2 E Dry Run.8: Recipe Oil Addition On Level
+2 E Dry Run.9: Recipe Oil Constant Ms
+2 E Dry Run.10: Recipe Roast Level
+2 E Dry Run.11: Recipe Thickness Level
+2 E Dry Run.12: Recipe Oil Level
+2 E Dry Run.13: Recipe Oil Coating
+3 E Puri.1: Press Top Temp
+3 E Puri.2: Press Bottom Temp
+3 E Puri.3: Roast Top Temp
+3 E Puri.4: Roast Bottom Temp
+3 E Puri.5: Flour Compartments
+3 E Puri.6: Water Dispense Time
+3 E Puri.7: Recipe Extra Roast Time Constant Ms
+3 E Puri.8: Recipe Oil Addition On Level
+3 E Puri.9: Recipe Oil Constant Ms
+3 E Puri.10: Recipe Roast Level
+3 E Puri.11: Recipe Thickness Level
+3 E Puri.12: Recipe Oil Level
+3 E Puri.13: Recipe Oil Coating
+4 E Dough Ball.1: Press Top Temp
+4 E Dough Ball.2: Press Bottom Temp
+4 E Dough Ball.3: Roast Top Temp
+4 E Dough Ball.4: Roast Bottom Temp
+4 E Dough Ball.5: Flour Compartments
+4 E Dough Ball.6: Water Dispense Time
+4 E Dough Ball.7: Recipe Extra Roast Time Constant Ms
+4 E Dough Ball.8: Recipe Oil Addition On Level
+4 E Dough Ball.9: Recipe Oil Constant Ms
+4 E Dough Ball.10: Recipe Roast Level
+4 E Dough Ball.11: Recipe Thickness Level
+4 E Dough Ball.12: Recipe Oil Level
+4 E Dough Ball.13: Recipe Oil Coating

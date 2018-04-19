@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--This is an XML Generated File-->
+<?xml-stylesheet type="text/xsl" href="#stylesheet"?>
+<!DOCTYPE doc[
+  <!ATTLIST xsl:stylesheet
+id ID #REQUIRED>
+]>
+<doc>
+  <xsl:stylesheet id="stylesheet" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:template match="/">
+      <html>
+        <head>
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+          <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+          <style>
+            #headerContainer
+            {
+
+            margin:5px;
+            padding:5px;
+            border-width: thin;
+            border-color: grey;
+            border-style: dotted;
+            background-color: #E6FD99;
+            }
+            #col
+            {
+            width:10%;
+            float:left;
+            }
+
+            #section lastcol
+            {
+            width:10%;
+            clear:both;
+            }
+
+            #summaryDiv
+            {
+            width:100%;
+            margin:5px;
+            padding:5px;
+            border-width: thin;
+            border-color: grey;
+            border-style: dotted;
+            background-color: #FFFFCC;
+            }
+
+
+          </style>
+          <script>
+
+
+
+            function checkIfFirefox()
+            {
+            if (navigator.userAgent.indexOf("Firefox") ==-1)
+            {
+            $('#errorMsg').text('Only firefox is supported for RATS report viewing!');
+            $('#ratsReport').hide();
+            }
+            }
+
+
+            function selectElementContents(el)
+            {
+            var body = document.body, range, sel;
+            if (document.createRange &amp;&amp; window.getSelection)
+            {
+            range = document.createRange();
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            try {
+            range.selectNodeContents(el);
+            sel.addRange(range);
+            }
+            catch (e)
+            {
+            range.selectNode(el);
+            sel.addRange(range);
+            }
+            }
+            else if (body.createTextRange)
+            {
+            range = body.createTextRange();
+            range.moveToElementText(el);
+            range.select();
+            }
+            }
+
+            $(document).ready(checkIfFirefox);
+          </script>
+        </head>
+        <body>
+          <h2 id="errorMsg"></h2>
+          <div id="ratsReport">
+            <div id="headerContainer">
+              <h2>
+                <u>
+                  RATS Reliability test report - <xsl:value-of select="doc/RATSTestRun/TestCase" />
+                </u>
+              </h2>
+              <h3>
+                <xsl:value-of select="doc/RATSTestRun/TestNote" />  - started on 	<u>
+                  <xsl:value-of select="doc/RATSTestRun/TestStartTime" />
+                </u>
+              </h3>
+
+              <div id="col">
+                Total Cycles <br/>
+                Machine Name<br/>
+              </div>
+
+              <div id="col">
+                <b>
+                  <xsl:value-of select="doc/RATSTestRun/TotalCycles" />
+                </b>
+                <br/>
+                <xsl:value-of select="doc/RATSTestRun/MachineName" />
+                <br/>
+              </div>
+
+              <div id="col">
+                Fw Version: <br/>
+                Console Version: <br/>
+                Serial Number: <br/>
+
+              </div>
+
+              <div id="lastcol">
+                <b>
+                  <xsl:value-of select="doc/RATSTestRun/FwVersion" />
+                </b>
+                <br/>
+                <xsl:value-of select="doc/RATSTestRun/QAConsoleVersion" />
+                <br/>
+                <xsl:value-of select="doc/RATSTestRun/iTorSerialNumber" />
+                <br/>
+              </div>
+            </div>
+
+            <!--  *************** Summary Section *************** -->
+            <div id="summaryDiv">
+              <h3>
+                Summary of Test - <input type="button" class="btn btn-info" value="select table" onclick="selectElementContents( document.getElementById('summaryTable') );"/>
+              </h3>
+              <table id="summaryTable" class="table table-condensed table-bordered ">
+                <tr>
+                  <xsl:for-each select="doc/CycleData[@completed='1'][1]/iTorMeasurements/Measurement">
+                    <xsl:variable name="countProperties" select="count(current()/*[@expectedVal != '-1'])" />
+                    <td style="text-align:center" colspan="{$countProperties}">
+                      <xsl:value-of select="@name" />
+                    </td>
+                  </xsl:for-each>
+                </tr>
+                <tr>
+                  <xsl:for-each select="doc/CycleData[@completed='1'][1]/iTorMeasurements/Measurement/*[@expectedVal != '-1']">
+                    <td style="text-align:center">
+                      <xsl:value-of select="name()" />
+                    </td>
+                  </xsl:for-each>
+                </tr>
+                <tr>
+                  <xsl:for-each select="doc/CycleData[@completed='1'][1]/iTorMeasurements/Measurement">
+                    <xsl:variable name="mName" select="string(@name)" />
+                    <xsl:for-each select="*[@expectedVal != '-1']">
+                      <xsl:variable name="sName" select="string(name())" />
+
+                      <xsl:variable name="countNodes" select="//Measurement[@name=$mName]/*[name()=$sName][@result = 'fail']" />
+                      <xsl:variable name="count" select="count($countNodes)" />
+                      <xsl:choose>
+                        <xsl:when test="number($count) = 0">
+                          <!-- "if" stuff -->
+                          <td style="text-align:center; color:green;">
+                            <b>
+                              <xsl:value-of select="$count"/>
+                            </b>
+                          </td>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <!-- "else" stuff -->
+                          <td style="text-align:center; color:red;">
+                            <b>
+                              <xsl:value-of select="$count"/>
+                            </b>
+                          </td>
+                        </xsl:otherwise>
+                      </xsl:choose>
+
+
+
+
+                    </xsl:for-each>
+
+                  </xsl:for-each>
+                </tr>
+
+              </table>
+            </div>
+            <!--  *************** Temperature Section *************** -->
+            <h4>
+              Temperature Readings (<xsl:value-of select="doc/CycleData[@completed='1'][1]/TemperatureMeasurements/@type"/>) - <input type="button"  class="btn btn-info" value="select table" onclick="selectElementContents( document.getElementById('tempTable') );"/>
+            </h4>
+            <table id="tempTable" class="table table-condensed table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>
+                  </th>
+                  <xsl:for-each select="doc/CycleData[@completed='1'][1]/TemperatureMeasurements/*">
+                    <th class="text-center" colspan="2">
+                      <xsl:value-of select="name()" />
+                    </th>
+                  </xsl:for-each>
+                </tr>
+                <tr>
+                  <th class="text-center">Cycle No.</th>
+                  <xsl:for-each select="doc/CycleData[@completed='1'][1]/TemperatureMeasurements/*">
+                    <th class="text-center">Min Temp</th>
+                    <th class="text-center">Max Temp</th>
+                  </xsl:for-each>
+                </tr>
+              </thead>
+              <tbody>
+                <xsl:for-each select="doc/CycleData/TemperatureMeasurements">
+                  <tr>
+                    <td>
+                      <xsl:value-of select="../@completed" />
+                    </td>
+                    <xsl:for-each select="current()/*">
+                      <xsl:choose>
+                        <xsl:when test="@result='fail'">
+                          <!-- "if" stuff -->
+                          <td bgcolor="#FF0000" align="center">
+                            <xsl:value-of select="@min" />
+                          </td>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <!-- "else" stuff -->
+                          <td align="center">
+                            <xsl:value-of select="@min" />
+                          </td>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                      <xsl:choose>
+                        <xsl:when test="@result='fail'">
+                          <!-- "if" stuff -->
+                          <td bgcolor="#FF0000" align="center">
+                            <xsl:value-of select="@max" />
+                          </td>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <!-- "else" stuff -->
+                          <td align="center">
+                            <xsl:value-of select="@max" />
+                          </td>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:for-each>
+                  </tr>
+                </xsl:for-each>
+              </tbody>
+            </table>
+            <br />
+            <hr />
+            <!--  *************** Detailed Test Data Section *************** -->
+            <h4>
+              Detailed Test data of Test - <input type="button"  class="btn btn-info" value="select table" onclick="selectElementContents( document.getElementById('testData') );"/>
+            </h4>
+
+            <table id="testData" class="table table-condensed table-bordered">
+              <thead>
+                <tr>
+                  <th>
+                  </th>
+                  <th>
+                  </th>
+                  <xsl:for-each select="doc/CycleData[@completed='1'][1]/iTorMeasurements/Measurement">
+                    <xsl:variable name="countProperties" select="count(current()/*[@expectedVal != '-1'])" />
+                    <th style="text-align:center" colspan="{$countProperties}">
+                      <xsl:value-of select="@name" />
+                    </th>
+                  </xsl:for-each>
+                </tr>
+                <tr>
+                  <th>
+                  </th>
+                  <th>
+                  </th>
+                  <xsl:for-each select="doc/CycleData[@completed='1'][1]/iTorMeasurements/Measurement/*[@expectedVal != '-1']">
+                    <th style="text-align:center">
+                      <xsl:value-of select="name()" />
+                    </th>
+                  </xsl:for-each>
+                </tr>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Cycle No.</th>
+                  <xsl:for-each select="doc/CycleData[@completed='1'][1]/iTorMeasurements/Measurement/*[@expectedVal != '-1']">
+                    <th style="text-align:center">
+                      <xsl:value-of select="@expectedVal" />
+                    </th>
+                  </xsl:for-each>
+                </tr>
+              </thead>
+              <tbody>
+                <xsl:for-each select="doc/CycleData/iTorMeasurements">
+                  <tr>
+                    <td style="text-align:center">
+                      <xsl:value-of select="../@timeStamp" />
+                    </td>
+                    <td style="text-align:center">
+                      <xsl:value-of select="../@completed" />
+                    </td>
+                    <xsl:for-each select="current()/Measurement/*">
+                      <xsl:if test="@expectedVal!=-1">
+                        <xsl:choose>
+                          <xsl:when test="./@result='fail'">
+                            <!-- "if" stuff -->
+                            <td bgcolor="#FF0000" style="text-align:center">
+                              <xsl:value-of select="." />
+                            </td>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <!-- "else" stuff -->
+                            <td style="text-align:center">
+                              <xsl:value-of select="." />
+                            </td>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </xsl:if>
+                    </xsl:for-each>
+                  </tr>
+                </xsl:for-each>
+              </tbody>
+            </table>
+          </div>
+        </body>
+      </html>
+    </xsl:template>
+  </xsl:stylesheet>
+</doc>
+
+
