@@ -12,21 +12,18 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-
-
 public class QAConsole_1_17_7 {
 
 	dataprovider.ExcelLib xl = new dataprovider.ExcelLib();
 	gmailLogin glogin = new gmailLogin();
-	
+
 	WiniumDriver driver;
 	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
 	String status = "";
-	String connectedStatus = "Server connected";
+	String connectedStatus = "Rotimatic connected";
 	String machineStatus = "";
-	String notConnectedStatus = "Not Connected";
+	String notConnectedStatus = "Server connected";
 	boolean ispowerOff;
-	
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
@@ -82,8 +79,6 @@ public class QAConsole_1_17_7 {
 
 	private void connectClient() throws Exception {
 		// Clicking on RMS tab and connecting to mahcine
-		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem')
-		// and contains(@Name,'RMS')]").click();
 		driver.findElement(By.name("RMS")).click();
 
 		driver.findElementByXPath(
@@ -92,8 +87,6 @@ public class QAConsole_1_17_7 {
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]")
 				.sendKeys(serialNumber);
 
-		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
-		// and contains(@Name,'Connect')]").click();
 		driver.findElement(By.name("Connect")).click();
 		Thread.sleep(3000);
 
@@ -102,14 +95,26 @@ public class QAConsole_1_17_7 {
 				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status: ')]")
 				.getText();
 
-		if (status.equalsIgnoreCase(connectedStatus))
+		// Check machine is connected to Internet or not
+
+		if (status.contains(notConnectedStatus)) {
+			System.err.println("\n Machine is not connected to internet");
+			disconnectClient();
+			try {
+				Assert.fail("\n Machine is not connected to internet");
+
+			} catch (Exception e) {
+			}
+		}
+
+		if (status.contains(connectedStatus))
 			System.out.println("Status is :- " + status);
 
 	}
 
 	private void qaConsoleLogin() throws Exception {
 		String windowsHandle = driver.getWindowHandle();
-		 glogin.webDriverSetup();
+		//glogin.webDriverSetup();
 
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);

@@ -15,13 +15,13 @@ import org.testng.annotations.Test;
 public class QAConsole_1_18_7 {
 	dataprovider.ExcelLib xl = new dataprovider.ExcelLib();
 	gmailLogin glogin = new gmailLogin();
-	
+
 	WiniumDriver driver;
 	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
 	String status = "";
-	String connectedStatus = "connected";
+	String connectedStatus = "Rotimatic connected";
 	String machineStatus = "";
-	String notConnectedStatus = "Not connected";
+	String notConnectedStatus = "Server connected";
 	FWUpdate fw = new FWUpdate();
 
 	@BeforeClass
@@ -35,7 +35,7 @@ public class QAConsole_1_18_7 {
 					.usingPort(9999).withVerbose(true).withSilent(false).buildDesktopService();
 			service.start();
 			driver = new WiniumDriver(service, options);
-		
+
 		} catch (Exception e) {
 			System.out.println("Driver setup failed");
 
@@ -48,30 +48,15 @@ public class QAConsole_1_18_7 {
 
 		Thread.sleep(5000);
 		System.out.println("inside QAConsole 1.18.7, value = " + fw.isFWUpdate);
-	//	assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
+		 assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
 		assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
 		// Login to QAConsole
 		qaConsoleLogin();
 
 		// Check whether qaconsole is opened successfully or not
-		assertTrue(!driver.findElementsByName("Manual").isEmpty(),"QAConsole login failed, please try again");
+		assertTrue(!driver.findElementsByName("Manual").isEmpty(), "QAConsole login failed, please try again");
 
 		connectClient();
-
-		// Check machine is connected to Internet or not
-/*
-		machineStatus = driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TitleBar')]").getText();
-		System.out.println("Title bar status " +machineStatus);
-		if (machineStatus.contains(notConnectedStatus)) {
-			System.err.println("\n Machine is not connected to internet");
-
-			disconnectClient();
-			try {
-				Assert.fail("\n Machine is not connected to internet");
-
-			} catch (Exception e) {
-			}
-		}*/
 
 		driver.findElement(By.name("Settings")).click();
 		Thread.sleep(1000);
@@ -102,7 +87,7 @@ public class QAConsole_1_18_7 {
 			} catch (Exception e) {
 			}
 		}
-		
+
 		// need to check EEPROM success condition
 
 		// Check rotifile saved location here
@@ -126,12 +111,26 @@ public class QAConsole_1_18_7 {
 
 		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Connect')]")
 				.click();
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 
 		// Check status
 		status = driver
 				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status: ')]")
 				.getText();
+
+
+		// Check machine is connected to Internet or not
+
+		if (status.contains(notConnectedStatus)) {
+			System.err.println("\n Machine is not connected to internet");
+			disconnectClient();
+			try {
+				Assert.fail("\n Machine is not connected to internet");
+
+			} catch (Exception e) {
+			}
+		}
+		
 
 		if (status.contains(connectedStatus))
 			System.out.println("Status is :- " + status);
@@ -139,7 +138,7 @@ public class QAConsole_1_18_7 {
 
 	private void qaConsoleLogin() throws Exception {
 		String windowsHandle = driver.getWindowHandle();
-		 //glogin.webDriverSetup();
+		glogin.webDriverSetup();
 
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);

@@ -53,9 +53,9 @@ public class FWUpdate {
 	@Test(priority = 1)
 	public boolean fwUpdateTest() throws IOException {
 		try {
-			System.out.println("inside fw update, value = " + qa1_17.ispowerOff);
+			System.out.println("inside fw update, value = " + qa1_17.powerOFF());
 
-			assertTrue(qa1_17.ispowerOff, "QAConsole 1.17.7 failed, can not start with FWUpdate");
+			assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate");
 			
 			Thread.sleep(5000); // Wait till machine power off
 			// Sports mode
