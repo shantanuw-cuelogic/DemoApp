@@ -1,3 +1,5 @@
+import static org.testng.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -10,16 +12,21 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+
+
 public class QAConsole_1_17_7 {
 
+	dataprovider.ExcelLib xl = new dataprovider.ExcelLib();
+	gmailLogin glogin = new gmailLogin();
+	
 	WiniumDriver driver;
-	String serialNumber = "7500000F";
+	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
 	String status = "";
 	String connectedStatus = "Server connected";
 	String machineStatus = "";
 	String notConnectedStatus = "Not Connected";
 	boolean ispowerOff;
-	gmailLogin glogin = new gmailLogin();
+	
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
@@ -43,44 +50,35 @@ public class QAConsole_1_17_7 {
 	public boolean powerOFF() throws IOException {
 
 		try {
-				Thread.sleep(3000);
-	
-				if (driver.findElementsByName("Log in").isEmpty()) {
-					Assert.fail(" QAConsole login failed, please try again");
-				}
-				// Login to QAConsole
-				qaConsoleLogin();
-	
-				// Check whether qaconsole is opened successfully or not
-				if (driver.findElementsByName("Manual").isEmpty()) {
-					// Add termination of suit logic here
-					ispowerOff = false;
-					Assert.fail(" QAConsole login failed, please try again");
-				}
-				else
-				{
-					// Connect to serial number
-					connectClient();
-					driver.findElement(By.name("Settings")).click();
-					Thread.sleep(1000);
-					// Check machine is power off / On Step 4
-					// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
-					// and contains(@Name,'POWER')]").click();
-					driver.findElementByName("POWER").click();
-					disconnectClient();
-					ispowerOff = true;
-					System.out.println("qaConsole login passed from poweroff");
-				}
+			Thread.sleep(3000);
+			assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
+
+			// Login to QAConsole
+			qaConsoleLogin();
+
+			// Check whether qaconsole is opened successfully or not
+			if (driver.findElementsByName("Manual").isEmpty()) {
+				ispowerOff = false;
+				Assert.fail(" QAConsole login failed, please try again");
+			} else {
+				// Connect to serial number
+				connectClient();
+				driver.findElement(By.name("Settings")).click();
+				Thread.sleep(1000);
+
+				// Check machine is power off / On Step 4
+				driver.findElementByName("POWER").click();
+				disconnectClient();
+				ispowerOff = true;
+				System.out.println("qaConsole login passed from poweroff");
+			}
 
 		} catch (Exception e) {
 
 		}
-		System.out.println(ispowerOff);
+		System.out.println("After qa 1.17 " + ispowerOff);
 		return ispowerOff;
 	}
-	
-	
-
 
 	private void connectClient() throws Exception {
 		// Clicking on RMS tab and connecting to mahcine
@@ -109,42 +107,32 @@ public class QAConsole_1_17_7 {
 
 	}
 
-	private void qaConsoleLogin() throws Exception 
-	{
+	private void qaConsoleLogin() throws Exception {
 		String windowsHandle = driver.getWindowHandle();
-		glogin.webDriverSetup();
-		
+		 glogin.webDriverSetup();
+
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);
-		// Selenium code to login google account
-		// Assumption is user is already logged in to google account with full access
-		// Return to qaconsole app
-		// Alert dialog
+
 		System.out.println(glogin.wb.setUpTrue);
-		if(glogin.wb.setUpTrue)
-		{
+		if (glogin.wb.setUpTrue) {
 			System.out.println("Navigated to the QAConsole1.17.7");
 			Thread.sleep(5000);
 			System.out.println("it came here");
 			System.out.println(glogin.wb.windowsId);
 			glogin.isGmailLoggedIn(glogin.wb.windowsId);
 			System.out.println("gmail log in setup done");
-		}
-		else
-		{
-			System.out.println("gmail log in setup failed");
+		} else {
+			System.out.println("gmail log in setup failed"); // It can be case where user is already logged in to gmail.
 		}
 
-//		driver.switchTo().window(windowsHandle);
+		// driver.switchTo().window(windowsHandle);
 
-		if (!driver.findElementsByName("OK").isEmpty() ) 
-		{
+		if (!driver.findElementsByName("OK").isEmpty()) {
 			System.out.println("\n User is already logged in");
 			driver.findElementByName("OK").click();
 			System.out.println("OK button to continue login clicked on");
-		}
-		else 
-		{
+		} else {
 			System.out.println("popup to confirm login with OK button did not show");
 		}
 		Thread.sleep(2000);

@@ -13,10 +13,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class QAConsole_1_18_7 {
-
+	dataprovider.ExcelLib xl = new dataprovider.ExcelLib();
+	gmailLogin glogin = new gmailLogin();
+	
 	WiniumDriver driver;
-	String serialNumber = "7500000F";
-	String machineName = "PVSG00F";
+	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
 	String status = "";
 	String connectedStatus = "connected";
 	String machineStatus = "";
@@ -28,16 +29,16 @@ public class QAConsole_1_18_7 {
 		try {
 			DesktopOptions options = new DesktopOptions();
 			options.setApplicationPath("src//dependencies//1.18.7.4753_qaConsole//iTor11QAConsole.exe");
-	
 			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
 			File drivePath = new File(WiniumDriverPath);
 			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
 					.usingPort(9999).withVerbose(true).withSilent(false).buildDesktopService();
 			service.start();
 			driver = new WiniumDriver(service, options);
+		
 		} catch (Exception e) {
 			System.out.println("Driver setup failed");
-			
+
 		}
 		return driver;
 	}
@@ -45,43 +46,38 @@ public class QAConsole_1_18_7 {
 	@Test(priority = 2)
 	public void saveRotiFile() throws Exception {
 
-		Thread.sleep(3000);
-		assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
-		if (driver.findElementsByName("Log in").isEmpty()) {
-			Assert.fail(" QAConsole login failed, please try again");
-		}
+		Thread.sleep(5000);
+		System.out.println("inside QAConsole 1.18.7, value = " + fw.isFWUpdate);
+	//	assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
+		assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
 		// Login to QAConsole
 		qaConsoleLogin();
 
 		// Check whether qaconsole is opened successfully or not
-		if (driver.findElementsByName("Manual").isEmpty()) {
-			// Add termination of suit logic here
-
-			Assert.fail(" QAConsole login failed, please try again");
-		}
+		assertTrue(!driver.findElementsByName("Manual").isEmpty(),"QAConsole login failed, please try again");
 
 		connectClient();
 
 		// Check machine is connected to Internet or not
-		/*
-		 * machineStatus =
-		 * driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Window')]")
-		 * .getText();
-		 * 
-		 * if (machineStatus.contains(notConnectedStatus)) {
-		 * System.err.println("\n Machine is not connected to internet");
-		 * 
-		 * disconnectClient(); try {
-		 * Assert.fail("\n Machine is not connected to internet");
-		 * 
-		 * } catch (Exception e) { } }
-		 */
+/*
+		machineStatus = driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TitleBar')]").getText();
+		System.out.println("Title bar status " +machineStatus);
+		if (machineStatus.contains(notConnectedStatus)) {
+			System.err.println("\n Machine is not connected to internet");
+
+			disconnectClient();
+			try {
+				Assert.fail("\n Machine is not connected to internet");
+
+			} catch (Exception e) {
+			}
+		}*/
 
 		driver.findElement(By.name("Settings")).click();
 		Thread.sleep(1000);
 
 		// Power On machine / On Step 12
-	
+
 		driver.findElementByName("POWER").click();
 
 		// Save rotifile Step 13
@@ -96,8 +92,8 @@ public class QAConsole_1_18_7 {
 		}
 
 		// Checking success/error dialog
-	
-		if(!driver.findElementsByName("OK").isEmpty()) {
+
+		if (!driver.findElementsByName("OK").isEmpty()) {
 			System.err.println("\n EEPROM transaction fail! (Timeout after 30s)");
 			driver.findElementByName("OK").click();
 			try {
@@ -106,8 +102,10 @@ public class QAConsole_1_18_7 {
 			} catch (Exception e) {
 			}
 		}
+		
+		// need to check EEPROM success condition
 
-		// Check rotifile saved location
+		// Check rotifile saved location here
 
 		disconnectClient();
 
@@ -119,7 +117,6 @@ public class QAConsole_1_18_7 {
 		// Clicking on RMS tab and connecting to mahcine
 		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem') and contains(@Name,'RMS')]")
 				.click();
-		// Thread.sleep(2000);
 
 		driver.findElementByXPath(
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]").clear();
@@ -141,35 +138,44 @@ public class QAConsole_1_18_7 {
 	}
 
 	private void qaConsoleLogin() throws Exception {
+		String windowsHandle = driver.getWindowHandle();
+		 //glogin.webDriverSetup();
 
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);
 
-		// Selenium code to login google account
+		System.out.println(glogin.wb.setUpTrue);
+		if (glogin.wb.setUpTrue) {
+			System.out.println("Navigated to the QAConsole1.17.7");
+			Thread.sleep(5000);
+			System.out.println("it came here");
+			System.out.println(glogin.wb.windowsId);
+			glogin.isGmailLoggedIn(glogin.wb.windowsId);
+			System.out.println("gmail log in setup done");
+		} else {
+			System.out.println("gmail log in setup failed"); // It can be case where user is already logged in to gmail.
+		}
 
-		// Assumption is user is already logged in to google account with full access
+		// driver.switchTo().window(windowsHandle);
 
-		// Return to qaconsole app
-
-		// Alert dialog
 		if (!driver.findElementsByName("OK").isEmpty()) {
 			System.out.println("\n User is already logged in");
 			driver.findElementByName("OK").click();
+			System.out.println("OK button to continue login clicked on");
+		} else {
+			System.out.println("popup to confirm login with OK button did not show");
 		}
 		Thread.sleep(2000);
-
 	}
 
 	private void disconnectClient() throws Exception {
 
 		// Go to RMS and click on disconnect
-
 		driver.findElement(By.name("RMS")).click();
 		Thread.sleep(1000);
 
-		//driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Disconnect')]").click();
 		driver.findElement(By.name("Disconnect")).click();
-		
+
 		driver.findElement(By.name("Close")).click();
 
 	}
