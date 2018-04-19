@@ -1,7 +1,5 @@
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.winium.DesktopOptions;
 import org.openqa.selenium.winium.WiniumDriver;
@@ -43,6 +41,7 @@ public class QAConsole_1_17_7 {
 	public boolean powerOFF() throws IOException {
 
 		try {
+
 				Thread.sleep(3000);
 	
 				if (driver.findElementsByName("Log in").isEmpty()) {
@@ -84,8 +83,6 @@ public class QAConsole_1_17_7 {
 
 	private void connectClient() throws Exception {
 		// Clicking on RMS tab and connecting to mahcine
-		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.TabItem')
-		// and contains(@Name,'RMS')]").click();
 		driver.findElement(By.name("RMS")).click();
 
 		driver.findElementByXPath(
@@ -94,8 +91,6 @@ public class QAConsole_1_17_7 {
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]")
 				.sendKeys(serialNumber);
 
-		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
-		// and contains(@Name,'Connect')]").click();
 		driver.findElement(By.name("Connect")).click();
 		Thread.sleep(3000);
 
@@ -156,9 +151,6 @@ public class QAConsole_1_17_7 {
 
 		driver.findElement(By.name("RMS")).click();
 		Thread.sleep(1000);
-
-		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
-		// and contains(@Name,'Disconnect')]").click();
 		driver.findElement(By.name("Disconnect")).click();
 
 		driver.findElement(By.name("Close")).click();

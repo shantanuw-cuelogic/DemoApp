@@ -3,10 +3,6 @@ import static org.testng.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -53,6 +49,7 @@ public class FWUpdate {
 	}
 
 	@Test(priority = 1)
+
 	public boolean fwUpdateTest() throws IOException {
 		try 
 		{
@@ -87,7 +84,7 @@ public class FWUpdate {
 						Assert.fail("\n Error :- update.img file not exist");
 					} catch (Exception e) {
 					}
-				}
+
 
 				status = getStatus();
 				System.out.println("\n Current status is => \n" + status);
@@ -124,6 +121,7 @@ public class FWUpdate {
 				// Check FW version after update Step 11
 				status = checkCurrentFWversion();
 
+
 				// Check for semantic fw version > 1.17.7
 				if (!status.contains(currentFWVersion)) {
 					isFWUpdate = true;
@@ -136,11 +134,14 @@ public class FWUpdate {
 						isFWUpdate = false;
 						disconnectClient();
 						Assert.fail("\n Error :- FW is not upgraded !!");
+            driver.close();
 					} catch (Exception e) {
 					}
+
 				}
 				disconnectClient();
 			}
+
 		} catch (Exception e) {
 		}
 		return isFWUpdate;
@@ -166,25 +167,10 @@ public class FWUpdate {
 	private void fwUpdate() throws Exception {
 
 		driver.findElementByName("Start Update").click();
-		checkErrorDialog();
-		/*
-		 * Thread.sleep(10000); status = getStatus();
-		 */
-		// System.out.println("\n Current status is => \n" + status);
 
-		// int SECONDS = 10; // The delay in seconds
-		// Timer timer = new Timer();
-		// timer.scheduleAtFixedRate(new TimerTask() {
-		//
-		// @Override public void run() { // Function runs every 10 seconds.
-		//
-		// try {
-		// clearLogs();
-		// } catch (Exception e) {
-		// } } }, 0, 1000*SECONDS);
+		checkErrorDialog();
 
 		checkFWUpdateProgress(); // Step 10
-		// timer.cancel();
 
 	}
 
@@ -193,15 +179,16 @@ public class FWUpdate {
 
 		try {
 			(new WebDriverWait(driver, 7200)).until(new ExpectedCondition<Boolean>() {
-				Boolean flag = false;
+				//Boolean flag = false;
 
 				public Boolean apply(WebDriver d) {
 					try {
 
-						String expected = "firmware write done";
+						//String expected = "firmware write done";
+						String expected = "110";
 
 						String actual = getStatus();
-						// clearLogs();
+						clearLogs();
 						System.out.println("\n Current FW update status is => \n" + actual);
 
 						if (!driver.findElementsByName("Continue").isEmpty()) {
@@ -213,15 +200,15 @@ public class FWUpdate {
 
 						if (actual.contains(expected)) {
 							System.out.println("\n FW update process completed ..");
-							flag = true;
+							//flag = true;
+							return true;
 
 						}
 
 					} catch (Exception e) {
 
 					}
-
-					return flag;
+					return false;
 
 				}
 
@@ -252,7 +239,6 @@ public class FWUpdate {
 		// Get releaseVersion: 1.18.7 and parse it to check current FW
 
 		status = getStatus();
-		// System.out.println("\n Current status is => \n" + status);
 
 		// Check machine error
 		if (status.contains(notConnected)) {
@@ -281,26 +267,18 @@ public class FWUpdate {
 		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]")
 				.click();
 
-		driver.close();
 	}
 
 	private String getStatus() {
-		status = driver
-				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status:')]")
-				.getText();
+		status = driver.findElementByXPath("//*[contains(@AutomationId,'textBoxMqttLog')]").getText();
 		return status;
 
 	}
 
 	private void clearLogs() throws Exception {
 
-		// WebElement element = driver
-		// .findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and
-		// contains(@Name,'Status:')]");
-
 		WebElement element = driver.findElementByXPath("//*[contains(@AutomationId,'textBoxMqttLog')]");
 
-		// Thread.sleep(2000);
 		try {
 			Actions action = new Actions(driver).doubleClick(element);
 			action.build().perform();
