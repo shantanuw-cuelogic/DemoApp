@@ -39,9 +39,9 @@ public class FWUpdate extends BaseSetup {
 		try {
 
 			driver = setup(path);
-			System.out.println("inside fw update, value = " + qa1_17.powerOFF());
+			//System.out.println("inside fw update, value = " + qa1_17.powerOFF());
 
-			assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
+			//assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
 
 			Thread.sleep(5000); // Wait till machine power off
 			// Sports mode

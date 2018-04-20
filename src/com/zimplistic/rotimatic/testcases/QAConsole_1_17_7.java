@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.winium.DesktopOptions;
 import org.openqa.selenium.winium.WiniumDriver;
 import org.openqa.selenium.winium.WiniumDriverService;
@@ -14,14 +15,16 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.zimplistic.rotimatic.dataprovider.ExcelLib;
+import com.zimplistic.rotimatic.pageobjects.QAConsolePage;
 import com.zimplistic.rotimatic.setup.BaseSetup;
 
 public class QAConsole_1_17_7 extends BaseSetup {
-
+	WiniumDriver driver;
 	ExcelLib xl = new com.zimplistic.rotimatic.dataprovider.ExcelLib();
 	gmailLogin glogin = new gmailLogin();
-
-	WiniumDriver driver;
+	QAConsolePage qaconsole = new QAConsolePage();
+	
+	
 	String path = xl.getXLcellValue("TestData", 5, 1);
 	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
 	String status = "";
@@ -29,9 +32,10 @@ public class QAConsole_1_17_7 extends BaseSetup {
 	String machineStatus = "";
 	String notConnectedStatus = "Server connected";
 	boolean ispowerOff;
+//	WebElement settings;
 
 	@Test(priority = 0)
-	public boolean powerOFF() throws Exception {
+	public void powerOFF() throws Exception {
 
 		driver = setup(path);
 		Thread.sleep(3000);
@@ -48,7 +52,11 @@ public class QAConsole_1_17_7 extends BaseSetup {
 		} else {
 			// Connect to serial number
 			connectClient();
-			driver.findElement(By.name("Settings")).click();
+			
+			//driver.findElement(By.name("Settings")).click();
+			
+			
+					
 			Thread.sleep(1000);
 			getScreenshot(driver, FOLDER_QACONSOLE);
 			// Check machine is power off / On Step 4
@@ -59,13 +67,14 @@ public class QAConsole_1_17_7 extends BaseSetup {
 		}
 
 		System.out.println("After qa 1.17 " + ispowerOff);
-		return ispowerOff;
+		//return ispowerOff;
 	}
 
 	private void connectClient() throws Exception {
-		// Clicking on RMS tab and connecting to mahcine
-		driver.findElement(By.name("RMS")).click();
+		// Clicking on RMS tab and connecting to machine
 
+		qaconsole.selectRMS(driver).click();
+	
 		driver.findElementByXPath(
 				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]").clear();
 		driver.findElementByXPath(
@@ -100,7 +109,7 @@ public class QAConsole_1_17_7 extends BaseSetup {
 
 	private void qaConsoleLogin() throws Exception {
 		String windowsHandle = driver.getWindowHandle();
-		glogin.webDriverSetup();
+		//glogin.webDriverSetup();
 
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);
