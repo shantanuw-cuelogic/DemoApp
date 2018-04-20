@@ -12,7 +12,7 @@ import org.openqa.selenium.winium.WiniumDriver;
 
 public interface ConfigFile {
 
-	String ROOT_DIR = "src//screenshots";
+	String ROOT_DIR = "Assets//OutputScreenshots";
 	String TEST_FOLDER_NAME = new SimpleDateFormat("d_MMM_yyyy_HH_mm").format(new Date());
 
 	String FOLDER_FWUPDATETOOL = "FWUpdateTool";
