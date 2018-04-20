@@ -12,11 +12,15 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class QAConsole_1_18_7 {
-	dataprovider.ExcelLib xl = new dataprovider.ExcelLib();
+import dataprovider.ExcelLib;
+import setup.BaseSetup;
+
+public class QAConsole_1_18_7 extends BaseSetup {
+	ExcelLib xl = new dataprovider.ExcelLib();
 	gmailLogin glogin = new gmailLogin();
 
 	WiniumDriver driver;
+	String path = xl.getXLcellValue("TestData", 6, 1);
 	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
 	String status = "";
 	String connectedStatus = "Rotimatic connected";
@@ -24,31 +28,14 @@ public class QAConsole_1_18_7 {
 	String notConnectedStatus = "Server connected";
 	FWUpdate fw = new FWUpdate();
 
-	@BeforeClass
-	public WiniumDriver setup() throws Exception {
-		try {
-			DesktopOptions options = new DesktopOptions();
-			options.setApplicationPath("src//dependencies//1.18.7.4753_qaConsole//iTor11QAConsole.exe");
-			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
-			File drivePath = new File(WiniumDriverPath);
-			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
-					.usingPort(9999).withVerbose(true).withSilent(false).buildDesktopService();
-			service.start();
-			driver = new WiniumDriver(service, options);
-
-		} catch (Exception e) {
-			System.out.println("Driver setup failed");
-
-		}
-		return driver;
-	}
-
 	@Test(priority = 2)
 	public void saveRotiFile() throws Exception {
 
+		driver = setup(path);
+
 		Thread.sleep(5000);
 		System.out.println("inside QAConsole 1.18.7, value = " + fw.isFWUpdate);
-		 assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
+		assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
 		assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
 		// Login to QAConsole
 		qaConsoleLogin();
@@ -60,9 +47,9 @@ public class QAConsole_1_18_7 {
 
 		driver.findElement(By.name("Settings")).click();
 		Thread.sleep(1000);
-
+		getScreenshot(driver, FOLDER_QACONSOLE);
+		
 		// Power On machine / On Step 12
-
 		driver.findElementByName("POWER").click();
 
 		// Save rotifile Step 13
@@ -73,13 +60,14 @@ public class QAConsole_1_18_7 {
 				.findElementsByXPath("//*[contains(@ControlType,'ControlType.Window') and contains(@Name,'modalForm')]")
 				.isEmpty()) {
 			System.out.println("\n Saving EEPROM file");
-
+			getScreenshot(driver, FOLDER_QACONSOLE);
 		}
 
 		// Checking success/error dialog
 
 		if (!driver.findElementsByName("OK").isEmpty()) {
 			System.err.println("\n EEPROM transaction fail! (Timeout after 30s)");
+			getScreenshot(driver, FOLDER_QACONSOLE);
 			driver.findElementByName("OK").click();
 			try {
 				disconnectClient();
@@ -118,11 +106,11 @@ public class QAConsole_1_18_7 {
 				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status: ')]")
 				.getText();
 
-
 		// Check machine is connected to Internet or not
 
 		if (status.contains(notConnectedStatus)) {
 			System.err.println("\n Machine is not connected to internet");
+			getScreenshot(driver, FOLDER_QACONSOLE);
 			disconnectClient();
 			try {
 				Assert.fail("\n Machine is not connected to internet");
@@ -130,7 +118,6 @@ public class QAConsole_1_18_7 {
 			} catch (Exception e) {
 			}
 		}
-		
 
 		if (status.contains(connectedStatus))
 			System.out.println("Status is :- " + status);
@@ -138,7 +125,7 @@ public class QAConsole_1_18_7 {
 
 	private void qaConsoleLogin() throws Exception {
 		String windowsHandle = driver.getWindowHandle();
-		glogin.webDriverSetup();
+		// glogin.webDriverSetup();
 
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);

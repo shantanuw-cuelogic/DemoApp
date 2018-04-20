@@ -12,12 +12,16 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class QAConsole_1_17_7 {
+import dataprovider.ExcelLib;
+import setup.BaseSetup;
 
-	dataprovider.ExcelLib xl = new dataprovider.ExcelLib();
+public class QAConsole_1_17_7 extends BaseSetup {
+
+	ExcelLib xl = new dataprovider.ExcelLib();
 	gmailLogin glogin = new gmailLogin();
 
 	WiniumDriver driver;
+	String path = xl.getXLcellValue("TestData", 5, 1);
 	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
 	String status = "";
 	String connectedStatus = "Rotimatic connected";
@@ -25,54 +29,34 @@ public class QAConsole_1_17_7 {
 	String notConnectedStatus = "Server connected";
 	boolean ispowerOff;
 
-	@BeforeClass
-	public WiniumDriver setup() throws Exception {
-		try {
-			DesktopOptions options = new DesktopOptions();
-			options.setApplicationPath("src//dependencies//1.17.7.4723_qaConsole//iTor11QAConsole.exe");
-			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
-			File drivePath = new File(WiniumDriverPath);
-			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
-					.usingPort(9999).withVerbose(true).withSilent(false).buildDesktopService();
-			service.start();
-			driver = new WiniumDriver(service, options);
-		} catch (Exception e) {
-			System.out.println("Driver setup failed");
-			setup();
-		}
-		return driver;
-	}
-
 	@Test(priority = 0)
-	public boolean powerOFF() throws IOException {
+	public boolean powerOFF() throws Exception {
 
-		try {
-			Thread.sleep(3000);
-			assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
+		driver = setup(path);
+		Thread.sleep(3000);
+		assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
 
-			// Login to QAConsole
-			qaConsoleLogin();
+		// Login to QAConsole
+		qaConsoleLogin();
 
-			// Check whether qaconsole is opened successfully or not
-			if (driver.findElementsByName("Manual").isEmpty()) {
-				ispowerOff = false;
-				Assert.fail(" QAConsole login failed, please try again");
-			} else {
-				// Connect to serial number
-				connectClient();
-				driver.findElement(By.name("Settings")).click();
-				Thread.sleep(1000);
-
-				// Check machine is power off / On Step 4
-				driver.findElementByName("POWER").click();
-				disconnectClient();
-				ispowerOff = true;
-				System.out.println("qaConsole login passed from poweroff");
-			}
-
-		} catch (Exception e) {
-
+		// Check whether qaconsole is opened successfully or not
+		if (driver.findElementsByName("Manual").isEmpty()) {
+			ispowerOff = false;
+			getScreenshot(driver, FOLDER_QACONSOLE);
+			Assert.fail(" QAConsole login failed, please try again");
+		} else {
+			// Connect to serial number
+			connectClient();
+			driver.findElement(By.name("Settings")).click();
+			Thread.sleep(1000);
+			getScreenshot(driver, FOLDER_QACONSOLE);
+			// Check machine is power off / On Step 4
+			driver.findElementByName("POWER").click();
+			disconnectClient();
+			ispowerOff = true;
+			System.out.println("qaConsole login passed from poweroff");
 		}
+
 		System.out.println("After qa 1.17 " + ispowerOff);
 		return ispowerOff;
 	}
@@ -98,6 +82,7 @@ public class QAConsole_1_17_7 {
 		// Check machine is connected to Internet or not
 
 		if (status.contains(notConnectedStatus)) {
+			getScreenshot(driver, FOLDER_QACONSOLE);
 			System.err.println("\n Machine is not connected to internet");
 			disconnectClient();
 			try {
@@ -146,12 +131,9 @@ public class QAConsole_1_17_7 {
 	private void disconnectClient() throws Exception {
 
 		// Go to RMS and click on disconnect
-
 		driver.findElement(By.name("RMS")).click();
 		Thread.sleep(1000);
 
-		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
-		// and contains(@Name,'Disconnect')]").click();
 		driver.findElement(By.name("Disconnect")).click();
 
 		driver.findElement(By.name("Close")).click();

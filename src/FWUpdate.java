@@ -16,10 +16,14 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class FWUpdate {
-	dataprovider.ExcelLib xl = new dataprovider.ExcelLib();
-	
+import dataprovider.ExcelLib;
+import setup.BaseSetup;
+
+public class FWUpdate extends BaseSetup {
+	ExcelLib xl = new dataprovider.ExcelLib();
+
 	WiniumDriver driver;
+	String path = xl.getXLcellValue("TestData", 4, 1);
 	String successFWUpdate = xl.getXLcellValue("TestData", 2, 1);
 	String currentFWVersion = xl.getXLcellValue("TestData", 3, 1);
 	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
@@ -29,34 +33,15 @@ public class FWUpdate {
 	boolean isFWUpdate;
 	QAConsole_1_17_7 qa1_17 = new QAConsole_1_17_7();
 
-	@BeforeClass
-	public WiniumDriver setup() throws Exception {
-		try {
-			DesktopOptions options = new DesktopOptions();
-			options.setApplicationPath("src//dependencies//1.18.7.4753_fwUpdateTool//ZimpleFirmwareUpdate.exe"); // Step
-																													// 5
-			String WiniumDriverPath = "src//dependencies//Winium.Desktop.Driver.exe";
-			File drivePath = new File(WiniumDriverPath);
-			WiniumDriverService service = new WiniumDriverService.Builder().usingDriverExecutable(drivePath)
-					.usingPort(9999).withVerbose(true).withSilent(false).buildDesktopService();
-			service.start();
-			driver = new WiniumDriver(service, options);
-		} catch (Exception e) {
-			System.err.println("\n Driver setup failed");
-
-			setup();
-		}
-		return driver;
-
-	}
-
 	@Test(priority = 1)
 	public boolean fwUpdateTest() throws IOException {
 		try {
+
+			driver = setup(path);
 			System.out.println("inside fw update, value = " + qa1_17.powerOFF());
 
-			assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate");
-			
+			assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
+
 			Thread.sleep(5000); // Wait till machine power off
 			// Sports mode
 			driver.findElement(By.name("Sports Mode")).click(); // Step 7
@@ -69,9 +54,10 @@ public class FWUpdate {
 			// Need to Check button is enabled or not
 			driver.findElement(By.name("Connect")).click(); // Step 8
 			Thread.sleep(3000);
-
+			getScreenshot(driver, FOLDER_FWUPDATETOOL);
 			// Check for Error - update.img file not exist
 			if (!driver.findElementsByName("OK").isEmpty()) {
+				getScreenshot(driver, FOLDER_FWUPDATETOOL);
 				driver.findElementByName("OK").click();
 				System.err.println("\n Error: update.img file not exist");
 
@@ -91,6 +77,7 @@ public class FWUpdate {
 			else {
 				System.err.println("\n Error occured:- " + status);
 				try {
+					getScreenshot(driver, FOLDER_FWUPDATETOOL);
 					Assert.fail("\n Error occured:- Client not connected");
 
 				} catch (Exception e) {
@@ -104,6 +91,7 @@ public class FWUpdate {
 				System.err.println("\n Machine is already updated to latest FW version 1.18.7");
 				disconnectClient();
 				try {
+					getScreenshot(driver, FOLDER_FWUPDATETOOL);
 					Assert.fail("\n Machine is already updated to latest FW version 1.18.7");
 
 				} catch (Exception e) {
@@ -122,8 +110,10 @@ public class FWUpdate {
 			if (!status.contains(currentFWVersion)) {
 				isFWUpdate = true;
 				System.out.println("\n FW is upgraded successfully");
+				getScreenshot(driver, FOLDER_FWUPDATETOOL);
 			} else {
 				try {
+					getScreenshot(driver, FOLDER_FWUPDATETOOL);
 					System.err.println("\n Error :- FW is not upgraded successfully");
 					isFWUpdate = false;
 					disconnectClient();
@@ -138,17 +128,18 @@ public class FWUpdate {
 		return isFWUpdate;
 	}
 
-	private void checkErrorDialog() {
+	private void checkErrorDialog() throws Exception {
 		// Check error state
 		if (!driver.findElementsByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Quit')]")
 				.isEmpty()) {
-
+			getScreenshot(driver, FOLDER_FWUPDATETOOL);
 			System.err.println("Error info :- sys state is not for firmware update");
 			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Quit')]")
 					.click();
 			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Quit')]")
 					.click();
 			try {
+				
 				Assert.fail("Error info :- sys state is not for firmware update");
 			} catch (Exception e) {
 			}
@@ -177,7 +168,7 @@ public class FWUpdate {
 						String expected = "firmware write done";
 
 						String actual = getStatus();
-						// clearLogs();
+						clearLogs();
 						System.out.println("\n Current FW update status is => \n" + actual);
 
 						if (!driver.findElementsByName("Continue").isEmpty()) {
@@ -211,7 +202,7 @@ public class FWUpdate {
 
 	private void fwUpdateRetry() throws Exception {
 		// click on Continue button
-
+		getScreenshot(driver, FOLDER_FWUPDATETOOL);
 		driver.findElementByName("Continue").click();
 		clearLogs();
 		fwUpdate(); // Calling FW Update again
@@ -227,9 +218,10 @@ public class FWUpdate {
 
 		// Get releaseVersion: 1.18.7 and parse it to check current FW
 		status = getStatus();
-		
+
 		// Check machine error
 		if (status.contains(notConnected)) {
+			getScreenshot(driver, FOLDER_FWUPDATETOOL);
 			System.err.println("\n Error :- Rotimatic machine is not connected");
 			disconnectClient();
 			try {

@@ -6,10 +6,9 @@ import java.io.FileOutputStream;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public class ExcelLib {
+import configuration.ConfigFile;
 
-	// Excel File which having all data
-	String Excelfile = "src//utilities//TestScripts.xls";
+public class ExcelLib implements ConfigFile{
 
 	public String getXLcellValue(String sheetName, int rowNum, int cellNum) {
 		try {
