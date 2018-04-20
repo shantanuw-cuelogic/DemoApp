@@ -1,4 +1,4 @@
-package dataprovider;
+package com.zimplistic.rotimatic.dataprovider;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import configuration.ConfigFile;
+import com.zimplistic.rotimatic.configuration.ConfigFile;
 
 public class ExcelLib implements ConfigFile{
 

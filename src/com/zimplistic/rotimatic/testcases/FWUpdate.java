@@ -1,3 +1,4 @@
+package com.zimplistic.rotimatic.testcases;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -16,11 +17,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import dataprovider.ExcelLib;
-import setup.BaseSetup;
+import com.zimplistic.rotimatic.dataprovider.ExcelLib;
+import com.zimplistic.rotimatic.setup.BaseSetup;
 
 public class FWUpdate extends BaseSetup {
-	ExcelLib xl = new dataprovider.ExcelLib();
+	ExcelLib xl = new com.zimplistic.rotimatic.dataprovider.ExcelLib();
 
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 4, 1);

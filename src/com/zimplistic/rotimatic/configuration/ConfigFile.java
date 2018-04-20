@@ -1,4 +1,4 @@
-package configuration;
+package com.zimplistic.rotimatic.configuration;
 
 import java.io.File;
 import java.io.IOException;
