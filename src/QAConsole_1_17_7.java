@@ -114,7 +114,7 @@ public class QAConsole_1_17_7 {
 
 	private void qaConsoleLogin() throws Exception {
 		String windowsHandle = driver.getWindowHandle();
-		//glogin.webDriverSetup();
+		glogin.webDriverSetup();
 
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);
