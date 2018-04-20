@@ -23,7 +23,7 @@ public class QAConsole_1_17_7 {
 	String connectedStatus = "Rotimatic connected";
 	String machineStatus = "";
 	String notConnectedStatus = "Server connected";
-	boolean ispowerOff;
+	public boolean ispowerOff;
 
 	@BeforeClass
 	public WiniumDriver setup() throws Exception {
@@ -68,6 +68,7 @@ public class QAConsole_1_17_7 {
 				disconnectClient();
 				ispowerOff = true;
 				System.out.println("qaConsole login passed from poweroff");
+				driver.quit();
 			}
 
 		} catch (Exception e) {
@@ -114,22 +115,9 @@ public class QAConsole_1_17_7 {
 
 	private void qaConsoleLogin() throws Exception {
 		String windowsHandle = driver.getWindowHandle();
-		//glogin.webDriverSetup();
-
+		glogin.webDriverSetup();
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);
-
-		System.out.println(glogin.wb.setUpTrue);
-		if (glogin.wb.setUpTrue) {
-			System.out.println("Navigated to the QAConsole1.17.7");
-			Thread.sleep(5000);
-			System.out.println("it came here");
-			System.out.println(glogin.wb.windowsId);
-			glogin.isGmailLoggedIn(glogin.wb.windowsId);
-			System.out.println("gmail log in setup done");
-		} else {
-			System.out.println("gmail log in setup failed"); // It can be case where user is already logged in to gmail.
-		}
 
 		// driver.switchTo().window(windowsHandle);
 
@@ -137,8 +125,25 @@ public class QAConsole_1_17_7 {
 			System.out.println("\n User is already logged in");
 			driver.findElementByName("OK").click();
 			System.out.println("OK button to continue login clicked on");
-		} else {
+		} 
+		else if (!driver.findElementsByName("Manual").isEmpty()) {
+			System.out.println("User is logged in to the QA Console login system");
+		}
+		else {
 			System.out.println("popup to confirm login with OK button did not show");
+
+			System.out.println(glogin.wb.setUpTrue);
+			if (glogin.wb.setUpTrue) {
+				System.out.println("Navigated to the QAConsole1.17.7");
+				Thread.sleep(5000);
+				System.out.println("it came here");
+				System.out.println(glogin.wb.windowsId);
+				glogin.isGmailLoggedIn(glogin.wb.windowsId);
+				System.out.println("gmail log in setup done");
+			} else {
+				System.out.println("gmail log in setup failed"); // It can be case where user is already logged in to
+																	// gmail.
+			}
 		}
 		Thread.sleep(2000);
 	}
