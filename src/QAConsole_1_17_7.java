@@ -2,8 +2,6 @@ import static org.testng.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.winium.DesktopOptions;
 import org.openqa.selenium.winium.WiniumDriver;
@@ -70,6 +68,7 @@ public class QAConsole_1_17_7 {
 				System.out.println("qaConsole login passed from poweroff");
 				driver.quit();
 			}
+
 
 		} catch (Exception e) {
 
@@ -154,9 +153,6 @@ public class QAConsole_1_17_7 {
 
 		driver.findElement(By.name("RMS")).click();
 		Thread.sleep(1000);
-
-		// driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button')
-		// and contains(@Name,'Disconnect')]").click();
 		driver.findElement(By.name("Disconnect")).click();
 
 		driver.findElement(By.name("Close")).click();
