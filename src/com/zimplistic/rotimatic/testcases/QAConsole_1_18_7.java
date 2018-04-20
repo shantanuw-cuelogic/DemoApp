@@ -2,9 +2,6 @@ package com.zimplistic.rotimatic.testcases;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.winium.DesktopOptions;
 import org.openqa.selenium.winium.WiniumDriver;
@@ -38,6 +35,7 @@ public class QAConsole_1_18_7 extends BaseSetup {
 		System.out.println("inside QAConsole 1.18.7, value = " + fw.isFWUpdate);
 		assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
 		assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
+
 		// Login to QAConsole
 		qaConsoleLogin();
 

@@ -1,10 +1,9 @@
 package com.zimplistic.rotimatic.testcases;
+
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.winium.DesktopOptions;
@@ -31,43 +30,42 @@ public class QAConsole_1_17_7 extends BaseSetup {
 	String connectedStatus = "Rotimatic connected";
 	String machineStatus = "";
 	String notConnectedStatus = "Server connected";
-	boolean ispowerOff;
-//	WebElement settings;
+	public boolean ispowerOff;
 
 	@Test(priority = 0)
-	public void powerOFF() throws Exception {
 
-		driver = setup(path);
-		Thread.sleep(3000);
-		assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
+	public boolean powerOFF() throws IOException {
 
-		// Login to QAConsole
-		qaConsoleLogin();
+		try {
+			driver = setup(path);
+			Thread.sleep(3000);
+			assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
+			// Login to QAConsole
+			qaConsoleLogin();
 
-		// Check whether qaconsole is opened successfully or not
-		if (driver.findElementsByName("Manual").isEmpty()) {
-			ispowerOff = false;
-			getScreenshot(driver, FOLDER_QACONSOLE);
-			Assert.fail(" QAConsole login failed, please try again");
-		} else {
-			// Connect to serial number
-			connectClient();
-			
-			//driver.findElement(By.name("Settings")).click();
-			
-			
-					
-			Thread.sleep(1000);
-			getScreenshot(driver, FOLDER_QACONSOLE);
-			// Check machine is power off / On Step 4
-			driver.findElementByName("POWER").click();
-			disconnectClient();
-			ispowerOff = true;
-			System.out.println("qaConsole login passed from poweroff");
+			// Check whether qaconsole is opened successfully or not
+			if (driver.findElementsByName("Manual").isEmpty()) {
+				ispowerOff = false;
+				getScreenshot(driver, FOLDER_QACONSOLE);
+				Assert.fail(" QAConsole login failed, please try again");
+			} else {
+				// Connect to serial number
+				connectClient();
+				driver.findElement(By.name("Settings")).click();
+				Thread.sleep(1000);
+				getScreenshot(driver, FOLDER_QACONSOLE);
+				// Check machine is power off / On Step 4
+				driver.findElementByName("POWER").click();
+				disconnectClient();
+				ispowerOff = true;
+				System.out.println("qaConsole login passed from poweroff");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
 		System.out.println("After qa 1.17 " + ispowerOff);
-		//return ispowerOff;
+		return ispowerOff;
 	}
 
 	private void connectClient() throws Exception {
@@ -109,22 +107,11 @@ public class QAConsole_1_17_7 extends BaseSetup {
 
 	private void qaConsoleLogin() throws Exception {
 		String windowsHandle = driver.getWindowHandle();
-		//glogin.webDriverSetup();
+
+		glogin.webDriverSetup();
 
 		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
 		Thread.sleep(5000);
-
-		System.out.println(glogin.wb.setUpTrue);
-		if (glogin.wb.setUpTrue) {
-			System.out.println("Navigated to the QAConsole1.17.7");
-			Thread.sleep(5000);
-			System.out.println("it came here");
-			System.out.println(glogin.wb.windowsId);
-			glogin.isGmailLoggedIn(glogin.wb.windowsId);
-			System.out.println("gmail log in setup done");
-		} else {
-			System.out.println("gmail log in setup failed"); // It can be case where user is already logged in to gmail.
-		}
 
 		// driver.switchTo().window(windowsHandle);
 
@@ -132,8 +119,23 @@ public class QAConsole_1_17_7 extends BaseSetup {
 			System.out.println("\n User is already logged in");
 			driver.findElementByName("OK").click();
 			System.out.println("OK button to continue login clicked on");
+		} else if (!driver.findElementsByName("Manual").isEmpty()) {
+			System.out.println("User is logged in to the QA Console login system");
 		} else {
 			System.out.println("popup to confirm login with OK button did not show");
+
+			System.out.println(glogin.wb.setUpTrue);
+			if (glogin.wb.setUpTrue) {
+				System.out.println("Navigated to the QAConsole1.17.7");
+				Thread.sleep(5000);
+				System.out.println("it came here");
+				System.out.println(glogin.wb.windowsId);
+				glogin.isGmailLoggedIn(glogin.wb.windowsId);
+				System.out.println("gmail log in setup done");
+			} else {
+				System.out.println("gmail log in setup failed"); // It can be case where user is already logged in to
+																	// gmail.
+			}
 		}
 		Thread.sleep(2000);
 	}
@@ -143,7 +145,6 @@ public class QAConsole_1_17_7 extends BaseSetup {
 		// Go to RMS and click on disconnect
 		driver.findElement(By.name("RMS")).click();
 		Thread.sleep(1000);
-
 		driver.findElement(By.name("Disconnect")).click();
 
 		driver.findElement(By.name("Close")).click();
