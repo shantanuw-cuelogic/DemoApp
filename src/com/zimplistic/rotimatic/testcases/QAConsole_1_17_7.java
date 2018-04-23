@@ -19,11 +19,10 @@ import com.zimplistic.rotimatic.setup.BaseSetup;
 
 public class QAConsole_1_17_7 extends BaseSetup {
 	WiniumDriver driver;
-	ExcelLib xl = new com.zimplistic.rotimatic.dataprovider.ExcelLib();
+	ExcelLib xl = new ExcelLib();
 	gmailLogin glogin = new gmailLogin();
 	QAConsolePage qaconsole = new QAConsolePage();
-	
-	
+
 	String path = xl.getXLcellValue("TestData", 5, 1);
 	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
 	String status = "";
@@ -32,36 +31,43 @@ public class QAConsole_1_17_7 extends BaseSetup {
 	String notConnectedStatus = "Server connected";
 	public boolean ispowerOff;
 
+	WebElement RMS, serialNoElement, settings, power, gSignIn, OK, disconnectClient, closeIcon;
+
 	@Test(priority = 0)
 
 	public boolean powerOFF() throws IOException {
 
 		try {
 			driver = setup(path);
-			Thread.sleep(3000);
-			assertTrue(!driver.findElementsByName("Log in").isEmpty(), "QAConsole login failed, please try again");
+			Thread.sleep(5000); // waiting for app to get in focus
+			assertTrue(!qaconsole.loginDisplayed(driver), "QAConsole login failed, please try again");
+
 			// Login to QAConsole
 			qaConsoleLogin();
 
 			// Check whether qaconsole is opened successfully or not
-			if (driver.findElementsByName("Manual").isEmpty()) {
+			if (qaconsole.homeDisplayed(driver)) {
 				ispowerOff = false;
 				getScreenshot(driver, FOLDER_QACONSOLE);
 				Assert.fail(" QAConsole login failed, please try again");
-			} else {
-				// Connect to serial number
-				connectClient();
-				driver.findElement(By.name("Settings")).click();
-				Thread.sleep(1000);
-				getScreenshot(driver, FOLDER_QACONSOLE);
-				// Check machine is power off / On Step 4
-				driver.findElementByName("POWER").click();
-				disconnectClient();
-				ispowerOff = true;
-				System.out.println("qaConsole login passed from poweroff");
 			}
+			// Connect to serial number
+			connectClient();
+
+			settings = qaconsole.selectSettings(driver);
+			settings.click();
+			Thread.sleep(1000);
+			getScreenshot(driver, FOLDER_QACONSOLE);
+
+			// Check machine is power off / On Step 4
+			power = qaconsole.selectPower(driver);
+			power.click();
+
+			disconnectClient();
+			ispowerOff = true;
+			System.out.println("qaConsole login passed from poweroff");
+
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 
 		System.out.println("After qa 1.17 " + ispowerOff);
@@ -69,26 +75,23 @@ public class QAConsole_1_17_7 extends BaseSetup {
 	}
 
 	private void connectClient() throws Exception {
-		// Clicking on RMS tab and connecting to machine
 
-		qaconsole.selectRMS(driver).click();
-	
-		driver.findElementByXPath(
-				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]").clear();
-		driver.findElementByXPath(
-				"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]")
-				.sendKeys(serialNumber);
+		// Clicking on RMS tab and connecting to machine
+		RMS = qaconsole.selectRMS(driver);
+		RMS.click();
+
+		serialNoElement = qaconsole.selectSerialNumber(driver);
+		serialNoElement.clear();
+		serialNoElement.sendKeys(serialNumber);
 
 		driver.findElement(By.name("Connect")).click();
 		Thread.sleep(3000);
 
 		// Check status
-		status = driver
-				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status: ')]")
-				.getText();
+		status = qaconsole.selectStatus(driver).getText();
+		getScreenshot(driver, FOLDER_QACONSOLE);
 
 		// Check machine is connected to Internet or not
-
 		if (status.contains(notConnectedStatus)) {
 			getScreenshot(driver, FOLDER_QACONSOLE);
 			System.err.println("\n Machine is not connected to internet");
@@ -109,22 +112,23 @@ public class QAConsole_1_17_7 extends BaseSetup {
 		String windowsHandle = driver.getWindowHandle();
 
 		glogin.webDriverSetup();
-
-		driver.findElementByXPath("//*[contains(@AutomationId,'pictureBoxGSignIn')]").click();
+		gSignIn = qaconsole.selectGoogleSignIn(driver);
+		gSignIn.click();
 		Thread.sleep(5000);
 
-		// driver.switchTo().window(windowsHandle);
-
-		if (!driver.findElementsByName("OK").isEmpty()) {
+		if (!qaconsole.popupDisplayed(driver)) {
 			System.out.println("\n User is already logged in");
-			driver.findElementByName("OK").click();
+
+			OK = qaconsole.selectOK(driver);
+			OK.click();
+
 			System.out.println("OK button to continue login clicked on");
-		} else if (!driver.findElementsByName("Manual").isEmpty()) {
+		} else if (qaconsole.homeDisplayed(driver)) {
 			System.out.println("User is logged in to the QA Console login system");
 		} else {
 			System.out.println("popup to confirm login with OK button did not show");
-
 			System.out.println(glogin.wb.setUpTrue);
+
 			if (glogin.wb.setUpTrue) {
 				System.out.println("Navigated to the QAConsole1.17.7");
 				Thread.sleep(5000);
@@ -143,11 +147,14 @@ public class QAConsole_1_17_7 extends BaseSetup {
 	private void disconnectClient() throws Exception {
 
 		// Go to RMS and click on disconnect
-		driver.findElement(By.name("RMS")).click();
+		RMS.click();
 		Thread.sleep(1000);
-		driver.findElement(By.name("Disconnect")).click();
 
-		driver.findElement(By.name("Close")).click();
+		disconnectClient = qaconsole.selectDisconnectClient(driver);
+		disconnectClient.click();
+
+		closeIcon = qaconsole.selectClose(driver);
+		closeIcon.click();
 
 	}
 }
