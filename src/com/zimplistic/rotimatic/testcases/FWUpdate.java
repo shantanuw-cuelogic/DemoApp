@@ -1,4 +1,5 @@
 package com.zimplistic.rotimatic.testcases;
+
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -18,10 +19,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.zimplistic.rotimatic.dataprovider.ExcelLib;
+import com.zimplistic.rotimatic.pageobjects.FWUpdatePage;
 import com.zimplistic.rotimatic.setup.BaseSetup;
 
 public class FWUpdate extends BaseSetup {
 	ExcelLib xl = new com.zimplistic.rotimatic.dataprovider.ExcelLib();
+	QAConsole_1_17_7 qa1_17 = new QAConsole_1_17_7();
+	FWUpdatePage fwUpdate = new FWUpdatePage();
 
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 4, 1);
@@ -32,38 +36,46 @@ public class FWUpdate extends BaseSetup {
 	String connectedSuccess = "Connected";
 	String notConnected = "Rotimatic machine is not connected.";
 	boolean isFWUpdate;
-	QAConsole_1_17_7 qa1_17 = new QAConsole_1_17_7();
+
+	WebElement sportsMode, serialNoElement, connect, OK, close, FWVersionElement, quit, log, startFWUpdate,
+			continueElement, disconnect;
 
 	@Test(priority = 1)
 	public boolean fwUpdateTest() throws IOException {
 		try {
 
 			driver = setup(path);
-			//System.out.println("inside fw update, value = " + qa1_17.powerOFF());
+			// System.out.println("inside fw update, value = " + qa1_17.powerOFF());
 
-			//assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
+			// assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with
+			// FWUpdate test");
 
 			Thread.sleep(5000); // Wait till machine power off
-			// Sports mode
-			driver.findElement(By.name("Sports Mode")).click(); // Step 7
+			// Sports mode // Step 7
+			sportsMode = fwUpdate.getSportsMode(driver);
+			sportsMode.click();
 
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
-					.clear();
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]")
-					.sendKeys(serialNumber); // Step 6
+			serialNoElement = fwUpdate.selectSerialNumber(driver);
+			serialNoElement.clear();
+			serialNoElement.sendKeys(serialNumber); // Step 6
 
 			// Need to Check button is enabled or not
-			driver.findElement(By.name("Connect")).click(); // Step 8
+			connect = fwUpdate.getConnect(driver);
+			connect.click(); // Step 8
 			Thread.sleep(3000);
 			getScreenshot(driver, FOLDER_FWUPDATETOOL);
+
 			// Check for Error - update.img file not exist
-			if (!driver.findElementsByName("OK").isEmpty()) {
+			if (fwUpdate.popupDisplayed(driver)) {
 				getScreenshot(driver, FOLDER_FWUPDATETOOL);
-				driver.findElementByName("OK").click();
+
+				OK = fwUpdate.selectOK(driver);
+				OK.click();
+
 				System.err.println("\n Error: update.img file not exist");
 
-				driver.findElementByXPath(
-						"//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]").click();
+				close = fwUpdate.selectClose(driver);
+				close.click();
 				try {
 					Assert.fail("\n Error :- update.img file not exist");
 				} catch (Exception e) {
@@ -131,16 +143,15 @@ public class FWUpdate extends BaseSetup {
 
 	private void checkErrorDialog() throws Exception {
 		// Check error state
-		if (!driver.findElementsByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Quit')]")
-				.isEmpty()) {
+		if (fwUpdate.errorDisplayed(driver)) {
 			getScreenshot(driver, FOLDER_FWUPDATETOOL);
 			System.err.println("Error info :- sys state is not for firmware update");
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Quit')]")
-					.click();
-			driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Quit')]")
-					.click();
+
+			quit = fwUpdate.selectQuit(driver);
+			quit.click(); // 1st popup
+			quit = fwUpdate.selectQuit(driver);
+			quit.click(); // 2nd popup
 			try {
-				
 				Assert.fail("Error info :- sys state is not for firmware update");
 			} catch (Exception e) {
 			}
@@ -148,10 +159,9 @@ public class FWUpdate extends BaseSetup {
 	}
 
 	private void fwUpdate() throws Exception {
-
-		driver.findElementByName("Start Update").click();
+		startFWUpdate = fwUpdate.selectStartFWUpdate(driver);
+		startFWUpdate.click();
 		checkErrorDialog();
-
 		checkFWUpdateProgress(); // Step 10
 
 	}
@@ -204,7 +214,8 @@ public class FWUpdate extends BaseSetup {
 	private void fwUpdateRetry() throws Exception {
 		// click on Continue button
 		getScreenshot(driver, FOLDER_FWUPDATETOOL);
-		driver.findElementByName("Continue").click();
+		continueElement = fwUpdate.selectContinue(driver);
+		continueElement.click();
 		clearLogs();
 		fwUpdate(); // Calling FW Update again
 
@@ -213,7 +224,8 @@ public class FWUpdate extends BaseSetup {
 	private String checkCurrentFWversion() throws Exception {
 
 		// Need to Check button is enabled or not
-		driver.findElementByName("FW version").click();
+		FWVersionElement = fwUpdate.selectFWVersion(driver);
+		FWVersionElement.click();
 		Thread.sleep(4000);
 		checkErrorDialog();
 
@@ -241,29 +253,29 @@ public class FWUpdate extends BaseSetup {
 
 	}
 
-	private void disconnectClient() {
-		driver.findElementByName("Disconnect").click();
+	private void disconnectClient() throws Exception {
+
+		disconnect = fwUpdate.selectDisconnect(driver);
+		disconnect.click();
 		System.out.println("\n Client disconnected");
 
-		driver.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]")
-				.click();
+		close = fwUpdate.selectClose(driver);
+		close.click();
 
 		driver.close();
 	}
 
-	private String getStatus() {
-		status = driver
-				.findElementByXPath("//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status:')]")
-				.getText();
+	private String getStatus() throws Exception {
+		status = fwUpdate.selectStatus(driver).getText();
 		return status;
 
 	}
 
 	private void clearLogs() throws Exception {
 
-		WebElement element = driver.findElementByXPath("//*[contains(@AutomationId,'textBoxMqttLog')]");
+		log = fwUpdate.getClearLogElement(driver);
 		try {
-			Actions action = new Actions(driver).doubleClick(element);
+			Actions action = new Actions(driver).doubleClick(log);
 			action.build().perform();
 		} catch (Exception e) {
 
