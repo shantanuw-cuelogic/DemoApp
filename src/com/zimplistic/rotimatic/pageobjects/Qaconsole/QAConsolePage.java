@@ -1,4 +1,4 @@
-package com.zimplistic.rotimatic.pageobjects;
+package com.zimplistic.rotimatic.pageobjects.Qaconsole;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

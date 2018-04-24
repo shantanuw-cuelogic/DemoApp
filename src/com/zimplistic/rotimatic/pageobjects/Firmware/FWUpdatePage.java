@@ -1,11 +1,13 @@
-package com.zimplistic.rotimatic.pageobjects;
+package com.zimplistic.rotimatic.pageobjects.Firmware;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.winium.WiniumDriver;
 import org.testng.Assert;
 
-public class FWUpdatePage {
+
+
+public class FWUpdatePage{
 	public static WebElement element;
 	public boolean isPopup = true;
 	public boolean isError = true;
@@ -18,7 +20,7 @@ public class FWUpdatePage {
 
 		} catch (Exception e) {
 
-			Assert.fail("Error in getting login screen");
+			Assert.fail("Error in getting OK popup");
 		}
 		return isPopup;
 	}
@@ -51,7 +53,8 @@ public class FWUpdatePage {
 
 	public WebElement getSportsMode(WiniumDriver driver) throws Exception {
 		try {
-			element = driver.findElement(By.name("Sports Mode"));
+			element = driver
+					.findElementByXPath("//*[@AutomationId='checkBoxSpeed']");
 
 		} catch (Exception e) {
 
@@ -59,11 +62,11 @@ public class FWUpdatePage {
 		}
 		return element;
 	}
-
+	
 	public WebElement selectSerialNumber(WiniumDriver driver) throws Exception {
 		try {
 			element = driver
-					.findElementByXPath("//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Broker:')]");
+					.findElementByXPath("//*[@AutomationId='textBoxRotiSerial']");
 
 		} catch (Exception e) {
 
@@ -74,7 +77,7 @@ public class FWUpdatePage {
 
 	public WebElement getConnect(WiniumDriver driver) throws Exception {
 		try {
-			element = driver.findElement(By.name("Connect"));
+			element = driver.findElementByXPath("//*[@AutomationId='buttonConnect']");
 
 		} catch (Exception e) {
 
@@ -85,8 +88,7 @@ public class FWUpdatePage {
 
 	public WebElement selectStatus(WiniumDriver driver) throws Exception {
 		try {
-			element = driver.findElementByXPath(
-					"//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status:')]");
+			element = driver.findElementByXPath("//*[@AutomationId='textBoxMqttLog']");
 
 		} catch (Exception e) {
 
@@ -97,8 +99,8 @@ public class FWUpdatePage {
 
 	public WebElement selectFWVersion(WiniumDriver driver) throws Exception {
 		try {
-			element = driver.findElementByName("FW version");
-
+			element = driver.findElementByXPath("//*[@AutomationId='buttonFwVersion']");
+			
 		} catch (Exception e) {
 
 			Assert.fail("Error in getting FW version button");
@@ -108,7 +110,7 @@ public class FWUpdatePage {
 
 	public WebElement selectStartFWUpdate(WiniumDriver driver) throws Exception {
 		try {
-			element = driver.findElementByName("Start Update");
+			element = driver.findElementByXPath("//*[@AutomationId='buttonStartUpdate']");
 
 		} catch (Exception e) {
 
@@ -130,7 +132,7 @@ public class FWUpdatePage {
 
 	public WebElement getClearLogElement(WiniumDriver driver) throws Exception {
 		try {
-			element = driver.findElementByXPath("//*[contains(@AutomationId,'textBoxMqttLog')]");
+			element = driver.findElementByXPath("//*[@AutomationId='textBoxMqttLog']");
 
 		} catch (Exception e) {
 
@@ -175,8 +177,7 @@ public class FWUpdatePage {
 
 	public WebElement selectClose(WiniumDriver driver) throws Exception {
 		try {
-			element = driver
-					.findElementByXPath("//*[contains(@ControlType,'ControlType.Button') and contains(@Name,'Close')]");
+			element = driver.findElementByXPath("//*[@AutomationId='Close']");
 
 		} catch (Exception e) {
 
