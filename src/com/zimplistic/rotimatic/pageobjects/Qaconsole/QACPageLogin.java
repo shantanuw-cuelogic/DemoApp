@@ -9,8 +9,8 @@ public class QACPageLogin {
 
 	public static WebElement element;
 	public boolean isLogin = false;
-	public boolean isManual = false;
-	public boolean isPopup = false;
+	public boolean isManual = true;
+	public boolean isPopup = true;
 	
 
 	public boolean loginDisplayed(WiniumDriver driver) throws Exception {
@@ -39,7 +39,7 @@ public class QACPageLogin {
 	public boolean popupDisplayed(WiniumDriver driver) throws Exception {
 		try {
 			if (driver.findElementsByName("OK").isEmpty())
-				isPopup = true;
+				isPopup = false;
 
 		} catch (Exception e) {
 
@@ -62,7 +62,7 @@ public class QACPageLogin {
 	public boolean homeDisplayed(WiniumDriver driver) throws Exception {
 		try {
 			if (driver.findElementsByName("Manual").isEmpty())
-				isManual = true;
+				isManual = false;
 
 		} catch (Exception e) {
 

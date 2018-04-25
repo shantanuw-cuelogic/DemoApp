@@ -25,16 +25,14 @@ public class QAConsole_1_18_7 extends BaseSetup {
 	QACPageLogin qacLogin = new QACPageLogin();
 	QACPageRMS qacRMS = new QACPageRMS();
 	QACPageSettings qacSettings = new QACPageSettings();
+	QAConsole qaconsole = new QAConsole();
 
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 6, 1);
 	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
-	String status = "";
-	String connectedStatus = "Rotimatic connected";
-	String machineStatus = "";
-	String notConnectedStatus = "Server connected";
 
-	WebElement RMS, serialNoElement, settings, power, gSignIn, OK, disconnectClient, closeIcon, saveEEPROM;
+
+	WebElement settings, power, gSignIn, OK, disconnectClient, saveEEPROM;
 
 	@Test(priority = 2)
 	public void saveRotiFile() throws Exception {
@@ -47,15 +45,15 @@ public class QAConsole_1_18_7 extends BaseSetup {
 		assertTrue(!qacLogin.loginDisplayed(driver), "QAConsole login failed, please try again");
 
 		// Login to QAConsole
-		qaConsoleLogin();
+		qaconsole.qaConsoleLogin(driver);
 
 		// Check whether qaconsole is opened successfully or not
-		if (qacLogin.homeDisplayed(driver)) {
+		if (!qacLogin.homeDisplayed(driver)) {
 			getScreenshot(driver, FOLDER_QACONSOLE);
 			Assert.fail(" QAConsole login failed, please try again");
 		}
 
-		connectClient();
+		qaconsole.connectClient(driver, serialNumber);
 
 		settings = qacSettings.selectSettings(driver);
 		settings.click();
@@ -65,25 +63,26 @@ public class QAConsole_1_18_7 extends BaseSetup {
 		// Power On machine / On Step 12
 		power = qacSettings.selectPower(driver);
 		power.click();
-		
+
 		// Save rotifile Step 13
 		saveEEPROM = qacSettings.selectSaveEEPROM(driver);
 		saveEEPROM.click();
-		
+
 		// Checking wait dialog
 		if (!qacSettings.saveEEPROMAlertDisplayed(driver)) {
 			System.out.println("\n Saving EEPROM file");
 			getScreenshot(driver, FOLDER_QACONSOLE);
-		}else
+			Thread.sleep(20000);
+		} else
 			System.out.println("\n Saving EEPROm file process not started");
 
 		// Checking success/error dialog
-		if (!qacLogin.popupDisplayed(driver)) {
+		if (qacLogin.popupDisplayed(driver)) {
 			System.err.println("\n EEPROM transaction fail! (Timeout after 30s)");
 			getScreenshot(driver, FOLDER_QACONSOLE);
-			driver.findElementByName("OK").click();
+			qacLogin.selectOK(driver).click();
 			try {
-				disconnectClient();
+				qaconsole.disconnectClient(driver);
 				Assert.fail(" EEPROM transaction fail! (Timeout after 30s)");
 			} catch (Exception e) {
 			}
@@ -93,86 +92,10 @@ public class QAConsole_1_18_7 extends BaseSetup {
 
 		// Check rotifile saved location here
 
-		disconnectClient();
+		qaconsole.disconnectClient(driver);
 
 		driver.close();
 
 	}
 
-	private void connectClient() throws Exception {
-		// Clicking on RMS tab and connecting to machine
-		RMS = qacRMS.selectRMS(driver);
-		RMS.click();
-
-		serialNoElement = qacRMS.selectSerialNumber(driver);
-		serialNoElement.clear();
-		serialNoElement.sendKeys(serialNumber);
-
-		driver.findElement(By.name("Connect")).click();
-		Thread.sleep(3000);
-
-		// Check status
-		status = qacRMS.selectStatus(driver).getText();
-		getScreenshot(driver, FOLDER_QACONSOLE);
-
-		// Check machine is connected to Internet or not
-		if (status.contains(notConnectedStatus)) {
-			getScreenshot(driver, FOLDER_QACONSOLE);
-			System.err.println("\n Machine is not connected to internet");
-			disconnectClient();
-			try {
-				Assert.fail("\n Machine is not connected to internet");
-
-			} catch (Exception e) {
-			}
-		}
-
-		if (status.contains(connectedStatus))
-			System.out.println("Status is :- " + status);
-	}
-
-	private void qaConsoleLogin() throws Exception {
-		String windowsHandle = driver.getWindowHandle();
-		glogin.webDriverSetup();
-
-		gSignIn = qacLogin.selectGoogleSignIn(driver);
-		gSignIn.click();
-		Thread.sleep(5000);
-
-		System.out.println(glogin.wb.setUpTrue);
-		if (glogin.wb.setUpTrue) {
-			System.out.println("Navigated to the QAConsole1.17.7");
-			Thread.sleep(5000);
-			System.out.println("it came here");
-			System.out.println(glogin.wb.windowsId);
-			glogin.isGmailLoggedIn(glogin.wb.windowsId);
-			System.out.println("gmail log in setup done");
-		} else {
-			System.out.println("gmail log in setup failed"); // It can be case where user is already logged in to gmail.
-		}
-
-		if (!qacLogin.popupDisplayed(driver)) {
-			System.out.println("\n User is already logged in");
-
-			OK = qacLogin.selectOK(driver);
-			OK.click();
-
-			System.out.println("OK button to continue login clicked on");
-		} else {
-			System.out.println("popup to confirm login with OK button did not show");
-		}
-		Thread.sleep(2000);
-	}
-
-	private void disconnectClient() throws Exception {
-
-		RMS.click();
-		Thread.sleep(1000);
-
-		disconnectClient = qacRMS.selectDisconnectClient(driver);
-		disconnectClient.click();
-
-		closeIcon = qacLogin.selectClose(driver);
-		closeIcon.click();
-	}
 }

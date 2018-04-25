@@ -20,7 +20,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-
 import com.zimplistic.rotimatic.dataprovider.ExcelLib;
 import com.zimplistic.rotimatic.pageobjects.Firmware.FWUpdatePage;
 import com.zimplistic.rotimatic.setup.BaseSetup;
@@ -30,8 +29,8 @@ public class FWUpdate extends BaseSetup {
 	QAConsole_1_17_7 qa1_17 = new QAConsole_1_17_7();
 	FWUpdatePage fwUpdate = new FWUpdatePage();
 
-	//Page page = new Page();
-	
+	// Page page = new Page();
+
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 4, 1);
 	String successFWUpdate = xl.getXLcellValue("TestData", 2, 1);
@@ -44,21 +43,18 @@ public class FWUpdate extends BaseSetup {
 
 	WebElement sportsMode, serialNoElement, connect, OK, close, FWVersionElement, quit, log, startFWUpdate,
 			continueElement, disconnect;
-	
-	
-	
 
 	@Test(priority = 1)
 	public Boolean fwUpdateTest() throws IOException {
 		try {
 			driver = setup(path);
-			// System.out.println("inside fw update, value = " + qa1_17.powerOFF());
+			System.out.println("inside fw update, value = " + qa1_17.powerOFF());
 
 			assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
 
 			Thread.sleep(3000);
 			// Check for app focus
-			
+
 			// Sports mode // Step 7
 			fwUpdate.getSportsMode(driver);
 			sportsMode.click();
@@ -75,7 +71,7 @@ public class FWUpdate extends BaseSetup {
 
 			// Check for Error - update.img file not exist
 			if (fwUpdate.popupDisplayed(driver)) {
-			
+
 				getScreenshot(driver, FOLDER_FWUPDATETOOL);
 
 				OK = fwUpdate.selectOK(driver);
@@ -90,7 +86,6 @@ public class FWUpdate extends BaseSetup {
 				} catch (Exception e) {
 				}
 			}
-			
 
 			status = getStatus();
 			System.out.println("\n Current status is => \n" + status);
@@ -100,7 +95,7 @@ public class FWUpdate extends BaseSetup {
 			else {
 				System.err.println("\n Error occured:- " + status);
 				try {
-				getScreenshot(driver, FOLDER_FWUPDATETOOL);
+					getScreenshot(driver, FOLDER_FWUPDATETOOL);
 					Assert.fail("\n Error occured:- Client not connected");
 
 				} catch (Exception e) {
@@ -136,7 +131,7 @@ public class FWUpdate extends BaseSetup {
 				getScreenshot(driver, FOLDER_FWUPDATETOOL);
 			} else {
 				try {
-				getScreenshot(driver, FOLDER_FWUPDATETOOL);
+					getScreenshot(driver, FOLDER_FWUPDATETOOL);
 					System.err.println("\n Error :- FW is not upgraded successfully");
 					isFWUpdate = false;
 					disconnectClient();
@@ -154,7 +149,7 @@ public class FWUpdate extends BaseSetup {
 	private void checkErrorDialog() throws Exception {
 		// Check error state
 		if (fwUpdate.errorDisplayed(driver)) {
-		getScreenshot(driver, FOLDER_FWUPDATETOOL);
+			getScreenshot(driver, FOLDER_FWUPDATETOOL);
 			System.err.println("Error info :- sys state is not for firmware update");
 
 			quit = fwUpdate.selectQuit(driver);
