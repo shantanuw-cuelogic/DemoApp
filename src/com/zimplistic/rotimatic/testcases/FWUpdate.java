@@ -52,13 +52,12 @@ public class FWUpdate extends BaseSetup {
 	
 
 	@Test(priority = 1)
-	public void fwUpdateTest() throws IOException {
+	public boolean fwUpdateTest() throws IOException {
 		try {
 
 			// System.out.println("inside fw update, value = " + qa1_17.powerOFF());
 
-			// assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with
-			// FWUpdate test");
+			 assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
 
 		
 			// Check for app focus
@@ -158,7 +157,7 @@ public class FWUpdate extends BaseSetup {
 
 		} catch (Exception e) {
 		}
-		//return isFWUpdate;
+		return isFWUpdate;
 	}
 
 	private void checkErrorDialog() throws Exception {
