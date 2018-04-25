@@ -16,9 +16,9 @@ import com.zimplistic.rotimatic.configuration.ConfigFile;
 
 
 public class BaseSetup implements ConfigFile {
-	WiniumDriver driver;
+	static WiniumDriver driver;
 
-	public WiniumDriver setup(String path) throws Exception {
+	public static WiniumDriver setup(String path) throws Exception {
 		try {
 			DesktopOptions options = new DesktopOptions();
 			options.setApplicationPath(path);
@@ -37,7 +37,7 @@ public class BaseSetup implements ConfigFile {
 	}
 
 	// function to capture screenshots
-	public void getScreenshot(WiniumDriver driver, String outputlocation) throws IOException {
+	public static void getScreenshot(WiniumDriver driver, String outputlocation) throws IOException {
 
 		String baseFolderName = TEST_FOLDER_NAME;
 		File baseFolder = new File(ROOT_DIR, baseFolderName);

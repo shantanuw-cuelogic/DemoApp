@@ -33,7 +33,7 @@ public class QACPageSettings {
 
 	public WebElement selectSaveEEPROM(WiniumDriver driver) throws Exception {
 		try {
-			element = driver.findElementByName("Save EEPROM to File");
+			element = driver.findElementByXPath("//*[@AutomationId='btn_SavEepToFile']");
 
 		} catch (Exception e) {
 
@@ -41,7 +41,7 @@ public class QACPageSettings {
 		}
 		return element;
 	}
-
+	
 	public boolean saveEEPROMAlertDisplayed(WiniumDriver driver) throws Exception {
 		try {
 			if (driver
@@ -52,7 +52,7 @@ public class QACPageSettings {
 
 		} catch (Exception e) {
 
-			Assert.fail("Error in getting Manual tab");
+			Assert.fail("Error in getting Save EEPROM popup");
 		}
 		return isSaveEEPROM;
 	}

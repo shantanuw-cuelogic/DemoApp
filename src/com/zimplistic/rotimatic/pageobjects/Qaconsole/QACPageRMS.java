@@ -21,8 +21,7 @@ public class QACPageRMS {
 
 	public WebElement selectSerialNumber(WiniumDriver driver) throws Exception {
 		try {
-			element = driver.findElementByXPath(
-					"//*[contains(@ControlType,'ControlType.Edit') and contains(@Name,'Rotimatic Serial: ')]");
+			element = driver.findElementByXPath("//*[@AutomationId='textBoxRotiSerialNo']");
 
 		} catch (Exception e) {
 
@@ -30,11 +29,10 @@ public class QACPageRMS {
 		}
 		return element;
 	}
-
+	
 	public WebElement selectStatus(WiniumDriver driver) throws Exception {
 		try {
-			element = driver.findElementByXPath(
-					"//*[contains(@ControlType,'ControlType.Document') and contains(@Name,'Status: ')]");
+			element = driver.findElementByXPath("//*[@AutomationId='textBoxBrokerConnStatus']");
 
 		} catch (Exception e) {
 
