@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -45,31 +46,21 @@ public class FWUpdate extends BaseSetup {
 			continueElement, disconnect;
 	
 	
-	@BeforeClass
-	public void init() throws Exception {
-		driver = setup(path);
-	}
 	
 
 	@Test(priority = 1)
-	public boolean fwUpdateTest() throws IOException {
+	public Boolean fwUpdateTest() throws IOException {
 		try {
-
+			driver = setup(path);
 			// System.out.println("inside fw update, value = " + qa1_17.powerOFF());
 
-			 assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
+			assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
 
-		
+			Thread.sleep(3000);
 			// Check for app focus
-			if(driver.findElementsByXPath("//*[AutomationId='buttonConnect']").isEmpty()) {
-				
-				System.out.println("App is not in focus");
-				driver.switchTo();
-				
-			}
 			
 			// Sports mode // Step 7
-			sportsMode = fwUpdate.getSportsMode(driver);
+			fwUpdate.getSportsMode(driver);
 			sportsMode.click();
 
 			serialNoElement = fwUpdate.selectSerialNumber(driver);

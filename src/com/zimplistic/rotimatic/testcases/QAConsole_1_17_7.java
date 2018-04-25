@@ -14,14 +14,18 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.zimplistic.rotimatic.dataprovider.ExcelLib;
-import com.zimplistic.rotimatic.pageobjects.QAConsolePage;
+import com.zimplistic.rotimatic.pageobjects.Qaconsole.QACPageLogin;
+import com.zimplistic.rotimatic.pageobjects.Qaconsole.QACPageRMS;
+import com.zimplistic.rotimatic.pageobjects.Qaconsole.QACPageSettings;
 import com.zimplistic.rotimatic.setup.BaseSetup;
 
 public class QAConsole_1_17_7 extends BaseSetup {
 	WiniumDriver driver;
 	ExcelLib xl = new ExcelLib();
 	gmailLogin glogin = new gmailLogin();
-	QAConsolePage qaconsole = new QAConsolePage();
+	QACPageLogin qacLogin = new QACPageLogin();
+	QACPageRMS qacRMS = new QACPageRMS();
+	QACPageSettings qacSettings = new QACPageSettings();
 
 	String path = xl.getXLcellValue("TestData", 5, 1);
 	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
@@ -40,13 +44,13 @@ public class QAConsole_1_17_7 extends BaseSetup {
 		try {
 			driver = setup(path);
 			Thread.sleep(5000); // waiting for app to get in focus
-			assertTrue(!qaconsole.loginDisplayed(driver), "QAConsole login failed, please try again");
+			assertTrue(!qacLogin.loginDisplayed(driver), "QAConsole login failed, please try again");
 
 			// Login to QAConsole
 			qaConsoleLogin();
 
 			// Check whether qaconsole is opened successfully or not
-			if (qaconsole.homeDisplayed(driver)) {
+			if (qacLogin.homeDisplayed(driver)) {
 				ispowerOff = false;
 				getScreenshot(driver, FOLDER_QACONSOLE);
 				Assert.fail(" QAConsole login failed, please try again");
@@ -54,13 +58,13 @@ public class QAConsole_1_17_7 extends BaseSetup {
 			// Connect to serial number
 			connectClient();
 
-			settings = qaconsole.selectSettings(driver);
+			settings = qacSettings.selectSettings(driver);
 			settings.click();
 			Thread.sleep(1000);
 			getScreenshot(driver, FOLDER_QACONSOLE);
 
 			// Check machine is power off / On Step 4
-			power = qaconsole.selectPower(driver);
+			power = qacSettings.selectPower(driver);
 			power.click();
 
 			disconnectClient();
@@ -77,10 +81,10 @@ public class QAConsole_1_17_7 extends BaseSetup {
 	private void connectClient() throws Exception {
 
 		// Clicking on RMS tab and connecting to machine
-		RMS = qaconsole.selectRMS(driver);
+		RMS = qacRMS.selectRMS(driver);
 		RMS.click();
 
-		serialNoElement = qaconsole.selectSerialNumber(driver);
+		serialNoElement = qacRMS.selectSerialNumber(driver);
 		serialNoElement.clear();
 		serialNoElement.sendKeys(serialNumber);
 
@@ -88,7 +92,7 @@ public class QAConsole_1_17_7 extends BaseSetup {
 		Thread.sleep(3000);
 
 		// Check status
-		status = qaconsole.selectStatus(driver).getText();
+		status = qacRMS.selectStatus(driver).getText();
 		getScreenshot(driver, FOLDER_QACONSOLE);
 
 		// Check machine is connected to Internet or not
@@ -112,18 +116,18 @@ public class QAConsole_1_17_7 extends BaseSetup {
 		String windowsHandle = driver.getWindowHandle();
 
 		glogin.webDriverSetup();
-		gSignIn = qaconsole.selectGoogleSignIn(driver);
+		gSignIn = qacLogin.selectGoogleSignIn(driver);
 		gSignIn.click();
 		Thread.sleep(5000);
 
-		if (!qaconsole.popupDisplayed(driver)) {
+		if (!qacLogin.popupDisplayed(driver)) {
 			System.out.println("\n User is already logged in");
 
-			OK = qaconsole.selectOK(driver);
+			OK = qacLogin.selectOK(driver);
 			OK.click();
 
 			System.out.println("OK button to continue login clicked on");
-		} else if (qaconsole.homeDisplayed(driver)) {
+		} else if (qacLogin.homeDisplayed(driver)) {
 			System.out.println("User is logged in to the QA Console login system");
 		} else {
 			System.out.println("popup to confirm login with OK button did not show");
@@ -150,10 +154,10 @@ public class QAConsole_1_17_7 extends BaseSetup {
 		RMS.click();
 		Thread.sleep(1000);
 
-		disconnectClient = qaconsole.selectDisconnectClient(driver);
+		disconnectClient = qacRMS.selectDisconnectClient(driver);
 		disconnectClient.click();
 
-		closeIcon = qaconsole.selectClose(driver);
+		closeIcon = qacLogin.selectClose(driver);
 		closeIcon.click();
 
 	}
