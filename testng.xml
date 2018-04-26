@@ -3,9 +3,8 @@
 <suite name="Suite" allow-return-values="true">
   <test thread-count="1" name="Test" >
     <classes>
-      <class name="com.zimplistic.rotimatic.testcases.QAConsole_1_17_7"/>
+      <class name="com.zimplistic.rotimatic.testcases.QAConsole_FWUpdate"/>
       <class name="com.zimplistic.rotimatic.testcases.FWUpdate"/>
-      <class name="com.zimplistic.rotimatic.testcases.QAConsole_1_18_7"/>
       
     </classes>
   </test> <!-- Test -->

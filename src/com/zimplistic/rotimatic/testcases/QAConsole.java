@@ -31,7 +31,7 @@ public class QAConsole extends BaseSetup {
 		glogin.webDriverSetup();
 		gSignIn = qacLogin.selectGoogleSignIn(driver);
 		gSignIn.click();
-		Thread.sleep(5000);
+		Thread.sleep(12000);
 
 		if (qacLogin.popupDisplayed(driver)) {
 			System.out.println("\n User is already logged in");
