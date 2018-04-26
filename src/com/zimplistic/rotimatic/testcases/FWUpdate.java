@@ -29,7 +29,6 @@ public class FWUpdate extends BaseSetup {
 	QAConsole_1_17_7 qa1_17 = new QAConsole_1_17_7();
 	FWUpdatePage fwUpdate = new FWUpdatePage();
 
-
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 4, 1);
 	String successFWUpdate = xl.getXLcellValue("TestData", 2, 1);
@@ -47,9 +46,10 @@ public class FWUpdate extends BaseSetup {
 	public boolean fwUpdateTest() throws IOException {
 		try {
 			driver = setup(path);
-			//System.out.println("inside fw update, value = " +qa1_17.powerOFF());
+			// System.out.println("inside fw update, value = " +qa1_17.powerOFF());
 
-			assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
+			// assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with
+			// FWUpdate test");
 
 			Thread.sleep(3000);
 			// Check for app focus
@@ -196,7 +196,12 @@ public class FWUpdate extends BaseSetup {
 						if (actual.contains(expected)) {
 							System.out.println("\n FW update process completed ..");
 							flag = true;
+						}
 
+						if (actual.isEmpty()) {
+							System.err.println("FW upgrade is stopped in between");
+							disconnectClient();
+							Assert.fail("FW upgrade is stopped in between");
 						}
 
 					} catch (Exception e) {
@@ -220,7 +225,7 @@ public class FWUpdate extends BaseSetup {
 		getScreenshot(driver, FOLDER_FWUPDATETOOL);
 		continueElement = fwUpdate.selectContinue(driver);
 		continueElement.click();
-		clearLogs();
+		// clearLogs();
 		fwUpdate(); // Calling FW Update again
 
 	}

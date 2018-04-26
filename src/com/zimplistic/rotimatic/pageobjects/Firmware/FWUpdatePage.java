@@ -5,9 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.winium.WiniumDriver;
 import org.testng.Assert;
 
-
-
-public class FWUpdatePage{
+public class FWUpdatePage {
 	public static WebElement element;
 	public boolean isPopup = true;
 	public boolean isError = true;
@@ -53,20 +51,17 @@ public class FWUpdatePage{
 
 	public WebElement getSportsMode(WiniumDriver driver) throws Exception {
 		try {
-			element = driver
-					.findElementByXPath("//*[@AutomationId='checkBoxSpeed']");
-
+			element = driver.findElementByXPath("//*[@AutomationId='checkBoxSpeed']");
 		} catch (Exception e) {
 
 			Assert.fail("Error in getting Sports Mode field");
 		}
 		return element;
 	}
-	
+
 	public WebElement selectSerialNumber(WiniumDriver driver) throws Exception {
 		try {
-			element = driver
-					.findElementByXPath("//*[@AutomationId='textBoxRotiSerial']");
+			element = driver.findElementByXPath("//*[@AutomationId='textBoxRotiSerial']");
 
 		} catch (Exception e) {
 
@@ -100,7 +95,7 @@ public class FWUpdatePage{
 	public WebElement selectFWVersion(WiniumDriver driver) throws Exception {
 		try {
 			element = driver.findElementByXPath("//*[@AutomationId='buttonFwVersion']");
-			
+
 		} catch (Exception e) {
 
 			Assert.fail("Error in getting FW version button");
