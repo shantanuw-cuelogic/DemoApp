@@ -29,7 +29,6 @@ public class FWUpdate extends BaseSetup {
 	QAConsole_1_17_7 qa1_17 = new QAConsole_1_17_7();
 	FWUpdatePage fwUpdate = new FWUpdatePage();
 
-	// Page page = new Page();
 
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 4, 1);
@@ -45,10 +44,10 @@ public class FWUpdate extends BaseSetup {
 			continueElement, disconnect;
 
 	@Test(priority = 1)
-	public Boolean fwUpdateTest() throws IOException {
+	public boolean fwUpdateTest() throws IOException {
 		try {
 			driver = setup(path);
-			System.out.println("inside fw update, value = " + qa1_17.powerOFF());
+			//System.out.println("inside fw update, value = " +qa1_17.powerOFF());
 
 			assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
 
@@ -56,7 +55,7 @@ public class FWUpdate extends BaseSetup {
 			// Check for app focus
 
 			// Sports mode // Step 7
-			fwUpdate.getSportsMode(driver);
+			sportsMode = fwUpdate.getSportsMode(driver);
 			sportsMode.click();
 
 			serialNoElement = fwUpdate.selectSerialNumber(driver);
