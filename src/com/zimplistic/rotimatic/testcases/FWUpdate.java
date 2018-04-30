@@ -26,7 +26,7 @@ import com.zimplistic.rotimatic.setup.BaseSetup;
 
 public class FWUpdate extends BaseSetup {
 	ExcelLib xl = new com.zimplistic.rotimatic.dataprovider.ExcelLib();
-	QAConsole_1_17_7 qa1_17 = new QAConsole_1_17_7();
+	QAConsole_FWUpdate qa1_17 = new QAConsole_FWUpdate();
 	FWUpdatePage fwUpdate = new FWUpdatePage();
 
 	WiniumDriver driver;
