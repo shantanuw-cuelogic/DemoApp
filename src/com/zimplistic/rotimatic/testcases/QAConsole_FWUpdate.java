@@ -1,11 +1,15 @@
 package com.zimplistic.rotimatic.testcases;
 
 import static org.testng.Assert.assertTrue;
+
 import java.io.IOException;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.winium.WiniumDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import com.zimplistic.rotimatic.dataprovider.ExcelLib;
 import com.zimplistic.rotimatic.pageobjects.Qaconsole.QACPageLogin;
 import com.zimplistic.rotimatic.pageobjects.Qaconsole.QACPageSettings;
@@ -18,21 +22,23 @@ public class QAConsole_FWUpdate extends BaseSetup {
 	QACPageLogin qacLogin = new QACPageLogin();
 	QACPageSettings qacSettings = new QACPageSettings();
 	QAConsole qaconsole = new QAConsole();
-	FWUpdate fw = new FWUpdate();
+	// FWUpdate fw = new FWUpdate();
 
 	String path1 = xl.getXLcellValue("TestData", 5, 1); // 1.17.7
-	String serialNumber = xl.getXLcellValue("TestData", 1, 1); 
+	String serialNumber = xl.getXLcellValue("TestData", 1, 1);
 	String path2 = xl.getXLcellValue("TestData", 6, 1); // 1.18.7
 
 	public boolean ispowerOff;
 	WebElement RMS, serialNoElement, settings, power, saveEEPROM, gSignIn, OK, disconnectClient, closeIcon;
 
+
 	@Test(priority = 0)
-	public boolean powerOFF() throws IOException {
+	public void powerOFF() throws IOException {
 
 		try {
 			driver = setup(path1);
 			Thread.sleep(5000); // waiting for app to get in focus
+
 			assertTrue(!qacLogin.loginDisplayed(driver), "QAConsole login failed, please try again");
 
 			// Login to QAConsole
@@ -64,7 +70,7 @@ public class QAConsole_FWUpdate extends BaseSetup {
 		}
 
 		System.out.println("After qa 1.17 " + ispowerOff);
-		return ispowerOff;
+		// return ispowerOff;
 	}
 
 	@Test(priority = 2)
@@ -73,8 +79,8 @@ public class QAConsole_FWUpdate extends BaseSetup {
 		driver = setup(path2);
 
 		Thread.sleep(5000);
-		System.out.println("inside QAConsole 1.18.7, value = " + fw.isFWUpdate);
-		assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
+		// System.out.println("inside QAConsole 1.18.7, value = " + fw.isFWUpdate);
+		// assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
 		assertTrue(!qacLogin.loginDisplayed(driver), "QAConsole login failed, please try again");
 
 		// Login to QAConsole

@@ -18,6 +18,7 @@ import org.openqa.selenium.winium.WiniumDriver;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.zimplistic.rotimatic.dataprovider.ExcelLib;
@@ -26,8 +27,8 @@ import com.zimplistic.rotimatic.setup.BaseSetup;
 
 public class FWUpdate extends BaseSetup {
 	ExcelLib xl = new com.zimplistic.rotimatic.dataprovider.ExcelLib();
-	QAConsole_1_17_7 qa1_17 = new QAConsole_1_17_7();
-	FWUpdatePage fwUpdate = new FWUpdatePage();
+	//QAConsole_FWUpdate qa1_17 = new QAConsole_FWUpdate();
+	FWUpdatePage fwUpdatePage = new FWUpdatePage();
 
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 4, 1);
@@ -42,42 +43,44 @@ public class FWUpdate extends BaseSetup {
 	WebElement sportsMode, serialNoElement, connect, OK, close, FWVersionElement, quit, log, startFWUpdate,
 			continueElement, disconnect;
 
+	
+	
+	
 	@Test(priority = 1)
-	public boolean fwUpdateTest() throws IOException {
+	public void fwUpdateTest() throws IOException {
 		try {
 			driver = setup(path);
-			System.out.println("inside fw update value = " + qa1_17.ispowerOff);
+			//System.out.println("inside fw update value = " + qa1_17.ispowerOff);
 
-			assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
+			//assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
 
 			Thread.sleep(3000);
 			// Check for app focus
 
 			// Sports mode // Step 7
-			sportsMode = fwUpdate.getSportsMode(driver);
+			sportsMode = fwUpdatePage.getSportsMode(driver);
 			sportsMode.click();
 
-			serialNoElement = fwUpdate.selectSerialNumber(driver);
+			serialNoElement = fwUpdatePage.selectSerialNumber(driver);
 			serialNoElement.clear();
 			serialNoElement.sendKeys(serialNumber); // Step 6
 
-			// Need to Check button is enabled or not
-			connect = fwUpdate.getConnect(driver);
+			connect = fwUpdatePage.getConnect(driver);
 			connect.click(); // Step 8
 			Thread.sleep(3000);
 			getScreenshot(driver, FOLDER_FWUPDATETOOL);
 
 			// Check for Error - update.img file not exist
-			if (fwUpdate.popupDisplayed(driver)) {
+			if (fwUpdatePage.popupDisplayed(driver)) {
 
 				getScreenshot(driver, FOLDER_FWUPDATETOOL);
 
-				OK = fwUpdate.selectOK(driver);
+				OK = fwUpdatePage.selectOK(driver);
 				OK.click();
 
 				System.err.println("\n Error: update.img file not exist");
 
-				close = fwUpdate.selectClose(driver);
+				close = fwUpdatePage.selectClose(driver);
 				close.click();
 				try {
 					Assert.fail("\n Error :- update.img file not exist");
@@ -141,18 +144,18 @@ public class FWUpdate extends BaseSetup {
 
 		} catch (Exception e) {
 		}
-		return isFWUpdate;
+		//return isFWUpdate;
 	}
 
 	private void checkErrorDialog() throws Exception {
 		// Check error state
-		if (fwUpdate.errorDisplayed(driver)) {
+		if (fwUpdatePage.errorDisplayed(driver)) {
 			getScreenshot(driver, FOLDER_FWUPDATETOOL);
 			System.err.println("Error info :- sys state is not for firmware update");
 
-			quit = fwUpdate.selectQuit(driver);
+			quit = fwUpdatePage.selectQuit(driver);
 			quit.click(); // 1st popup
-			quit = fwUpdate.selectQuit(driver);
+			quit = fwUpdatePage.selectQuit(driver);
 			quit.click(); // 2nd popup
 			try {
 				Assert.fail("Error info :- sys state is not for firmware update");
@@ -162,7 +165,7 @@ public class FWUpdate extends BaseSetup {
 	}
 
 	private void fwUpdate() throws Exception {
-		startFWUpdate = fwUpdate.selectStartFWUpdate(driver);
+		startFWUpdate = fwUpdatePage.selectStartFWUpdate(driver);
 		startFWUpdate.click();
 		checkErrorDialog();
 		checkFWUpdateProgress(); // Step 10
@@ -198,9 +201,9 @@ public class FWUpdate extends BaseSetup {
 						}
 
 						if (actual.isEmpty()) {
-							System.err.println("FW upgrade is stopped in between");
+							System.err.println("FW upgrade is stopped in between due to Rotimatic disconnected");
 							disconnectClient();
-							Assert.fail("FW upgrade is stopped in between");
+							Assert.fail("FW upgrade is stopped in between due to Rotimatic disconnected");
 						}
 
 					} catch (Exception e) {
@@ -222,7 +225,7 @@ public class FWUpdate extends BaseSetup {
 	private void fwUpdateRetry() throws Exception {
 		// click on Continue button
 		getScreenshot(driver, FOLDER_FWUPDATETOOL);
-		continueElement = fwUpdate.selectContinue(driver);
+		continueElement = fwUpdatePage.selectContinue(driver);
 		continueElement.click();
 		// clearLogs();
 		fwUpdate(); // Calling FW Update again
@@ -232,7 +235,7 @@ public class FWUpdate extends BaseSetup {
 	private String checkCurrentFWversion() throws Exception {
 
 		// Need to Check button is enabled or not
-		FWVersionElement = fwUpdate.selectFWVersion(driver);
+		FWVersionElement = fwUpdatePage.selectFWVersion(driver);
 		FWVersionElement.click();
 		Thread.sleep(4000);
 		checkErrorDialog();
@@ -263,25 +266,25 @@ public class FWUpdate extends BaseSetup {
 
 	private void disconnectClient() throws Exception {
 
-		disconnect = fwUpdate.selectDisconnect(driver);
+		disconnect = fwUpdatePage.selectDisconnect(driver);
 		disconnect.click();
 		System.out.println("\n Client disconnected");
 
-		close = fwUpdate.selectClose(driver);
+		close = fwUpdatePage.selectClose(driver);
 		close.click();
 
 		driver.close();
 	}
 
 	private String getStatus() throws Exception {
-		status = fwUpdate.selectStatus(driver).getText();
+		status = fwUpdatePage.selectStatus(driver).getText();
 		return status;
 
 	}
 
 	private void clearLogs() throws Exception {
 
-		log = fwUpdate.getClearLogElement(driver);
+		log = fwUpdatePage.getClearLogElement(driver);
 		try {
 			Actions action = new Actions(driver).doubleClick(log);
 			action.build().perform();
