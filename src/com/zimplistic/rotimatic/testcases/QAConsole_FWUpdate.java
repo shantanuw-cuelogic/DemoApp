@@ -51,7 +51,7 @@ public class QAConsole_FWUpdate extends BaseSetup {
 				Assert.fail(" QAConsole login failed, please try again");
 			}
 			// Connect to serial number
-			qaconsole.connectClient(driver, serialNumber);
+			qaconsole.qaConsoleConnectClient(driver, serialNumber);
 
 			settings = qacSettings.selectSettings(driver);
 			settings.click();
@@ -62,7 +62,7 @@ public class QAConsole_FWUpdate extends BaseSetup {
 			power = qacSettings.selectPower(driver);
 			power.click();
 
-			qaconsole.disconnectClient(driver);
+			qaconsole.qaConsoleDisconnectClient(driver);
 			ispowerOff = true;
 			System.out.println("qaConsole login passed from poweroff");
 
@@ -92,7 +92,7 @@ public class QAConsole_FWUpdate extends BaseSetup {
 			Assert.fail(" QAConsole login failed, please try again");
 		}
 
-		qaconsole.connectClient(driver, serialNumber);
+		qaconsole.qaConsoleConnectClient(driver, serialNumber);
 
 		settings = qacSettings.selectSettings(driver);
 		settings.click();
@@ -121,7 +121,7 @@ public class QAConsole_FWUpdate extends BaseSetup {
 			getScreenshot(driver, FOLDER_QACONSOLE);
 			qacLogin.selectOK(driver).click();
 			try {
-				qaconsole.disconnectClient(driver);
+				qaconsole.qaConsoleDisconnectClient(driver);
 				Assert.fail(" EEPROM transaction fail! (Timeout after 30s)");
 			} catch (Exception e) {
 			}
@@ -131,7 +131,7 @@ public class QAConsole_FWUpdate extends BaseSetup {
 
 		// Check rotifile saved location here
 
-		qaconsole.disconnectClient(driver);
+		qaconsole.qaConsoleDisconnectClient(driver);
 
 		driver.close();
 
