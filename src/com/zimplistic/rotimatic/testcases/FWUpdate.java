@@ -30,6 +30,7 @@ public class FWUpdate extends BaseSetup {
 	//QAConsole_FWUpdate qa1_17 = new QAConsole_FWUpdate();
 	FWUpdatePage fwUpdatePage = new FWUpdatePage();
 
+
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 4, 1);
 	String successFWUpdate = xl.getXLcellValue("TestData", 2, 1);
