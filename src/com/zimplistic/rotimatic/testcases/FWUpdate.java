@@ -27,9 +27,8 @@ import com.zimplistic.rotimatic.setup.BaseSetup;
 
 public class FWUpdate extends BaseSetup {
 	ExcelLib xl = new com.zimplistic.rotimatic.dataprovider.ExcelLib();
-	//QAConsole_FWUpdate qa1_17 = new QAConsole_FWUpdate();
+	// QAConsole_FWUpdate qa1_17 = new QAConsole_FWUpdate();
 	FWUpdatePage fwUpdatePage = new FWUpdatePage();
-
 
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 4, 1);
@@ -44,19 +43,18 @@ public class FWUpdate extends BaseSetup {
 	WebElement sportsMode, serialNoElement, connect, OK, close, FWVersionElement, quit, log, startFWUpdate,
 			continueElement, disconnect;
 
-	
-	
-	
 	@Test(priority = 1)
 	public void fwUpdateTest() throws IOException {
 		try {
 			driver = setup(path);
-			//System.out.println("inside fw update value = " + qa1_17.ispowerOff);
+			// System.out.println("inside fw update value = " + qa1_17.ispowerOff);
 
-			//assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with FWUpdate test");
+			// assertTrue(qa1_17.powerOFF(), "QAConsole 1.17.7 failed, can not start with
+			// FWUpdate test");
 
 			Thread.sleep(3000);
 			// Check for app focus
+
 
 			// Sports mode // Step 7
 			sportsMode = fwUpdatePage.getSportsMode(driver);
@@ -71,81 +69,86 @@ public class FWUpdate extends BaseSetup {
 			Thread.sleep(3000);
 			getScreenshot(driver, FOLDER_FWUPDATETOOL);
 
-			// Check for Error - update.img file not exist
-			if (fwUpdatePage.popupDisplayed(driver)) {
-
-				getScreenshot(driver, FOLDER_FWUPDATETOOL);
-
-				OK = fwUpdatePage.selectOK(driver);
-				OK.click();
-
-				System.err.println("\n Error: update.img file not exist");
-
-				close = fwUpdatePage.selectClose(driver);
-				close.click();
-				try {
-					Assert.fail("\n Error :- update.img file not exist");
-				} catch (Exception e) {
-				}
-			}
+			checkImageFileError();
 
 			status = getStatus();
 			System.out.println("\n Current status is => \n" + status);
 
-			if (status.contains(connectedSuccess))
-				System.out.println("\n Client is connected"); // Step 8
-			else {
-				System.err.println("\n Error occured:- " + status);
-				try {
-					getScreenshot(driver, FOLDER_FWUPDATETOOL);
-					Assert.fail("\n Error occured:- Client not connected");
+			checkClientConnected();
 
-				} catch (Exception e) {
-				}
-			}
 			// Check current FW version of machine
 			status = checkCurrentFWversion();
 
-			if (status.contains(successFWUpdate)) {
-
-				System.err.println("\n Machine is already updated to latest FW version 1.18.7");
-				disconnectClient();
-				try {
-					getScreenshot(driver, FOLDER_FWUPDATETOOL);
-					Assert.fail("\n Machine is already updated to latest FW version 1.18.7");
-
-				} catch (Exception e) {
-				}
-			}
+			checkForFWUpdateRequired(); // Check for current FW is already upgraded
 
 			clearLogs();
 
 			// Start FW update Step 9
 			fwUpdate();
 			System.out.println("\n After FW upgrade");
+
 			// Check FW version after update Step 11
 			status = checkCurrentFWversion();
 
-			// Check for semantic fw version > 1.17.7
-			if (!status.contains(currentFWVersion)) {
-				isFWUpdate = true;
-				System.out.println("\n FW is upgraded successfully");
-				getScreenshot(driver, FOLDER_FWUPDATETOOL);
-			} else {
-				try {
-					getScreenshot(driver, FOLDER_FWUPDATETOOL);
-					System.err.println("\n Error :- FW is not upgraded successfully");
-					isFWUpdate = false;
-					disconnectClient();
-					Assert.fail("\n Error :- FW is not upgraded !!");
-				} catch (Exception e) {
-				}
-			}
+			checkForFWUpgrade(); // Check for upgraded FW version
+
 			disconnectClient();
 
 		} catch (Exception e) {
 		}
-		//return isFWUpdate;
+		// return isFWUpdate;
+	}
+
+	private void checkClientConnected() {
+		// Check for client connected
+		if (status.contains(connectedSuccess))
+			System.out.println("\n Client is connected"); // Step 8
+		else {
+			System.err.println("\n Error occured:- " + status);
+			try {
+				getScreenshot(driver, FOLDER_FWUPDATETOOL);
+				Assert.fail("\n Error occured:- Client not connected");
+
+			} catch (Exception e) {
+			}
+		}
+
+	}
+
+	private void checkForFWUpdateRequired() throws Exception {
+		if (status.contains(successFWUpdate)) {
+
+			System.err.println("\n Machine is already updated to latest FW version 1.18.7");
+			disconnectClient();
+			try {
+				getScreenshot(driver, FOLDER_FWUPDATETOOL);
+				Assert.fail("\n Machine is already updated to latest FW version 1.18.7");
+
+			} catch (Exception e) {
+			}
+		}
+
+	}
+
+	private void checkImageFileError() throws Exception {
+		// Check for Error - update.img file not exist
+		if (fwUpdatePage.popupDisplayed(driver)) {
+
+			getScreenshot(driver, FOLDER_FWUPDATETOOL);
+
+			OK = fwUpdatePage.selectOK(driver);
+			OK.click();
+
+			System.err.println("\n Error: update.img file not exist");
+
+			close = fwUpdatePage.selectClose(driver);
+			close.click();
+			try {
+				Assert.fail("\n Error :- update.img file not exist");
+			} catch (Exception e) {
+			}
+		}
+
 	}
 
 	private void checkErrorDialog() throws Exception {
@@ -262,6 +265,24 @@ public class FWUpdate extends BaseSetup {
 		System.out.println("\n Current FW version = " + fwVersion);
 
 		return fwVersion;
+
+	}
+
+	private void checkForFWUpgrade() throws Exception {
+		if (!status.contains(currentFWVersion)) {
+			isFWUpdate = true;
+			System.out.println("\n FW is upgraded successfully");
+			getScreenshot(driver, FOLDER_FWUPDATETOOL);
+		} else {
+			try {
+				getScreenshot(driver, FOLDER_FWUPDATETOOL);
+				System.err.println("\n Error :- FW is not upgraded successfully");
+				isFWUpdate = false;
+				disconnectClient();
+				Assert.fail("\n Error :- FW is not upgraded !!");
+			} catch (Exception e) {
+			}
+		}
 
 	}
 
