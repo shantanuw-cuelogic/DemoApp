@@ -59,7 +59,7 @@ public class QAConsole extends BaseSetup {
 		Thread.sleep(2000);
 	}
 
-	void connectClient(WiniumDriver driver, String serialNumber) throws Exception {
+	void qaConsoleConnectClient(WiniumDriver driver, String serialNumber) throws Exception {
 
 		// Clicking on RMS tab and connecting to machine
 		RMS = qacRMS.selectRMS(driver);
@@ -80,7 +80,7 @@ public class QAConsole extends BaseSetup {
 		if (status.contains(notConnectedStatus)) {
 			getScreenshot(driver, FOLDER_QACONSOLE);
 			System.err.println("\n Machine is not connected to internet");
-			disconnectClient(driver);
+			qaConsoleDisconnectClient(driver);
 			try {
 				Assert.fail("\n Machine is not connected to internet");
 
@@ -93,7 +93,7 @@ public class QAConsole extends BaseSetup {
 
 	}
 
-	public void disconnectClient(WiniumDriver driver) throws Exception {
+	public void qaConsoleDisconnectClient(WiniumDriver driver) throws Exception {
 
 		// Go to RMS and click on disconnect
 		RMS.click();
