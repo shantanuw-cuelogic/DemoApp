@@ -31,7 +31,6 @@ public class QAConsole_FWUpdate extends BaseSetup {
 	public boolean ispowerOff;
 	WebElement RMS, serialNoElement, settings, power, saveEEPROM, gSignIn, OK, disconnectClient, closeIcon;
 
-
 	@Test(priority = 0)
 	public void powerOFF() throws IOException {
 
@@ -59,8 +58,23 @@ public class QAConsole_FWUpdate extends BaseSetup {
 			getScreenshot(driver, FOLDER_QACONSOLE);
 
 			// Check machine is power off / On Step 4
+			// IsOffscreen: "True" RT is power OFF
+
+			/*
+			 * power = qacSettings.selectPower(driver);
+			 * 
+			 * String flag = null; try { flag = power.getAttribute("IsOffscreen");
+			 * System.out.println("RT machine is power " +flag); }catch(Exception e) {
+			 * e.printStackTrace(); }
+			 */
+
+			// if(flag.equals("False")) {
+
 			power = qacSettings.selectPower(driver);
 			power.click();
+			//System.out.println("RT machine is powering OFF");
+			// }else
+			// System.out.println("RT machine is already powered OFF");
 
 			qaconsole.qaConsoleDisconnectClient(driver);
 			ispowerOff = true;
@@ -69,18 +83,19 @@ public class QAConsole_FWUpdate extends BaseSetup {
 		} catch (Exception e) {
 		}
 
-		System.out.println("After qa 1.17 " + ispowerOff);
+		// System.out.println("After qa 1.17 " + ispowerOff);
 		// return ispowerOff;
 	}
 
-	@Test(priority = 2)
+	// @Test(priority = 2)
 	public void saveRotiFile() throws Exception {
 
 		driver = setup(path2);
 
 		Thread.sleep(5000);
 		// System.out.println("inside QAConsole 1.18.7, value = " + fw.isFWUpdate);
-		// assertTrue(fw.isFWUpdate, "FW Update failed before login to QAConsole1.18.7");
+		// assertTrue(fw.isFWUpdate, "FW Update failed before login to
+		// QAConsole1.18.7");
 		assertTrue(!qacLogin.loginDisplayed(driver), "QAConsole login failed, please try again");
 
 		// Login to QAConsole
