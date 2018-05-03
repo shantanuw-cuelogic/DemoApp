@@ -12,11 +12,10 @@ public class CopyFWImage extends BaseSetup {
 
 	WiniumDriver driver;
 	ExcelLib xl = new ExcelLib();
-	String source =  xl.getXLcellValue("TestData", 8, 1); 
-	String dest =  xl.getXLcellValue("TestData", 9, 1); 
+	
 
 	@Test
-	public void copyFW() throws Exception {
+	public void copyFW(String source, String dest) throws Exception {
 
 		File s = new File(source);
 		File d = new File(dest);

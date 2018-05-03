@@ -29,6 +29,7 @@ public class FWUpdate extends BaseSetup {
 	ExcelLib xl = new com.zimplistic.rotimatic.dataprovider.ExcelLib();
 	// QAConsole_FWUpdate qa1_17 = new QAConsole_FWUpdate();
 	FWUpdatePage fwUpdatePage = new FWUpdatePage();
+	CopyFWImage fwCopy = new CopyFWImage();
 
 	WiniumDriver driver;
 	String path = xl.getXLcellValue("TestData", 4, 1);
@@ -40,12 +41,19 @@ public class FWUpdate extends BaseSetup {
 	String notConnected = "Rotimatic machine is not connected.";
 	boolean isFWUpdate;
 
+	String source =  xl.getXLcellValue("TestData", 8, 1); 
+	String dest =  xl.getXLcellValue("TestData", 9, 1); 
+	
 	WebElement sportsMode, serialNoElement, connect, OK, close, FWVersionElement, quit, log, startFWUpdate,
 			continueElement, disconnect;
 
 	@Test(priority = 1)
 	public void fwUpdateTest() throws IOException {
 		try {
+			
+			// Copy FW image file into FWUpdate tool
+			fwCopy.copyFW(source,dest);
+				
 			driver = setup(path);
 			// System.out.println("inside fw update value = " + qa1_17.ispowerOff);
 
@@ -93,6 +101,7 @@ public class FWUpdate extends BaseSetup {
 			checkForFWUpgrade(); // Check for upgraded FW version
 
 			disconnectClient();
+			driver.close();
 
 		} catch (Exception e) {
 		}
@@ -295,7 +304,6 @@ public class FWUpdate extends BaseSetup {
 		close = fwUpdatePage.selectClose(driver);
 		close.click();
 
-		driver.close();
 	}
 
 	private String getStatus() throws Exception {
