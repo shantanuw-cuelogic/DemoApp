@@ -28,7 +28,7 @@ public class QAConsole extends BaseSetup {
 
 	void qaConsoleLogin(WiniumDriver driver) throws Exception {
 		String windowsHandle = driver.getWindowHandle();
-		glogin.webDriverSetup();
+		//glogin.webDriverSetup();
 		gSignIn = qacLogin.selectGoogleSignIn(driver);
 		gSignIn.click();
 		Thread.sleep(12000);
